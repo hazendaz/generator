@@ -39,6 +39,7 @@ public abstract class AbstractTest extends TestCase {
         reader.close();
     }
 
+    @Override
     protected void setUp() throws Exception {
         TestUtilities.createDatabase();
     }

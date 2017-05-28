@@ -33,6 +33,7 @@ public abstract class AbstractConditionalJava2Test extends AbstractTest {
 
     private GenericApplicationContext factory;
 
+    @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
