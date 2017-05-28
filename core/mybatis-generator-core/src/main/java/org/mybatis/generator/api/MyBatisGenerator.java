@@ -55,6 +55,9 @@ import org.mybatis.generator.internal.XmlFileMergerJaxp;
  */
 public class MyBatisGenerator {
 
+    /** Legacy ibatis support **/
+    private String IBATIS_SUPPORT = "import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;" + System.getProperty("line.separator");
+    
     /** The configuration. */
     private Configuration configuration;
 
@@ -325,7 +328,16 @@ public class MyBatisGenerator {
             callback.checkCancel();
             callback.startTask(getString(
                     "Progress.15", targetFile.getName())); //$NON-NLS-1$
-            writeFile(targetFile, source, gjf.getFileEncoding());
+
+            // For ibatis support, add suppression of deprecated spring support
+            if (source.contains(IBATIS_SUPPORT)) {
+                StringBuilder builder = new StringBuilder(source);
+                builder.insert(source.indexOf(IBATIS_SUPPORT) + IBATIS_SUPPORT.length(),
+                        System.getProperty("line.separator") + "@SuppressWarnings(\"deprecation\")");
+                writeFile(targetFile, builder.toString(), gjf.getFileEncoding());
+            } else {
+                writeFile(targetFile, source, gjf.getFileEncoding());
+            }
         } catch (ShellException e) {
             warnings.add(e.getMessage());
         }

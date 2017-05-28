@@ -40,6 +40,7 @@ public abstract class AbstractConditionalJava2Test extends AbstractTest {
 
     public AbstractConditionalJava2Test() {
         factory = new GenericApplicationContext();
+        factory.refresh();
         Resource res = new ClassPathResource(
                 "/mbg/test/ib2j2/conditional/SpringBeans.xml");
         XmlBeanDefinitionReader r = new XmlBeanDefinitionReader(factory);

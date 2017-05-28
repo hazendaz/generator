@@ -38,6 +38,7 @@ public abstract class AbstractHierarchicalJava5Test extends AbstractTest {
     public void setUp() throws Exception {
         super.setUp();
         factory = new GenericApplicationContext();
+        factory.refresh();
         Resource res = new ClassPathResource("/mbg/test/ib2j5/hierarchical/SpringBeans.xml");
         XmlBeanDefinitionReader r = new XmlBeanDefinitionReader(factory);
         r.loadBeanDefinitions(res);
