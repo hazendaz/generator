@@ -92,8 +92,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
 
         method = new Method("setDistinct"); //$NON-NLS-1$
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(
-                new Parameter(FullyQualifiedJavaType.getBooleanPrimitiveInstance(), "distinct")); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType.getBooleanPrimitiveInstance(), "distinct")); //$NON-NLS-1$
         method.addBodyLine("this.distinct = distinct;"); //$NON-NLS-1$
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
@@ -385,8 +384,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         topLevelClass.addImportedType(FullyQualifiedJavaType.getNewListInstance());
         topLevelClass.addImportedType(FullyQualifiedJavaType.getNewArrayListInstance());
 
-        FullyQualifiedJavaType listOfCriterion =
-                new FullyQualifiedJavaType("java.util.List<Criterion>"); //$NON-NLS-1$
+        FullyQualifiedJavaType listOfCriterion = new FullyQualifiedJavaType("java.util.List<Criterion>"); //$NON-NLS-1$
         field = new Field("criteria", listOfCriterion); //$NON-NLS-1$
         field.setVisibility(JavaVisibility.PROTECTED);
         answer.addField(field);
@@ -416,8 +414,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addParameter(new Parameter(FullyQualifiedJavaType.getObjectInstance(), "value")); //$NON-NLS-1$
         method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
-        method.addBodyLine(
-                "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+        method.addBodyLine("throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
         method.addBodyLine("criteria.add(new Criterion(condition, value));"); //$NON-NLS-1$
         if (criteriaLists.size() > 1) {
@@ -432,8 +429,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addParameter(new Parameter(FullyQualifiedJavaType.getObjectInstance(), "value2")); //$NON-NLS-1$
         method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
-        method.addBodyLine(
-                "throw new RuntimeException(\"Between values for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+        method.addBodyLine("throw new RuntimeException(\"Between values for \" + property + \" cannot be null\");"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
         method.addBodyLine("criteria.add(new Criterion(condition, value1, value2));"); //$NON-NLS-1$
         if (criteriaLists.size() > 1) {
@@ -441,8 +437,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         }
         answer.addMethod(method);
 
-        FullyQualifiedJavaType listOfDates =
-                new FullyQualifiedJavaType("java.util.List<java.util.Date>"); //$NON-NLS-1$
+        FullyQualifiedJavaType listOfDates = new FullyQualifiedJavaType("java.util.List<java.util.Date>"); //$NON-NLS-1$
 
         if (introspectedTable.hasJDBCDateColumns()) {
             topLevelClass.addImportedType(FullyQualifiedJavaType.getDateInstance());
@@ -453,11 +448,9 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType.getDateInstance(), "value")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "addCriterion(condition, new java.sql.Date(value.getTime()), property);"); //$NON-NLS-1$
+            method.addBodyLine("addCriterion(condition, new java.sql.Date(value.getTime()), property);"); //$NON-NLS-1$
             answer.addMethod(method);
 
             method = new Method("addCriterionForJDBCDate"); //$NON-NLS-1$
@@ -466,8 +459,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(listOfDates, "values")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (values == null || values.size() == 0) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
                     + " cannot be null or empty\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine("List<java.sql.Date> dateList = new ArrayList<>();"); //$NON-NLS-1$
@@ -485,12 +477,10 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType.getDateInstance(), "value2")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
                     + " cannot be null\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "addCriterion(condition, new java.sql.Date(value1.getTime())," //$NON-NLS-1$
+            method.addBodyLine("addCriterion(condition, new java.sql.Date(value1.getTime())," //$NON-NLS-1$
                     + " new java.sql.Date(value2.getTime()), property);"); //$NON-NLS-1$
             answer.addMethod(method);
         }
@@ -504,11 +494,9 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType.getDateInstance(), "value")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "addCriterion(condition, new java.sql.Time(value.getTime()), property);"); //$NON-NLS-1$
+            method.addBodyLine("addCriterion(condition, new java.sql.Time(value.getTime()), property);"); //$NON-NLS-1$
             answer.addMethod(method);
 
             method = new Method("addCriterionForJDBCTime"); //$NON-NLS-1$
@@ -517,8 +505,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(listOfDates, "values")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (values == null || values.size() == 0) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Value list for \" + property + \"" //$NON-NLS-1$
                     + " cannot be null or empty\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
             method.addBodyLine("List<java.sql.Time> timeList = new ArrayList<>();"); //$NON-NLS-1$
@@ -536,12 +523,10 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType.getDateInstance(), "value2")); //$NON-NLS-1$
             method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
                     + " cannot be null\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "addCriterion(condition, new java.sql.Time(value1.getTime())," //$NON-NLS-1$
+            method.addBodyLine("addCriterion(condition, new java.sql.Time(value1.getTime())," //$NON-NLS-1$
                     + " new java.sql.Time(value2.getTime()), property);"); //$NON-NLS-1$
             answer.addMethod(method);
         }
@@ -595,7 +580,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
     }
 
     private Method getSetGreaterThenOrEqualMethod(IntrospectedColumn introspectedColumn) {
-        return getSingleValueMethod(introspectedColumn,"GreaterThanOrEqualTo", ">="); //$NON-NLS-1$ //$NON-NLS-2$
+        return getSingleValueMethod(introspectedColumn, "GreaterThanOrEqualTo", ">="); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private Method getSetLessThanMethod(IntrospectedColumn introspectedColumn) {
@@ -603,7 +588,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
     }
 
     private Method getSetLessThanOrEqualMethod(IntrospectedColumn introspectedColumn) {
-        return getSingleValueMethod(introspectedColumn,"LessThanOrEqualTo", "<="); //$NON-NLS-1$ //$NON-NLS-2$
+        return getSingleValueMethod(introspectedColumn, "LessThanOrEqualTo", "<="); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private Method getSetLikeMethod(IntrospectedColumn introspectedColumn) {
@@ -670,8 +655,11 @@ public class ExampleGenerator extends AbstractJavaGenerator {
     /**
      * Generates methods that set between and not between conditions.
      *
-     * @param introspectedColumn the introspected column
-     * @param betweenMethod true if between, else not between
+     * @param introspectedColumn
+     *            the introspected column
+     * @param betweenMethod
+     *            true if between, else not between
+     *
      * @return a generated method for the between or not between method
      */
     private Method getSetBetweenOrNotBetweenMethod(IntrospectedColumn introspectedColumn, boolean betweenMethod) {
@@ -712,10 +700,11 @@ public class ExampleGenerator extends AbstractJavaGenerator {
     /**
      * Generates an In or NotIn method.
      *
-     * @param introspectedColumn the introspected column
+     * @param introspectedColumn
+     *            the introspected column
      * @param inMethod
-     *            if true generates an "in" method, else generates a "not in"
-     *            method
+     *            if true generates an "in" method, else generates a "not in" method
+     *
      * @return a generated method for the in or not in method
      */
     private Method getSetInOrNotInMethod(IntrospectedColumn introspectedColumn, boolean inMethod) {
@@ -776,16 +765,19 @@ public class ExampleGenerator extends AbstractJavaGenerator {
     }
 
     /**
-     * This method adds all the extra methods and fields required to support a
-     * user defined type handler on some column.
+     * This method adds all the extra methods and fields required to support a user defined type handler on some column.
      *
-     * @param introspectedColumn the introspected column
-     * @param constructor the constructor
-     * @param innerClass the enclosing class
+     * @param introspectedColumn
+     *            the introspected column
+     * @param constructor
+     *            the constructor
+     * @param innerClass
+     *            the enclosing class
+     *
      * @return the name of the List added to the class by this method
      */
     private String addTypeHandledObjectsAndMethods(IntrospectedColumn introspectedColumn, Method constructor,
-                                                   InnerClass innerClass) {
+            InnerClass innerClass) {
         StringBuilder sb = new StringBuilder();
 
         // add new private field and public accessor in the class
@@ -824,13 +816,11 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addParameter(new Parameter(FullyQualifiedJavaType.getObjectInstance(), "value")); //$NON-NLS-1$
         method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
         method.addBodyLine("if (value == null) {"); //$NON-NLS-1$
-        method.addBodyLine(
-                "throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
+        method.addBodyLine("throw new RuntimeException(\"Value for \" + property + \" cannot be null\");"); //$NON-NLS-1$
         method.addBodyLine("}"); //$NON-NLS-1$
 
-        method.addBodyLine(
-                String.format("%s.add(new Criterion(condition, value, \"%s\"));", //$NON-NLS-1$
-                        field.getName(), introspectedColumn.getTypeHandler()));
+        method.addBodyLine(String.format("%s.add(new Criterion(condition, value, \"%s\"));", //$NON-NLS-1$
+                field.getName(), introspectedColumn.getTypeHandler()));
         method.addBodyLine("allCriteria = null;"); //$NON-NLS-1$
         innerClass.addMethod(method);
 
@@ -848,15 +838,13 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addParameter(new Parameter(FullyQualifiedJavaType.getStringInstance(), "property")); //$NON-NLS-1$
         if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
             method.addBodyLine("if (value1 == null || value2 == null) {"); //$NON-NLS-1$
-            method.addBodyLine(
-                    "throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
+            method.addBodyLine("throw new RuntimeException(\"Between values for \" + property + \"" //$NON-NLS-1$
                     + " cannot be null\");"); //$NON-NLS-1$
             method.addBodyLine("}"); //$NON-NLS-1$
         }
 
-        method.addBodyLine(
-                String.format("%s.add(new Criterion(condition, value1, value2, \"%s\"));", //$NON-NLS-1$
-                        field.getName(), introspectedColumn.getTypeHandler()));
+        method.addBodyLine(String.format("%s.add(new Criterion(condition, value1, value2, \"%s\"));", //$NON-NLS-1$
+                field.getName(), introspectedColumn.getTypeHandler()));
 
         method.addBodyLine("allCriteria = null;"); //$NON-NLS-1$
         innerClass.addMethod(method);

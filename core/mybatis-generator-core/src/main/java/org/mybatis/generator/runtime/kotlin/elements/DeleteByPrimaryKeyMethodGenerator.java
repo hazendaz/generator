@@ -38,10 +38,10 @@ public class DeleteByPrimaryKeyMethodGenerator extends AbstractKotlinFunctionGen
             return null;
         }
 
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".deleteByPrimaryKey") //$NON-NLS-1$
-                .withCodeLine("delete {") //$NON-NLS-1$
-                .build())
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports
+                .withFunction(KotlinFunction.newOneLineFunction(mapperName + ".deleteByPrimaryKey") //$NON-NLS-1$
+                        .withCodeLine("delete {") //$NON-NLS-1$
+                        .build())
                 .build();
 
         addFunctionComment(functionAndImports);

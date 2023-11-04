@@ -28,16 +28,14 @@ public class PrimitiveTypeWrapper extends FullyQualifiedJavaType {
     private final String toPrimitiveMethod;
 
     /**
-     * Use the static getXXXInstance methods to gain access to one of the type
-     * wrappers.
+     * Use the static getXXXInstance methods to gain access to one of the type wrappers.
      *
      * @param fullyQualifiedName
      *            fully qualified name of the wrapper type
      * @param toPrimitiveMethod
      *            the method that returns the wrapped primitive
      */
-    private PrimitiveTypeWrapper(String fullyQualifiedName,
-            String toPrimitiveMethod) {
+    private PrimitiveTypeWrapper(String fullyQualifiedName, String toPrimitiveMethod) {
         super(fullyQualifiedName);
         this.toPrimitiveMethod = toPrimitiveMethod;
     }

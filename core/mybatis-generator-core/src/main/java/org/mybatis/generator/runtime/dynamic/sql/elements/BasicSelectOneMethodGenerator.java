@@ -42,17 +42,14 @@ public class BasicSelectOneMethodGenerator extends AbstractMethodGenerator {
     public MethodAndImports generateMethodAndImports() {
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
-        FullyQualifiedJavaType parameterType =
-                new FullyQualifiedJavaType(
-                        "org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                "org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
         imports.add(parameterType);
 
-        FullyQualifiedJavaType adapter =
-                new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
+        FullyQualifiedJavaType adapter = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
         imports.add(adapter);
 
-        FullyQualifiedJavaType annotation =
-                new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType annotation = new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider"); //$NON-NLS-1$
         imports.add(annotation);
 
         FullyQualifiedJavaType returnType = new FullyQualifiedJavaType("java.util.Optional"); //$NON-NLS-1$
@@ -69,16 +66,15 @@ public class BasicSelectOneMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addAnnotation("@SelectProvider(type=SqlProviderAdapter.class, method=\"select\")"); //$NON-NLS-1$
 
-        MethodAndImports.Builder builder = MethodAndImports.withMethod(method)
-                .withImports(imports);
+        MethodAndImports.Builder builder = MethodAndImports.withMethod(method).withImports(imports);
 
         if (introspectedTable.isConstructorBased()) {
             MethodParts methodParts = fragmentGenerator.getAnnotatedConstructorArgs();
             acceptParts(builder, method, methodParts);
         } else {
             if (reuseResultMap) {
-                FullyQualifiedJavaType rmAnnotation =
-                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.ResultMap"); //$NON-NLS-1$
+                FullyQualifiedJavaType rmAnnotation = new FullyQualifiedJavaType(
+                        "org.apache.ibatis.annotations.ResultMap"); //$NON-NLS-1$
                 builder.withImport(rmAnnotation);
                 method.addAnnotation("@ResultMap(\"" + resultMapId + "\")"); //$NON-NLS-1$ //$NON-NLS-2$
             } else {

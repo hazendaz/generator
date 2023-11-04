@@ -22,8 +22,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
-public class UpdateByExampleSelectiveElementGenerator extends
-        AbstractXmlElementGenerator {
+public class UpdateByExampleSelectiveElementGenerator extends AbstractXmlElementGenerator {
 
     public UpdateByExampleSelectiveElementGenerator() {
         super();
@@ -33,8 +32,7 @@ public class UpdateByExampleSelectiveElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("update"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getUpdateByExampleSelectiveStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateByExampleSelectiveStatementId())); //$NON-NLS-1$
 
         answer.addAttribute(new Attribute("parameterType", "map")); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -48,8 +46,8 @@ public class UpdateByExampleSelectiveElementGenerator extends
         XmlElement dynamicElement = new XmlElement("set"); //$NON-NLS-1$
         answer.addElement(dynamicElement);
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
             sb.setLength(0);
             sb.append(introspectedColumn.getJavaProperty("row.")); //$NON-NLS-1$
             sb.append(" != null"); //$NON-NLS-1$

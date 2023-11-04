@@ -33,9 +33,8 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.Context;
 
 /**
- * This class implements a composite plugin. It contains a list of plugins for the
- * current context and is used to aggregate plugins together. This class
- * implements the rule that if any plugin returns "false" from a method, then no
+ * This class implements a composite plugin. It contains a list of plugins for the current context and is used to
+ * aggregate plugins together. This class implements the rule that if any plugin returns "false" from a method, then no
  * subsequent plugin is called.
  *
  * @author Jeff Butler
@@ -74,65 +73,49 @@ public abstract class CompositePlugin implements Plugin {
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles() {
-        return plugins.stream()
-                .map(Plugin::contextGenerateAdditionalJavaFiles)
-                .flatMap(List::stream)
+        return plugins.stream().map(Plugin::contextGenerateAdditionalJavaFiles).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
-        return plugins.stream()
-                .map(p -> p.contextGenerateAdditionalJavaFiles(introspectedTable))
-                .flatMap(List::stream)
+        return plugins.stream().map(p -> p.contextGenerateAdditionalJavaFiles(introspectedTable)).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedKotlinFile> contextGenerateAdditionalKotlinFiles() {
-        return plugins.stream()
-                        .map(Plugin::contextGenerateAdditionalKotlinFiles)
-                .flatMap(List::stream)
+        return plugins.stream().map(Plugin::contextGenerateAdditionalKotlinFiles).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedKotlinFile> contextGenerateAdditionalKotlinFiles(IntrospectedTable introspectedTable) {
-        return plugins.stream()
-                .map(p -> p.contextGenerateAdditionalKotlinFiles(introspectedTable))
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
+        return plugins.stream().map(p -> p.contextGenerateAdditionalKotlinFiles(introspectedTable))
+                .flatMap(List::stream).collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedFile> contextGenerateAdditionalFiles() {
-        return plugins.stream()
-                .map(Plugin::contextGenerateAdditionalFiles)
-                .flatMap(List::stream)
+        return plugins.stream().map(Plugin::contextGenerateAdditionalFiles).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedFile> contextGenerateAdditionalFiles(IntrospectedTable introspectedTable) {
-        return plugins.stream()
-                .map(p -> p.contextGenerateAdditionalFiles(introspectedTable))
-                .flatMap(List::stream)
+        return plugins.stream().map(p -> p.contextGenerateAdditionalFiles(introspectedTable)).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles() {
-        return plugins.stream()
-                .map(Plugin::contextGenerateAdditionalXmlFiles)
-                .flatMap(List::stream)
+        return plugins.stream().map(Plugin::contextGenerateAdditionalXmlFiles).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles(IntrospectedTable introspectedTable) {
-        return plugins.stream()
-                .map(p -> p.contextGenerateAdditionalXmlFiles(introspectedTable))
-                .flatMap(List::stream)
+        return plugins.stream().map(p -> p.contextGenerateAdditionalXmlFiles(introspectedTable)).flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
@@ -713,9 +696,8 @@ public abstract class CompositePlugin implements Plugin {
     }
 
     @Override
-    public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass,
-            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
-            ModelClassType modelClassType) {
+    public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
+            IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         for (Plugin plugin : plugins) {
             if (!plugin.modelFieldGenerated(field, topLevelClass, introspectedColumn, introspectedTable,
                     modelClassType)) {
@@ -728,8 +710,7 @@ public abstract class CompositePlugin implements Plugin {
 
     @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass,
-            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
-            ModelClassType modelClassType) {
+            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         for (Plugin plugin : plugins) {
             if (!plugin.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable,
                     modelClassType)) {
@@ -742,8 +723,7 @@ public abstract class CompositePlugin implements Plugin {
 
     @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass,
-            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable,
-            ModelClassType modelClassType) {
+            IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         for (Plugin plugin : plugins) {
             if (!plugin.modelSetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable,
                     modelClassType)) {
@@ -1194,7 +1174,7 @@ public abstract class CompositePlugin implements Plugin {
 
     @Override
     public boolean dynamicSqlSupportGenerated(KotlinFile kotlinFile, KotlinType outerSupportObject,
-                                              KotlinType innerSupportClass, IntrospectedTable introspectedTable) {
+            KotlinType innerSupportClass, IntrospectedTable introspectedTable) {
         for (Plugin plugin : plugins) {
             if (!plugin.dynamicSqlSupportGenerated(kotlinFile, outerSupportObject, innerSupportClass,
                     introspectedTable)) {

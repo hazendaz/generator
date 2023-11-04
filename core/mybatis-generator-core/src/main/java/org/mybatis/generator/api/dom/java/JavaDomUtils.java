@@ -47,9 +47,7 @@ public class JavaDomUtils {
             return calculateParameterizedTypeName(compilationUnit, fqjt);
         }
 
-        if (compilationUnit == null
-                || typeDoesNotRequireImport(fqjt)
-                || typeIsInSamePackage(compilationUnit, fqjt)
+        if (compilationUnit == null || typeDoesNotRequireImport(fqjt) || typeIsInSamePackage(compilationUnit, fqjt)
                 || typeIsAlreadyImported(compilationUnit, fqjt)) {
             return fqjt.getShortName();
         } else {
@@ -57,26 +55,21 @@ public class JavaDomUtils {
         }
     }
 
-    private static String calculateParameterizedTypeName(CompilationUnit compilationUnit,
-            FullyQualifiedJavaType fqjt) {
+    private static String calculateParameterizedTypeName(CompilationUnit compilationUnit, FullyQualifiedJavaType fqjt) {
         String baseTypeName = calculateTypeName(compilationUnit,
                 new FullyQualifiedJavaType(fqjt.getFullyQualifiedNameWithoutTypeParameters()));
 
-        return fqjt.getTypeArguments().stream()
-                .map(t -> calculateTypeName(compilationUnit, t))
+        return fqjt.getTypeArguments().stream().map(t -> calculateTypeName(compilationUnit, t))
                 .collect(Collectors.joining(", ", baseTypeName + "<", ">")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     private static boolean typeDoesNotRequireImport(FullyQualifiedJavaType fullyQualifiedJavaType) {
-        return fullyQualifiedJavaType.isPrimitive()
-                || !fullyQualifiedJavaType.isExplicitlyImported();
+        return fullyQualifiedJavaType.isPrimitive() || !fullyQualifiedJavaType.isExplicitlyImported();
     }
 
     private static boolean typeIsInSamePackage(CompilationUnit compilationUnit,
             FullyQualifiedJavaType fullyQualifiedJavaType) {
-        return fullyQualifiedJavaType
-                .getPackageName()
-                .equals(compilationUnit.getType().getPackageName());
+        return fullyQualifiedJavaType.getPackageName().equals(compilationUnit.getType().getPackageName());
     }
 
     private static boolean typeIsAlreadyImported(CompilationUnit compilationUnit,

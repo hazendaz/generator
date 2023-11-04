@@ -29,8 +29,7 @@ public class IntrospectedTableMyBatis3DynamicSqlImpl extends IntrospectedTableMy
     }
 
     @Override
-    protected void calculateXmlMapperGenerator(AbstractJavaClientGenerator javaClientGenerator,
-            List<String> warnings,
+    protected void calculateXmlMapperGenerator(AbstractJavaClientGenerator javaClientGenerator, List<String> warnings,
             ProgressCallback progressCallback) {
         // no XML with dynamic SQL support
         xmlMapperGenerator = null;
@@ -46,12 +45,10 @@ public class IntrospectedTableMyBatis3DynamicSqlImpl extends IntrospectedTableMy
     }
 
     @Override
-    protected void calculateJavaModelGenerators(List<String> warnings,
-            ProgressCallback progressCallback) {
+    protected void calculateJavaModelGenerators(List<String> warnings, ProgressCallback progressCallback) {
 
         AbstractJavaGenerator javaGenerator = new DynamicSqlModelGenerator(getModelProject());
-        initializeAbstractGenerator(javaGenerator, warnings,
-                progressCallback);
+        initializeAbstractGenerator(javaGenerator, warnings, progressCallback);
         javaGenerators.add(javaGenerator);
     }
 

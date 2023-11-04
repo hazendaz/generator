@@ -42,15 +42,13 @@ public class KotlinDataClassGenerator extends AbstractKotlinGenerator {
         FullyQualifiedTable table = introspectedTable.getFullyQualifiedTable();
         progressCallback.startTask(getString("Progress.8", table.toString())); //$NON-NLS-1$
         CommentGenerator commentGenerator = context.getCommentGenerator();
-        FullyQualifiedKotlinType type = new FullyQualifiedKotlinType(
-                introspectedTable.getKotlinRecordType());
+        FullyQualifiedKotlinType type = new FullyQualifiedKotlinType(introspectedTable.getKotlinRecordType());
 
         KotlinFile kf = new KotlinFile(type.getShortNameWithoutTypeArguments());
         kf.setPackage(type.getPackageName());
 
         KotlinType dataClass = KotlinType.newClass(type.getShortNameWithoutTypeArguments())
-                .withModifier(KotlinModifier.DATA)
-                .build();
+                .withModifier(KotlinModifier.DATA).build();
         kf.addNamedItem(dataClass);
 
         commentGenerator.addFileComment(kf);
@@ -60,8 +58,8 @@ public class KotlinDataClassGenerator extends AbstractKotlinGenerator {
         List<IntrospectedColumn> introspectedColumns = introspectedTable.getAllColumns();
 
         for (IntrospectedColumn introspectedColumn : introspectedColumns) {
-            FullyQualifiedKotlinType kotlinType =
-                    JavaToKotlinTypeConverter.convert(introspectedColumn.getFullyQualifiedJavaType());
+            FullyQualifiedKotlinType kotlinType = JavaToKotlinTypeConverter
+                    .convert(introspectedColumn.getFullyQualifiedJavaType());
 
             KotlinProperty kp = KotlinProperty.newVar(introspectedColumn.getJavaProperty())
                     .withDataType(kotlinType.getShortNameWithTypeArguments() + "?") //$NON-NLS-1$

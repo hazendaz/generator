@@ -36,8 +36,8 @@ public class ColumnOverride extends PropertyHolder {
     private boolean isColumnNameDelimited;
 
     /**
-     * If true, the column is a GENERATED ALWAYS column which means
-     * that it should not be used in insert or update statements.
+     * If true, the column is a GENERATED ALWAYS column which means that it should not be used in insert or update
+     * statements.
      */
     private boolean isGeneratedAlways;
 

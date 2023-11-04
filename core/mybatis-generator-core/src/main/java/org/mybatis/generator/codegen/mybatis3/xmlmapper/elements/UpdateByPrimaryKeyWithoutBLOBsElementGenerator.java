@@ -38,8 +38,7 @@ public class UpdateByPrimaryKeyWithoutBLOBsElementGenerator extends AbstractXmlE
         }
 
         XmlElement answer = buildUpdateByPrimaryKeyElement(introspectedTable.getUpdateByPrimaryKeyStatementId(),
-                introspectedTable.getBaseRecordType(),
-                columns);
+                introspectedTable.getBaseRecordType(), columns);
 
         if (context.getPlugins().sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);

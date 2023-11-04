@@ -66,7 +66,7 @@ public abstract class AbstractKotlinFunctionGenerator {
     }
 
     public static FieldNameAndImport calculateFieldNameAndImport(String tableFieldName, String supportObjectImport,
-                                                     IntrospectedColumn column) {
+            IntrospectedColumn column) {
         FieldNameAndImport answer = new FieldNameAndImport();
         answer.fieldName = column.getJavaProperty();
         if (answer.fieldName.equals(tableFieldName)) {

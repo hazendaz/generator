@@ -50,7 +50,8 @@ public class GenerateTestSourceFiles {
 
     private void gatherGenerators(List<CompilationUnitGenerator> generators) throws ReflectiveOperationException {
         Reflections reflections = new Reflections("mbg.domtest.generators");
-        Set<Class<? extends CompilationUnitGenerator>> classes = reflections.getSubTypesOf(CompilationUnitGenerator.class);
+        Set<Class<? extends CompilationUnitGenerator>> classes = reflections
+                .getSubTypesOf(CompilationUnitGenerator.class);
 
         for (Class<? extends CompilationUnitGenerator> clazz : classes) {
             if (clazz.getAnnotation(IgnoreDomTest.class) == null) {

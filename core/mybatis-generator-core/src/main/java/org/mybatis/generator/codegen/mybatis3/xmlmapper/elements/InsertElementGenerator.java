@@ -56,8 +56,8 @@ public class InsertElementGenerator extends AbstractXmlElementGenerator {
         valuesClause.append("values ("); //$NON-NLS-1$
 
         List<String> valuesClauses = new ArrayList<>();
-        List<IntrospectedColumn> columns =
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
+        List<IntrospectedColumn> columns = ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
         for (int i = 0; i < columns.size(); i++) {
             IntrospectedColumn introspectedColumn = columns.get(i);
 

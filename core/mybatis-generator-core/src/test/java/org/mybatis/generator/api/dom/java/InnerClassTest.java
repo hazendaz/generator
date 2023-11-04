@@ -175,19 +175,9 @@ class InnerClassTest {
         innerClass.setAbstract(true);
 
         String excepted = "abstract class UserClass<T, U>  extends SuperClass implements UserInterface {" + LF
-                + "    String test;" + LF
-                + "" + LF
-                + "    {" + LF
-                + "    }" + LF
-                + "" + LF
-                + "    abstract void method1();" + LF
-                + "" + LF
-                + "    class InnerUserClass {" + LF
-                + "    }" + LF
-                + "" + LF
-                + "    enum TestEnum {" + LF
-                + "    }" + LF
-                + "}";
+                + "    String test;" + LF + "" + LF + "    {" + LF + "    }" + LF + "" + LF
+                + "    abstract void method1();" + LF + "" + LF + "    class InnerUserClass {" + LF + "    }" + LF + ""
+                + LF + "    enum TestEnum {" + LF + "    }" + LF + "}";
 
         InnerClassRenderer renderer = new InnerClassRenderer();
         String rendered = renderer.render(innerClass, null).stream().collect(Collectors.joining(LF));

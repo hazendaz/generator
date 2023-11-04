@@ -63,8 +63,8 @@ public class SelectByExampleWithoutBLOBsMethodGenerator extends AbstractJavaMapp
 
         addMapperAnnotations(interfaze, method);
 
-        if (context.getPlugins()
-                .clientSelectByExampleWithoutBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientSelectByExampleWithoutBLOBsMethodGenerated(method, interfaze,
+                introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

@@ -38,8 +38,8 @@ import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.RootClassInfo;
 
 /**
- * This model generator builds a flat model with default constructor and getters/setters.
- * It does not support the immutable model, or constructor based attributes.
+ * This model generator builds a flat model with default constructor and getters/setters. It does not support the
+ * immutable model, or constructor based attributes.
  *
  * @author Jeff Butler
  */
@@ -56,8 +56,7 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
         Plugin plugins = context.getPlugins();
         CommentGenerator commentGenerator = context.getCommentGenerator();
 
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getBaseRecordType());
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         TopLevelClass topLevelClass = new TopLevelClass(type);
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(topLevelClass);
@@ -82,16 +81,14 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
 
         String rootClass = getRootClass();
         for (IntrospectedColumn introspectedColumn : introspectedColumns) {
-            if (RootClassInfo.getInstance(rootClass, warnings)
-                    .containsProperty(introspectedColumn)) {
+            if (RootClassInfo.getInstance(rootClass, warnings).containsProperty(introspectedColumn)) {
                 continue;
             }
 
             Field field = getJavaBeansFieldWithGeneratedAnnotation(introspectedColumn, context, introspectedTable,
                     topLevelClass);
 
-            if (plugins.modelFieldGenerated(field, topLevelClass,
-                    introspectedColumn, introspectedTable,
+            if (plugins.modelFieldGenerated(field, topLevelClass, introspectedColumn, introspectedTable,
                     Plugin.ModelClassType.BASE_RECORD)) {
                 topLevelClass.addField(field);
                 topLevelClass.addImportedType(field.getType());
@@ -99,8 +96,7 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
 
             Method method = getJavaBeansGetterWithGeneratedAnnotation(introspectedColumn, context, introspectedTable,
                     topLevelClass);
-            if (plugins.modelGetterMethodGenerated(method, topLevelClass,
-                    introspectedColumn, introspectedTable,
+            if (plugins.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable,
                     Plugin.ModelClassType.BASE_RECORD)) {
                 topLevelClass.addMethod(method);
             }
@@ -108,8 +104,7 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
             if (!introspectedTable.isImmutable()) {
                 method = getJavaBeansSetterWithGeneratedAnnotation(introspectedColumn, context, introspectedTable,
                         topLevelClass);
-                if (plugins.modelSetterMethodGenerated(method, topLevelClass,
-                        introspectedColumn, introspectedTable,
+                if (plugins.modelSetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable,
                         Plugin.ModelClassType.BASE_RECORD)) {
                     topLevelClass.addMethod(method);
                 }
@@ -117,8 +112,7 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
         }
 
         List<CompilationUnit> answer = new ArrayList<>();
-        if (context.getPlugins().modelBaseRecordClassGenerated(topLevelClass,
-                introspectedTable)) {
+        if (context.getPlugins().modelBaseRecordClassGenerated(topLevelClass, introspectedTable)) {
             answer.add(topLevelClass);
         }
         return answer;
@@ -143,13 +137,11 @@ public class DynamicSqlModelGenerator extends AbstractJavaGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable,
                 topLevelClass.getImportedTypes());
 
-        List<IntrospectedColumn> constructorColumns = introspectedTable
-                .getAllColumns();
+        List<IntrospectedColumn> constructorColumns = introspectedTable.getAllColumns();
 
         for (IntrospectedColumn introspectedColumn : constructorColumns) {
-            method.addParameter(new Parameter(introspectedColumn
-                    .getFullyQualifiedJavaType(), introspectedColumn
-                    .getJavaProperty()));
+            method.addParameter(new Parameter(introspectedColumn.getFullyQualifiedJavaType(),
+                    introspectedColumn.getJavaProperty()));
         }
 
         StringBuilder sb = new StringBuilder();

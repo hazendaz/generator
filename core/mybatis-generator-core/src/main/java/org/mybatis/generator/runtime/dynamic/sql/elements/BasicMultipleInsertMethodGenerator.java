@@ -45,7 +45,7 @@ public class BasicMultipleInsertMethodGenerator extends AbstractMethodGenerator 
     private MethodAndImports generateMethodWithGeneratedKeys(GeneratedKey gk) {
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
-        imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter")); //$NON-NLS-1$)
+        imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter")); //$NON-NLS-1$ )
         imports.add(new FullyQualifiedJavaType("org.apache.ibatis.annotations.InsertProvider")); //$NON-NLS-1$
         imports.add(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param")); //$NON-NLS-1$
 
@@ -68,8 +68,7 @@ public class BasicMultipleInsertMethodGenerator extends AbstractMethodGenerator 
         method.addAnnotation("@InsertProvider(type=SqlProviderAdapter.class, " //$NON-NLS-1$
                 + "method=\"insertMultipleWithGeneratedKeys\")"); //$NON-NLS-1$
 
-        MethodAndImports.Builder builder = MethodAndImports.withMethod(method)
-                .withImports(imports);
+        MethodAndImports.Builder builder = MethodAndImports.withMethod(method).withImports(imports);
 
         MethodParts methodParts = getGeneratedKeyAnnotation(gk);
         acceptParts(builder, method, methodParts);

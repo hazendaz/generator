@@ -97,7 +97,7 @@ public class SimpleXMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     protected void initializeAndExecuteGenerator(AbstractXmlElementGenerator elementGenerator,
-                                                 XmlElement parentElement) {
+            XmlElement parentElement) {
         elementGenerator.setContext(context);
         elementGenerator.setIntrospectedTable(introspectedTable);
         elementGenerator.setProgressCallback(progressCallback);

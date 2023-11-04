@@ -33,8 +33,7 @@ public class UpdateByPrimaryKeyWithBLOBsElementGenerator extends AbstractXmlElem
         }
 
         XmlElement answer = buildUpdateByPrimaryKeyElement(
-                introspectedTable.getUpdateByPrimaryKeyWithBLOBsStatementId(),
-                parameterType,
+                introspectedTable.getUpdateByPrimaryKeyWithBLOBsStatementId(), parameterType,
                 introspectedTable.getNonPrimaryKeyColumns());
 
         if (context.getPlugins().sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(answer, introspectedTable)) {

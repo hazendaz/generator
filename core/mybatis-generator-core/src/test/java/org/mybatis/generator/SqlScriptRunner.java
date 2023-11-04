@@ -38,8 +38,8 @@ public class SqlScriptRunner {
     private final String password;
     private final InputStream sourceFile;
 
-    public SqlScriptRunner(InputStream sourceFile, String driver, String url,
-            String userId, String password) throws Exception {
+    public SqlScriptRunner(InputStream sourceFile, String driver, String url, String userId, String password)
+            throws Exception {
 
         if (!stringHasValue(driver)) {
             throw new Exception("JDBC Driver is required");

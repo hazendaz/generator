@@ -107,24 +107,17 @@ public class SimpleAnnotatedTest extends AbstractSimpleAnnotatedTest {
             Pkfields returnedRecord = mapper.selectByPrimaryKey(2, 1);
             assertNotNull(returnedRecord);
 
-            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
-                    .getDatefield()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal30field(), returnedRecord
-                    .getDecimal30field());
-            assertEquals(record.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord.getDatefield()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal30field(), returnedRecord.getDecimal30field());
+            assertEquals(record.getDecimal60field(), returnedRecord.getDecimal60field());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord
-                    .getTimefield()));
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord.getTimefield()));
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -421,10 +414,10 @@ public class SimpleAnnotatedTest extends AbstractSimpleAnnotatedTest {
         Class<?> goodClass = Class.forName("mbg.test.mb3.generated.simpleannotated.nothing.Pkfields");
         assertNotNull(goodClass);
 
-        assertThatExceptionOfType(ClassNotFoundException.class).isThrownBy(() ->
-                Class.forName("mbg.test.mb3.generated.simpleannotated.nothing.Nameview"));
+        assertThatExceptionOfType(ClassNotFoundException.class)
+                .isThrownBy(() -> Class.forName("mbg.test.mb3.generated.simpleannotated.nothing.Nameview"));
 
-        assertThatExceptionOfType(ClassNotFoundException.class).isThrownBy(() ->
-                Class.forName("mbg.test.mb3.generated.simpleannotated.nothing.NameviewMapper"));
+        assertThatExceptionOfType(ClassNotFoundException.class)
+                .isThrownBy(() -> Class.forName("mbg.test.mb3.generated.simpleannotated.nothing.NameviewMapper"));
     }
 }
