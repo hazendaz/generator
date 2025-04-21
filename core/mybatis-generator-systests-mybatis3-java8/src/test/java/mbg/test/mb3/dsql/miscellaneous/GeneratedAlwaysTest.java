@@ -101,15 +101,12 @@ public class GeneratedAlwaysTest extends AbstractAnnotatedMiscellaneousTest {
             gaTest.setIdPlus2(88); // should be ignored
             gaTest.setBlob1(TestUtilities.generateRandomBlob());
 
-            rows = mapper.update(dsl ->
-                GeneratedalwaystestMapper.updateAllColumns(gaTest, dsl)
-                .where(idPlus1, isEqualTo(2))
-                .and(idPlus2, isEqualTo(3)));
+            rows = mapper.update(dsl -> GeneratedalwaystestMapper.updateAllColumns(gaTest, dsl)
+                    .where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, rows);
 
-            List<Generatedalwaystest> returnedRecords = mapper.select(dsl ->
-                    dsl.where(idPlus1, isEqualTo(2))
-                    .and(idPlus2, isEqualTo(3)));
+            List<Generatedalwaystest> returnedRecords = mapper
+                    .select(dsl -> dsl.where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, returnedRecords.size());
 
             Generatedalwaystest returnedRecord = returnedRecords.get(0);
@@ -141,15 +138,12 @@ public class GeneratedAlwaysTest extends AbstractAnnotatedMiscellaneousTest {
             gaTest.setIdPlus2(88); // should be ignored
             gaTest.setBlob1(TestUtilities.generateRandomBlob());
 
-            rows = mapper.update(dsl ->
-                GeneratedalwaystestMapper.updateSelectiveColumns(gaTest, dsl)
-                .where(idPlus1, isEqualTo(2))
-                .and(idPlus2, isEqualTo(3)));
+            rows = mapper.update(dsl -> GeneratedalwaystestMapper.updateSelectiveColumns(gaTest, dsl)
+                    .where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, rows);
 
-            List<Generatedalwaystest> returnedRecords = mapper.select(dsl ->
-                    dsl.where(idPlus1, isEqualTo(2))
-                    .and(idPlus2, isEqualTo(3)));
+            List<Generatedalwaystest> returnedRecords = mapper
+                    .select(dsl -> dsl.where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, returnedRecords.size());
 
             Generatedalwaystest returnedRecord = returnedRecords.get(0);
@@ -180,15 +174,12 @@ public class GeneratedAlwaysTest extends AbstractAnnotatedMiscellaneousTest {
             gaTest.setIdPlus2(88); // should be ignored
             gaTest.setBlob1(TestUtilities.generateRandomBlob());
 
-            rows = mapper.update(dsl ->
-                GeneratedalwaystestMapper.updateAllColumns(gaTest, dsl)
-                .where(idPlus1, isEqualTo(2))
-                .and(idPlus2, isEqualTo(3)));
+            rows = mapper.update(dsl -> GeneratedalwaystestMapper.updateAllColumns(gaTest, dsl)
+                    .where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, rows);
 
-            List<Generatedalwaystest> returnedRecords = mapper.select(dsl ->
-                    dsl.where(idPlus1, isEqualTo(2))
-                    .and(idPlus2, isEqualTo(3)));
+            List<Generatedalwaystest> returnedRecords = mapper
+                    .select(dsl -> dsl.where(idPlus1, isEqualTo(2)).and(idPlus2, isEqualTo(3)));
             assertEquals(1, returnedRecords.size());
 
             Generatedalwaystest returnedRecord = returnedRecords.get(0);

@@ -31,10 +31,8 @@ public class SelectByExampleWithBLOBsElementGenerator extends AbstractXmlElement
     public void addElements(XmlElement parentElement) {
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getSelectByExampleWithBLOBsStatementId())); //$NON-NLS-1$
-        answer.addAttribute(new Attribute(
-                "resultMap", introspectedTable.getResultMapWithBLOBsId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getSelectByExampleWithBLOBsStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("resultMap", introspectedTable.getResultMapWithBLOBsId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("parameterType", introspectedTable.getExampleType())); //$NON-NLS-1$
 
         context.getCommentGenerator().addComment(answer);

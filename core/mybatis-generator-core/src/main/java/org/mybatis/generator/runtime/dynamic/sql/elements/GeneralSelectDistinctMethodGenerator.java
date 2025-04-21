@@ -56,9 +56,7 @@ public class GeneralSelectDistinctMethodGenerator extends AbstractMethodGenerato
         method.addBodyLine("return MyBatis3Utils.selectDistinct(this::selectMany, selectList, " //$NON-NLS-1$
                 + tableFieldName + ", completer);"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

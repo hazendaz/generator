@@ -73,8 +73,8 @@ public class FullyQualifiedKotlinType {
     }
 
     /**
-     * Returns a list of Strings that are the fully qualified names of this type,
-     * and any generic type argument associated with this type.
+     * Returns a list of Strings that are the fully qualified names of this type, and any generic type argument
+     * associated with this type.
      *
      * @return the import list
      */
@@ -86,13 +86,9 @@ public class FullyQualifiedKotlinType {
             thisImport = Stream.empty();
         }
 
-        Stream<String> ss = typeArguments.stream()
-                .map(FullyQualifiedKotlinType::getImportList)
-                .flatMap(Set::stream);
+        Stream<String> ss = typeArguments.stream().map(FullyQualifiedKotlinType::getImportList).flatMap(Set::stream);
 
-        return Stream.of(thisImport, ss)
-                .flatMap(Function.identity())
-                .collect(Collectors.toSet());
+        return Stream.of(thisImport, ss).flatMap(Function.identity()).collect(Collectors.toSet());
     }
 
     private void parse(String fullTypeSpecification) {
@@ -165,13 +161,14 @@ public class FullyQualifiedKotlinType {
 
     /**
      * Returns the package name of a fully qualified type.
-     *
-     * <p>This method calculates the package as the part of the fully qualified name up
-     * to, but not including, the last element. Therefore, it does not support fully
-     * qualified inner classes. Not totally foolproof, but correct in most
+     * <p>
+     * This method calculates the package as the part of the fully qualified name up to, but not including, the last
+     * element. Therefore, it does not support fully qualified inner classes. Not totally foolproof, but correct in most
      * instances.
      *
-     * @param baseQualifiedName the base qualified name
+     * @param baseQualifiedName
+     *            the base qualified name
+     *
      * @return the package
      */
     private static String getPackage(String baseQualifiedName) {

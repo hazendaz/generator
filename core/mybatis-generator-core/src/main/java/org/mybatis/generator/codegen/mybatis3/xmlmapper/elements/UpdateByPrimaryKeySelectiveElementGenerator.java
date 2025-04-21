@@ -32,8 +32,7 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlElem
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("update"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getUpdateByPrimaryKeySelectiveStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateByPrimaryKeySelectiveStatementId())); //$NON-NLS-1$
 
         String parameterType;
 
@@ -56,8 +55,8 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlElem
         XmlElement dynamicElement = new XmlElement("set"); //$NON-NLS-1$
         answer.addElement(dynamicElement);
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
             sb.setLength(0);
             sb.append(introspectedColumn.getJavaProperty());
             sb.append(" != null"); //$NON-NLS-1$

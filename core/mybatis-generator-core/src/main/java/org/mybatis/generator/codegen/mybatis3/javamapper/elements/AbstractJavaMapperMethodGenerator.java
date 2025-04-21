@@ -140,13 +140,10 @@ public abstract class AbstractJavaMapperMethodGenerator extends AbstractGenerato
 
         if (introspectedTable.isConstructorBased()) {
             interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Arg")); //$NON-NLS-1$
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$
+            interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$
         } else {
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.Result")); //$NON-NLS-1$
-            interfaze.addImportedType(
-                    new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results")); //$NON-NLS-1$
+            interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Result")); //$NON-NLS-1$
+            interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results")); //$NON-NLS-1$
         }
     }
 
@@ -273,8 +270,7 @@ public abstract class AbstractJavaMapperMethodGenerator extends AbstractGenerato
             IntrospectedColumn introspectedColumn = iterPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, true,
-                    introspectedTable.isConstructorBased()));
+            sb.append(getResultAnnotation(interfaze, introspectedColumn, true, introspectedTable.isConstructorBased()));
 
             if (iterPk.hasNext() || iterNonPk.hasNext()) {
                 sb.append(',');
@@ -287,8 +283,8 @@ public abstract class AbstractJavaMapperMethodGenerator extends AbstractGenerato
             IntrospectedColumn introspectedColumn = iterNonPk.next();
             sb.setLength(0);
             javaIndent(sb, 1);
-            sb.append(getResultAnnotation(interfaze, introspectedColumn, false,
-                    introspectedTable.isConstructorBased()));
+            sb.append(
+                    getResultAnnotation(interfaze, introspectedColumn, false, introspectedTable.isConstructorBased()));
 
             if (iterNonPk.hasNext()) {
                 sb.append(',');

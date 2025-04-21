@@ -49,16 +49,14 @@ public class BasicSelectOneMethodGenerator extends AbstractKotlinFunctionGenerat
                 .withImport("org.mybatis.dynamic.sql.select.render.SelectStatementProvider") //$NON-NLS-1$
                 .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter") //$NON-NLS-1$
                 .withImport("org.apache.ibatis.annotations.SelectProvider") //$NON-NLS-1$
-                .withImports(recordType.getImportList())
-                .build();
+                .withImports(recordType.getImportList()).build();
 
         addFunctionComment(functionAndImports);
 
         if (reuseResultMap) {
             functionAndImports.getImports().add("org.apache.ibatis.annotations.ResultMap"); //$NON-NLS-1$
             functionAndImports.getFunction().addAnnotation("@ResultMap(\"" //$NON-NLS-1$
-                    + resultMapId
-                    + "\")"); //$NON-NLS-1$
+                    + resultMapId + "\")"); //$NON-NLS-1$
         } else {
             KotlinFunctionParts functionParts = fragmentGenerator.getAnnotatedResults();
             acceptParts(functionAndImports, functionParts);

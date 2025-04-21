@@ -62,9 +62,7 @@ public class MyTime {
 
         MyTime other = (MyTime) arg0;
 
-        return this.hours == other.hours
-            && this.minutes == other.minutes
-            && this.seconds == other.seconds;
+        return this.hours == other.hours && this.minutes == other.minutes && this.seconds == other.seconds;
     }
 
     @Override

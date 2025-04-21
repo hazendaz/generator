@@ -18,8 +18,7 @@ package org.mybatis.generator.internal.rules;
 import org.mybatis.generator.api.IntrospectedTable;
 
 /**
- * This class encapsulates all the code generation rules for a table using the
- * flat model.
+ * This class encapsulates all the code generation rules for a table using the flat model.
  *
  * @author Jeff Butler
  */

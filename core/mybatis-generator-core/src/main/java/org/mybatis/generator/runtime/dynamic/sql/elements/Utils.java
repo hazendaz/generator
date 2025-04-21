@@ -28,21 +28,18 @@ public class Utils {
     public static boolean generateMultipleRowInsert(IntrospectedTable introspectedTable) {
         // multi row inserts work if we don't expect generated keys, or of the generated keys are
         // JDBC standard.
-        return introspectedTable.getGeneratedKey().map(GeneratedKey::isJdbcStandard)
-                .orElse(true);
+        return introspectedTable.getGeneratedKey().map(GeneratedKey::isJdbcStandard).orElse(true);
     }
 
     public static boolean canRetrieveMultiRowGeneratedKeys(IntrospectedTable introspectedTable) {
         // if the generated keys are JDBC standard, then we can retrieve them
         // if no generated keys, or not JDBC, then we cannot retrieve them
-        return introspectedTable.getGeneratedKey().map(GeneratedKey::isJdbcStandard)
-                .orElse(false);
+        return introspectedTable.getGeneratedKey().map(GeneratedKey::isJdbcStandard).orElse(false);
     }
 
     public static boolean generateSelectByPrimaryKey(IntrospectedTable introspectedTable) {
         return introspectedTable.hasPrimaryKeyColumns()
-                && (introspectedTable.hasBaseColumns() || introspectedTable
-                        .hasBLOBColumns());
+                && (introspectedTable.hasBaseColumns() || introspectedTable.hasBLOBColumns());
     }
 
     public static boolean generateUpdateByPrimaryKey(IntrospectedTable introspectedTable) {
@@ -51,7 +48,6 @@ public class Utils {
         }
 
         return introspectedTable.hasPrimaryKeyColumns()
-                && (introspectedTable.hasBLOBColumns() || introspectedTable
-                        .hasBaseColumns());
+                && (introspectedTable.hasBLOBColumns() || introspectedTable.hasBaseColumns());
     }
 }

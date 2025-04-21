@@ -34,9 +34,8 @@ import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 /**
- * This class is used to generate a String representation of an XML document. It
- * is very much based on the class dom.Writer from the Apache Xerces examples,
- * but I've simplified and updated it.
+ * This class is used to generate a String representation of an XML document. It is very much based on the class
+ * dom.Writer from the Apache Xerces examples, but I've simplified and updated it.
  *
  * @author Andy Clark, IBM (Original work)
  * @author Jeff Butler (derivation)
@@ -51,8 +50,7 @@ public class DomWriter {
         super();
     }
 
-    public synchronized String toString(Document document)
-            throws ShellException {
+    public synchronized String toString(Document document) throws ShellException {
         StringWriter sw = new StringWriter();
         printWriter = new PrintWriter(sw);
         write(document);
@@ -99,26 +97,26 @@ public class DomWriter {
     protected void normalizeAndPrint(char c, boolean isAttValue) {
 
         switch (c) {
-        case '<':
-            handleLessThan();
-            break;
-        case '>':
-            handleGreaterThan();
-            break;
-        case '&':
-            handleAmpersand();
-            break;
-        case '"':
-            handleDoubleQuote(isAttValue);
-            break;
-        case '\r':
-            handleCarriageReturn();
-            break;
-        case '\n':
-            handleLineFeed();
-            break;
-        default:
-            handleDefault(c, isAttValue);
+            case '<':
+                handleLessThan();
+                break;
+            case '>':
+                handleGreaterThan();
+                break;
+            case '&':
+                handleAmpersand();
+                break;
+            case '"':
+                handleDoubleQuote(isAttValue);
+                break;
+            case '\r':
+                handleCarriageReturn();
+                break;
+            case '\n':
+                handleLineFeed();
+                break;
+            default:
+                handleDefault(c, isAttValue);
         }
     }
 
@@ -133,9 +131,7 @@ public class DomWriter {
         // Escape NEL (0x85) and LSEP (0x2028) that appear in content
         // if the document is XML 1.1, since they would be normalized to LF
         // when the document is reparsed.
-        if (isXML11
-                && ((c >= 0x01 && c <= 0x1F && c != 0x09 && c != 0x0A)
-                        || (c >= 0x7F && c <= 0x9F) || c == 0x2028)
+        if (isXML11 && ((c >= 0x01 && c <= 0x1F && c != 0x09 && c != 0x0A) || (c >= 0x7F && c <= 0x9F) || c == 0x2028)
                 || isAttValue && (c == 0x09 || c == 0x0A)) {
             printWriter.print("&#x"); //$NON-NLS-1$
             printWriter.print(Integer.toHexString(c).toUpperCase());
@@ -148,7 +144,7 @@ public class DomWriter {
     private void handleLineFeed() {
         // If LF is part of the document's content, it
         // should be printed back out with the system default
-        // line separator.  XML parsing forces \n only after a parse,
+        // line separator. XML parsing forces \n only after a parse,
         // but we should write it out as it was to avoid whitespace
         // commits on some version control systems.
         printWriter.print(System.lineSeparator());
@@ -189,6 +185,7 @@ public class DomWriter {
      *
      * @param document
      *            the document
+     *
      * @return the version
      */
     protected String getVersion(Document document) {
@@ -207,41 +204,40 @@ public class DomWriter {
 
         short type = node.getNodeType();
         switch (type) {
-        case Node.DOCUMENT_NODE:
-            write((Document) node);
-            break;
+            case Node.DOCUMENT_NODE:
+                write((Document) node);
+                break;
 
-        case Node.DOCUMENT_TYPE_NODE:
-            write((DocumentType) node);
-            break;
+            case Node.DOCUMENT_TYPE_NODE:
+                write((DocumentType) node);
+                break;
 
-        case Node.ELEMENT_NODE:
-            write((Element) node);
-            break;
+            case Node.ELEMENT_NODE:
+                write((Element) node);
+                break;
 
-        case Node.ENTITY_REFERENCE_NODE:
-            write((EntityReference) node);
-            break;
+            case Node.ENTITY_REFERENCE_NODE:
+                write((EntityReference) node);
+                break;
 
-        case Node.CDATA_SECTION_NODE:
-            write((CDATASection) node);
-            break;
+            case Node.CDATA_SECTION_NODE:
+                write((CDATASection) node);
+                break;
 
-        case Node.TEXT_NODE:
-            write((Text) node);
-            break;
+            case Node.TEXT_NODE:
+                write((Text) node);
+                break;
 
-        case Node.PROCESSING_INSTRUCTION_NODE:
-            write((ProcessingInstruction) node);
-            break;
+            case Node.PROCESSING_INSTRUCTION_NODE:
+                write((ProcessingInstruction) node);
+                break;
 
-        case Node.COMMENT_NODE:
-            write((Comment) node);
-            break;
+            case Node.COMMENT_NODE:
+                write((Comment) node);
+                break;
 
-        default:
-            throw new ShellException(getString(
-                    "RuntimeError.18", Short.toString(type))); //$NON-NLS-1$
+            default:
+                throw new ShellException(getString("RuntimeError.18", Short.toString(type))); //$NON-NLS-1$
         }
     }
 

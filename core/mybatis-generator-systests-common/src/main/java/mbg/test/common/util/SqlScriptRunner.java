@@ -27,10 +27,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This class is used to execute an SQL script before a code generation
- * run if necessary.  Note that this class mainly exists to support the
- * MyBatis generator build.  It is intentionally not documented and not
- * supported.
+ * This class is used to execute an SQL script before a code generation run if necessary. Note that this class mainly
+ * exists to support the MyBatis generator build. It is intentionally not documented and not supported.
  *
  * @author Jeff Butler
  */
@@ -41,8 +39,8 @@ public class SqlScriptRunner {
     private String password;
     private final String sourceFile;
 
-    public SqlScriptRunner(String sourceFile, String driver, String url,
-            String userId, String password) throws Exception {
+    public SqlScriptRunner(String sourceFile, String driver, String url, String userId, String password)
+            throws Exception {
 
         if (sourceFile == null || sourceFile.isEmpty()) {
             throw new Exception("SQL script file is required");
@@ -158,8 +156,7 @@ public class SqlScriptRunner {
 
         if (sourceFile.startsWith("classpath:")) {
             String resource = sourceFile.substring("classpath:".length());
-            InputStream is =
-                Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
             if (is == null) {
                 throw new Exception("SQL script file does not exist: " + resource);
             }

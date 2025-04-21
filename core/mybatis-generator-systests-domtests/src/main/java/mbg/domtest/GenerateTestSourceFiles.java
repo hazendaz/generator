@@ -53,7 +53,8 @@ public class GenerateTestSourceFiles {
 
     private void gatherGenerators(List<CompilationUnitGenerator> generators) throws ReflectiveOperationException {
         Reflections reflections = new Reflections("mbg.domtest.generators");
-        Set<Class<? extends CompilationUnitGenerator>> classes = reflections.getSubTypesOf(CompilationUnitGenerator.class);
+        Set<Class<? extends CompilationUnitGenerator>> classes = reflections
+                .getSubTypesOf(CompilationUnitGenerator.class);
 
         for (Class<? extends CompilationUnitGenerator> clazz : classes) {
             if (clazz.getAnnotation(IgnoreDomTest.class) == null) {
@@ -119,7 +120,8 @@ public class GenerateTestSourceFiles {
     }
 
     private void writeFile(File file, String content) throws IOException {
-        OutputStream fos = Files.newOutputStream(file.toPath(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        OutputStream fos = Files.newOutputStream(file.toPath(), StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING);
         OutputStreamWriter osw = new OutputStreamWriter(fos);
 
         try (BufferedWriter bw = new BufferedWriter(osw)) {

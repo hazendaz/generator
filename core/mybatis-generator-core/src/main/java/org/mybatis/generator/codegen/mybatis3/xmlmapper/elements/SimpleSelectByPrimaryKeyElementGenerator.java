@@ -31,8 +31,7 @@ public class SimpleSelectByPrimaryKeyElementGenerator extends AbstractXmlElement
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getSelectByPrimaryKeyStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getSelectByPrimaryKeyStatementId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("resultMap", //$NON-NLS-1$
                 introspectedTable.getBaseResultMapId()));
 
@@ -42,8 +41,7 @@ public class SimpleSelectByPrimaryKeyElementGenerator extends AbstractXmlElement
         if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
             parameterType = "map"; //$NON-NLS-1$
         } else {
-            parameterType = introspectedTable.getPrimaryKeyColumns().get(0)
-                    .getFullyQualifiedJavaType().toString();
+            parameterType = introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
         }
 
         answer.addAttribute(new Attribute("parameterType", parameterType)); //$NON-NLS-1$

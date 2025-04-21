@@ -47,10 +47,8 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
 
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
-        if (importedType != null
-                && importedType.isExplicitlyImported()
-                && !importedType.getPackageName().equals(
-                        getType().getPackageName())
+        if (importedType != null && importedType.isExplicitlyImported()
+                && !importedType.getPackageName().equals(getType().getPackageName())
                 && !importedType.getShortName().equals(getType().getShortName())) {
             importedTypes.add(importedType);
         }

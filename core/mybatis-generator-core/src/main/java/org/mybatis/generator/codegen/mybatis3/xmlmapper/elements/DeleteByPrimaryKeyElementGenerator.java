@@ -42,8 +42,7 @@ public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
             if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
                 parameterClass = "map"; //$NON-NLS-1$
             } else {
-                parameterClass =
-                        introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
+                parameterClass = introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
             }
         }
         answer.addAttribute(new Attribute("parameterType", parameterClass)); //$NON-NLS-1$
@@ -55,7 +54,7 @@ public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
 
         buildPrimaryKeyWhereClause().forEach(answer::addElement);
 
-        if (context.getPlugins().sqlMapDeleteByPrimaryKeyElementGenerated(answer,introspectedTable)) {
+        if (context.getPlugins().sqlMapDeleteByPrimaryKeyElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

@@ -44,13 +44,10 @@ public class GeneralDeleteMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
 
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        method.addBodyLine(
-                "return MyBatis3Utils.deleteFrom(this::delete, " + tableFieldName //$NON-NLS-1$
-                        + ", completer);"); //$NON-NLS-1$
+        method.addBodyLine("return MyBatis3Utils.deleteFrom(this::delete, " + tableFieldName //$NON-NLS-1$
+                + ", completer);"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

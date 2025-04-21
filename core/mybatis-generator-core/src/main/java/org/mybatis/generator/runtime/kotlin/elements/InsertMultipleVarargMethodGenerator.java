@@ -37,15 +37,14 @@ public class InsertMultipleVarargMethodGenerator extends AbstractKotlinFunctionG
             return null;
         }
 
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".insertMultiple") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("vararg records") //$NON-NLS-1$
-                        .withDataType(recordType.getShortNameWithTypeArguments()) //$NON-NLS-1$ //$NON-NLS-2$
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports
+                .withFunction(KotlinFunction.newOneLineFunction(mapperName + ".insertMultiple") //$NON-NLS-1$
+                        .withArgument(KotlinArg.newArg("vararg records") //$NON-NLS-1$
+                                .withDataType(recordType.getShortNameWithTypeArguments()) // $NON-NLS-1$ //$NON-NLS-2$
+                                .build())
+                        .withCodeLine("insertMultiple(records.toList())") //$NON-NLS-1$
                         .build())
-                .withCodeLine("insertMultiple(records.toList())") //$NON-NLS-1$
-                .build())
-                .withImports(recordType.getImportList())
-                .build();
+                .withImports(recordType.getImportList()).build();
 
         addFunctionComment(functionAndImports);
         return functionAndImports;

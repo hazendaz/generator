@@ -39,8 +39,8 @@ public class UpdateAllColumnsMethodGenerator extends AbstractMethodGenerator {
 
         FullyQualifiedJavaType parameterAndReturnType = new FullyQualifiedJavaType(
                 "org.mybatis.dynamic.sql.update.UpdateDSL"); //$NON-NLS-1$
-        parameterAndReturnType.addTypeArgument(new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.update.UpdateModel")); //$NON-NLS-1$
+        parameterAndReturnType
+                .addTypeArgument(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.UpdateModel")); //$NON-NLS-1$
         imports.add(parameterAndReturnType);
 
         imports.add(recordType);
@@ -53,12 +53,10 @@ public class UpdateAllColumnsMethodGenerator extends AbstractMethodGenerator {
         method.addParameter(new Parameter(recordType, "row")); //$NON-NLS-1$
         method.addParameter(new Parameter(parameterAndReturnType, "dsl")); //$NON-NLS-1$
 
-        method.addBodyLines(fragmentGenerator.getSetEqualLines(introspectedTable.getAllColumns(),
-                "return dsl", "        ", true)); //$NON-NLS-1$ //$NON-NLS-2$
+        method.addBodyLines(
+                fragmentGenerator.getSetEqualLines(introspectedTable.getAllColumns(), "return dsl", "        ", true)); //$NON-NLS-1$ //$NON-NLS-2$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

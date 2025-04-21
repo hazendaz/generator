@@ -25,9 +25,7 @@ public class GeneratedKotlinFile extends GeneratedFile {
 
     private final KotlinFormatter kotlinFormatter;
 
-    public GeneratedKotlinFile(KotlinFile kotlinFile,
-            String targetProject,
-            String fileEncoding,
+    public GeneratedKotlinFile(KotlinFile kotlinFile, String targetProject, String fileEncoding,
             KotlinFormatter kotlinFormatter) {
         super(targetProject);
         this.kotlinFile = kotlinFile;

@@ -77,9 +77,8 @@ public class MethodRenderer {
         sb.append(renderTypeParameters(method, compilationUnit));
 
         if (!method.isConstructor()) {
-            sb.append(method.getReturnType()
-                    .map(t -> JavaDomUtils.calculateTypeName(compilationUnit, t))
-                    .orElse("void")); //$NON-NLS-1$
+            sb.append(
+                    method.getReturnType().map(t -> JavaDomUtils.calculateTypeName(compilationUnit, t)).orElse("void")); //$NON-NLS-1$
 
             sb.append(' ');
         }
@@ -109,21 +108,18 @@ public class MethodRenderer {
 
     // should return an empty string if no type parameters
     private String renderTypeParameters(Method method, CompilationUnit compilationUnit) {
-        return method.getTypeParameters().stream()
-                .map(tp -> typeParameterRenderer.render(tp, compilationUnit))
+        return method.getTypeParameters().stream().map(tp -> typeParameterRenderer.render(tp, compilationUnit))
                 .collect(CustomCollectors.joining(", ", "<", "> ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     private String renderParameters(Method method, CompilationUnit compilationUnit) {
-        return method.getParameters().stream()
-                .map(p -> parameterRenderer.render(p, compilationUnit))
+        return method.getParameters().stream().map(p -> parameterRenderer.render(p, compilationUnit))
                 .collect(Collectors.joining(", ", "(", ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     // should return an empty string if no exceptions
     private String renderExceptions(Method method, CompilationUnit compilationUnit) {
-        return method.getExceptions().stream()
-                .map(jt -> JavaDomUtils.calculateTypeName(compilationUnit, jt))
+        return method.getExceptions().stream().map(jt -> JavaDomUtils.calculateTypeName(compilationUnit, jt))
                 .collect(CustomCollectors.joining(", ", " throws ", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 }

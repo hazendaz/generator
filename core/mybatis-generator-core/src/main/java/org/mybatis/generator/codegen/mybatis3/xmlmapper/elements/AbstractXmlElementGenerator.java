@@ -40,8 +40,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
     }
 
     /**
-     * This method should return an XmlElement for the select key used to
-     * automatically generate keys.
+     * This method should return an XmlElement for the select key used to automatically generate keys.
      *
      * @param introspectedColumn
      *            the column related to the select key statement
@@ -50,14 +49,12 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
      *
      * @return the selectKey element
      */
-    protected XmlElement getSelectKey(IntrospectedColumn introspectedColumn,
-            GeneratedKey generatedKey) {
+    protected XmlElement getSelectKey(IntrospectedColumn introspectedColumn, GeneratedKey generatedKey) {
         String identityColumnType = introspectedColumn.getFullyQualifiedJavaType().getFullyQualifiedName();
 
         XmlElement answer = new XmlElement("selectKey"); //$NON-NLS-1$
         answer.addAttribute(new Attribute("resultType", identityColumnType)); //$NON-NLS-1$
-        answer.addAttribute(new Attribute(
-                "keyProperty", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("keyProperty", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("order", generatedKey.getMyBatis3Order())); //$NON-NLS-1$
 
         answer.addElement(new TextElement(generatedKey.getRuntimeSqlStatement()));
@@ -158,21 +155,18 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
 
         context.getCommentGenerator().addComment(answer);
 
-        introspectedTable.getGeneratedKey().ifPresent(gk ->
-                introspectedTable.getColumn(gk.getColumn()).ifPresent(introspectedColumn -> {
+        introspectedTable.getGeneratedKey()
+                .ifPresent(gk -> introspectedTable.getColumn(gk.getColumn()).ifPresent(introspectedColumn -> {
                     // if the column is null, then it's a configuration error. The
                     // warning has already been reported
                     if (gk.isJdbcStandard()) {
                         answer.addAttribute(new Attribute("useGeneratedKeys", "true")); //$NON-NLS-1$ //$NON-NLS-2$
-                        answer.addAttribute(
-                                new Attribute("keyProperty", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
-                        answer.addAttribute(
-                                new Attribute("keyColumn", introspectedColumn.getActualColumnName())); //$NON-NLS-1$
+                        answer.addAttribute(new Attribute("keyProperty", introspectedColumn.getJavaProperty())); //$NON-NLS-1$
+                        answer.addAttribute(new Attribute("keyColumn", introspectedColumn.getActualColumnName())); //$NON-NLS-1$
                     } else {
                         answer.addElement(getSelectKey(introspectedColumn, gk));
                     }
-                })
-        );
+                }));
 
         return answer;
     }
@@ -198,8 +192,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
             resultElement.addAttribute(new Attribute("jdbcType", introspectedColumn.getJdbcTypeName())); //$NON-NLS-1$
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(
-                        new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             answer.add(resultElement);
@@ -221,8 +214,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
                     introspectedColumn.getFullyQualifiedJavaType().getFullyQualifiedName()));
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(
-                        new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             constructor.addElement(resultElement);
@@ -243,8 +235,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
 
             if (introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 // need to use the MyBatis type alias for a primitive byte
-                String s = '_'
-                        + introspectedColumn.getFullyQualifiedJavaType().getShortName();
+                String s = '_' + introspectedColumn.getFullyQualifiedJavaType().getShortName();
                 resultElement.addAttribute(new Attribute("javaType", s)); //$NON-NLS-1$
             } else if ("byte[]".equals(introspectedColumn.getFullyQualifiedJavaType() //$NON-NLS-1$
                     .getFullyQualifiedName())) {
@@ -257,8 +248,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
             }
 
             if (stringHasValue(introspectedColumn.getTypeHandler())) {
-                resultElement.addAttribute(new Attribute(
-                        "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
+                resultElement.addAttribute(new Attribute("typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
             constructor.addElement(resultElement);
@@ -315,7 +305,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
     }
 
     protected XmlElement buildUpdateByPrimaryKeyElement(String statementId, String parameterType,
-                                                        List<IntrospectedColumn> columns) {
+            List<IntrospectedColumn> columns) {
         XmlElement answer = new XmlElement("update"); //$NON-NLS-1$
 
         answer.addAttribute(new Attribute("id", statementId)); //$NON-NLS-1$

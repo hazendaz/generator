@@ -57,10 +57,7 @@ public class DeleteByPrimaryKeyMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLines(methodParts.getBodyLines());
         imports.addAll(methodParts.getImports());
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .withStaticImports(staticImports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).withStaticImports(staticImports).build();
     }
 
     @Override

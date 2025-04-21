@@ -38,15 +38,13 @@ public class InsertSelectiveMethodGenerator extends AbstractKotlinFunctionGenera
 
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".insertSelective") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("row") //$NON-NLS-1$
-                        .withDataType(recordType.getShortNameWithTypeArguments())
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports
+                .withFunction(KotlinFunction.newOneLineFunction(mapperName + ".insertSelective") //$NON-NLS-1$
+                        .withArgument(KotlinArg.newArg("row") //$NON-NLS-1$
+                                .withDataType(recordType.getShortNameWithTypeArguments()).build())
                         .build())
-                .build())
                 .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.insert") //$NON-NLS-1$
-                .withImports(recordType.getImportList())
-                .build();
+                .withImports(recordType.getImportList()).build();
 
         addFunctionComment(functionAndImports);
 
@@ -55,12 +53,11 @@ public class InsertSelectiveMethodGenerator extends AbstractKotlinFunctionGenera
         function.addCodeLine("insert(this::insert, row, " + tableFieldName //$NON-NLS-1$
                 + ") {"); //$NON-NLS-1$
 
-        List<IntrospectedColumn> columns =
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
+        List<IntrospectedColumn> columns = ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
         for (IntrospectedColumn column : columns) {
-            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport =
-                    AbstractKotlinFunctionGenerator.calculateFieldNameAndImport(tableFieldName,
-                            supportObjectImport, column);
+            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport = AbstractKotlinFunctionGenerator
+                    .calculateFieldNameAndImport(tableFieldName, supportObjectImport, column);
             functionAndImports.getImports().add(fieldNameAndImport.importString());
 
             if (column.isSequenceColumn()) {

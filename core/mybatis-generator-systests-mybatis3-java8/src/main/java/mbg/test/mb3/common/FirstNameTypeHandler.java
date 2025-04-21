@@ -38,8 +38,7 @@ public class FirstNameTypeHandler implements TypeHandler<FirstName> {
     }
 
     @Override
-    public FirstName getResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
+    public FirstName getResult(CallableStatement cs, int columnIndex) throws SQLException {
         FirstName answer = null;
         String string = cs.getString(columnIndex);
         if (string != null) {
@@ -51,8 +50,7 @@ public class FirstNameTypeHandler implements TypeHandler<FirstName> {
     }
 
     @Override
-    public FirstName getResult(ResultSet rs, String columnName)
-            throws SQLException {
+    public FirstName getResult(ResultSet rs, String columnName) throws SQLException {
         FirstName answer = null;
         String string = rs.getString(columnName);
         if (string != null) {
@@ -64,8 +62,7 @@ public class FirstNameTypeHandler implements TypeHandler<FirstName> {
     }
 
     @Override
-    public FirstName getResult(ResultSet rs, int columnIndex)
-            throws SQLException {
+    public FirstName getResult(ResultSet rs, int columnIndex) throws SQLException {
         FirstName answer = null;
         String string = rs.getString(columnIndex);
         if (string != null) {
@@ -77,8 +74,7 @@ public class FirstNameTypeHandler implements TypeHandler<FirstName> {
     }
 
     @Override
-    public void setParameter(PreparedStatement ps, int i, FirstName parameter,
-            JdbcType jdbcType) throws SQLException {
+    public void setParameter(PreparedStatement ps, int i, FirstName parameter, JdbcType jdbcType) throws SQLException {
         if (parameter == null) {
             ps.setNull(i, jdbcType.TYPE_CODE);
         } else {

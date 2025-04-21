@@ -29,8 +29,7 @@ public class CountByExampleElementGenerator extends AbstractXmlElementGenerator 
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getCountByExampleStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getCountByExampleStatementId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("parameterType", introspectedTable.getExampleType())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("resultType", "java.lang.Long")); //$NON-NLS-1$ //$NON-NLS-2$
 

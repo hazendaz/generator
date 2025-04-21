@@ -37,9 +37,9 @@ public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends Abstract
         Method method = new Method(getMethodName());
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(
-                new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
-                "parameter")); //$NON-NLS-1$
+        method.addParameter(
+                new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
+                        "parameter")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
@@ -84,7 +84,7 @@ public class ProviderUpdateByExampleWithoutBLOBsMethodGenerator extends Abstract
     }
 
     public boolean callPlugins(Method method, TopLevelClass topLevelClass) {
-        return context.getPlugins()
-                .providerUpdateByExampleWithoutBLOBsMethodGenerated(method, topLevelClass, introspectedTable);
+        return context.getPlugins().providerUpdateByExampleWithoutBLOBsMethodGenerated(method, topLevelClass,
+                introspectedTable);
     }
 }

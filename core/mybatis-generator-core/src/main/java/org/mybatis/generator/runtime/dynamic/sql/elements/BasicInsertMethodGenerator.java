@@ -38,19 +38,15 @@ public class BasicInsertMethodGenerator extends AbstractMethodGenerator {
     public MethodAndImports generateMethodAndImports() {
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
-        FullyQualifiedJavaType adapter =
-                new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
-        FullyQualifiedJavaType annotation =
-                new FullyQualifiedJavaType("org.apache.ibatis.annotations.InsertProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType adapter = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
+        FullyQualifiedJavaType annotation = new FullyQualifiedJavaType("org.apache.ibatis.annotations.InsertProvider"); //$NON-NLS-1$
 
-        imports.add(new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.insert.render.InsertStatementProvider")); //$NON-NLS-1$
+        imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.insert.render.InsertStatementProvider")); //$NON-NLS-1$
         imports.add(adapter);
         imports.add(annotation);
 
-        FullyQualifiedJavaType parameterType =
-                new FullyQualifiedJavaType(
-                        "org.mybatis.dynamic.sql.insert.render.InsertStatementProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                "org.mybatis.dynamic.sql.insert.render.InsertStatementProvider"); //$NON-NLS-1$
         imports.add(recordType);
         parameterType.addTypeArgument(recordType);
 
@@ -61,8 +57,7 @@ public class BasicInsertMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addAnnotation("@InsertProvider(type=SqlProviderAdapter.class, method=\"insert\")"); //$NON-NLS-1$
 
-        MethodAndImports.Builder builder = MethodAndImports.withMethod(method)
-                .withImports(imports);
+        MethodAndImports.Builder builder = MethodAndImports.withMethod(method).withImports(imports);
 
         introspectedTable.getGeneratedKey().ifPresent(gk -> {
             MethodParts methodParts = fragmentGenerator.getGeneratedKeyAnnotation(gk);

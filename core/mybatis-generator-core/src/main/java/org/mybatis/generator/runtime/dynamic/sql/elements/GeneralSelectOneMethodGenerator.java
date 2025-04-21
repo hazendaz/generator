@@ -56,9 +56,7 @@ public class GeneralSelectOneMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLine("return MyBatis3Utils.selectOne(this::selectOne, selectList, " //$NON-NLS-1$
                 + tableFieldName + ", completer);"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

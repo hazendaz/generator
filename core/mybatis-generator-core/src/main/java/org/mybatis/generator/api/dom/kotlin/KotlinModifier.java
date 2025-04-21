@@ -16,9 +16,8 @@
 package org.mybatis.generator.api.dom.kotlin;
 
 /**
- * Nearly complete list of Kotlin modifiers. Modifiers are in the order suggested by Kotlin
- * coding conventions for reference, but this order is not enforced by the library. Users must add modifiers
- * in the correct order.
+ * Nearly complete list of Kotlin modifiers. Modifiers are in the order suggested by Kotlin coding conventions for
+ * reference, but this order is not enforced by the library. Users must add modifiers in the correct order.
  */
 public enum KotlinModifier {
 

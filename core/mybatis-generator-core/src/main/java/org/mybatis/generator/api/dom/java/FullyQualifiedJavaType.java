@@ -94,8 +94,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
         if (typeArguments.isEmpty()) {
             return s;
         } else {
-            return typeArguments.stream()
-                    .map(FullyQualifiedJavaType::getFullyQualifiedName)
+            return typeArguments.stream().map(FullyQualifiedJavaType::getFullyQualifiedName)
                     .collect(Collectors.joining(", ", s + "<", ">")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
     }
@@ -159,8 +158,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
         if (typeArguments.isEmpty()) {
             return s;
         } else {
-            return typeArguments.stream()
-                    .map(FullyQualifiedJavaType::getShortName)
+            return typeArguments.stream().map(FullyQualifiedJavaType::getShortName)
                     .collect(Collectors.joining(", ", s + "<", ">")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
     }
@@ -266,8 +264,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
     }
 
     public static FullyQualifiedJavaType getDateInstance() {
-        dateInstance = Objects.requireNonNullElseGet(dateInstance,
-                () -> new FullyQualifiedJavaType("java.util.Date")); //$NON-NLS-1$
+        dateInstance = Objects.requireNonNullElseGet(dateInstance, () -> new FullyQualifiedJavaType("java.util.Date")); //$NON-NLS-1$
         return dateInstance;
     }
 
@@ -318,8 +315,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
                 simpleParse(fullTypeSpecification.substring(0, index));
                 int endIndex = fullTypeSpecification.lastIndexOf('>');
                 if (endIndex == -1) {
-                    throw new RuntimeException(getString(
-                            "RuntimeError.22", fullTypeSpecification)); //$NON-NLS-1$
+                    throw new RuntimeException(getString("RuntimeError.22", fullTypeSpecification)); //$NON-NLS-1$
                 }
                 genericParse(fullTypeSpecification.substring(index, endIndex + 1));
             }
@@ -342,7 +338,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
                 baseShortName = baseShortName.substring(index + 1);
             }
 
-            //$NON-NLS-1$
+            // $NON-NLS-1$
             explicitlyImported = !JAVA_LANG.equals(packageName);
         } else {
             baseShortName = baseQualifiedName;
@@ -350,42 +346,42 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
             packageName = ""; //$NON-NLS-1$
 
             switch (baseQualifiedName) {
-            case "byte":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getByteInstance();
-                break;
-            case "short":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getShortInstance();
-                break;
-            case "int":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getIntegerInstance();
-                break;
-            case "long":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getLongInstance();
-                break;
-            case "char":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getCharacterInstance();
-                break;
-            case "float":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getFloatInstance();
-                break;
-            case "double":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getDoubleInstance();
-                break;
-            case "boolean":  //$NON-NLS-1$
-                primitive = true;
-                primitiveTypeWrapper = PrimitiveTypeWrapper.getBooleanInstance();
-                break;
-            default:
-                primitive = false;
-                primitiveTypeWrapper = null;
-                break;
+                case "byte": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getByteInstance();
+                    break;
+                case "short": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getShortInstance();
+                    break;
+                case "int": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getIntegerInstance();
+                    break;
+                case "long": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getLongInstance();
+                    break;
+                case "char": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getCharacterInstance();
+                    break;
+                case "float": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getFloatInstance();
+                    break;
+                case "double": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getDoubleInstance();
+                    break;
+                case "boolean": //$NON-NLS-1$
+                    primitive = true;
+                    primitiveTypeWrapper = PrimitiveTypeWrapper.getBooleanInstance();
+                    break;
+                default:
+                    primitive = false;
+                    primitiveTypeWrapper = null;
+                    break;
             }
         }
     }
@@ -394,8 +390,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
         int lastIndex = genericSpecification.lastIndexOf('>');
         if (lastIndex == -1) {
             // shouldn't happen - should be caught already, but just in case...
-            throw new RuntimeException(getString(
-                    "RuntimeError.22", genericSpecification)); //$NON-NLS-1$
+            throw new RuntimeException(getString("RuntimeError.22", genericSpecification)); //$NON-NLS-1$
         }
         String argumentString = genericSpecification.substring(1, lastIndex);
         // need to find "," outside a <> bounds
@@ -412,8 +407,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
                 openCount--;
             } else if (",".equals(token)) { //$NON-NLS-1$
                 if (openCount == 0) {
-                    typeArguments
-                            .add(new FullyQualifiedJavaType(sb.toString()));
+                    typeArguments.add(new FullyQualifiedJavaType(sb.toString()));
                     sb.setLength(0);
                 } else {
                     sb.append(token);
@@ -424,8 +418,7 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
         }
 
         if (openCount != 0) {
-            throw new RuntimeException(getString(
-                    "RuntimeError.22", genericSpecification)); //$NON-NLS-1$
+            throw new RuntimeException(getString("RuntimeError.22", genericSpecification)); //$NON-NLS-1$
         }
 
         String finalType = sb.toString();
@@ -436,10 +429,10 @@ public class FullyQualifiedJavaType implements Comparable<FullyQualifiedJavaType
 
     /**
      * Returns the package name of a fully qualified type.
-     *
-     * <p>This method calculates the package as the part of the fully qualified name up to, but not including, the last
-     * element. Therefore, it does not support fully qualified inner classes. Not totally foolproof, but correct in
-     * most instances.
+     * <p>
+     * This method calculates the package as the part of the fully qualified name up to, but not including, the last
+     * element. Therefore, it does not support fully qualified inner classes. Not totally foolproof, but correct in most
+     * instances.
      *
      * @param baseQualifiedName
      *            the base qualified name

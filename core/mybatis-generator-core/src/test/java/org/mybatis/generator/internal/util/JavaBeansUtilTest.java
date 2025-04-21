@@ -50,7 +50,8 @@ class JavaBeansUtilTest {
         assertEquals("getXAxis", getGetterMethodName("XAxis", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$ //$NON-NLS-2$
         assertEquals("getA", getGetterMethodName("a", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$ //$NON-NLS-2$
         assertEquals("isActive", getGetterMethodName("active", FullyQualifiedJavaType.getBooleanPrimitiveInstance())); //$NON-NLS-1$ //$NON-NLS-2$
-        assertEquals("getI_PARAM_INT_1", getGetterMethodName("i_PARAM_INT_1", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$ //$NON-NLS-2$
+        assertEquals("getI_PARAM_INT_1", //$NON-NLS-1$
+                getGetterMethodName("i_PARAM_INT_1", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$
         assertEquals("get_fred", getGetterMethodName("_fred", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$ //$NON-NLS-2$
         assertEquals("getAccountType", getGetterMethodName("AccountType", FullyQualifiedJavaType.getStringInstance())); //$NON-NLS-1$ //$NON-NLS-2$
     }

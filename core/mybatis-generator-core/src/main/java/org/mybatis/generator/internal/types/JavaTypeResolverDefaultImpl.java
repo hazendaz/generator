@@ -82,8 +82,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
                 new FullyQualifiedJavaType(Object.class.getName())));
         typeMap.put(Types.LONGNVARCHAR, new JdbcTypeInformation("LONGNVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.LONGVARBINARY, new JdbcTypeInformation(
-                "LONGVARBINARY", //$NON-NLS-1$
+        typeMap.put(Types.LONGVARBINARY, new JdbcTypeInformation("LONGVARBINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
         typeMap.put(Types.LONGVARCHAR, new JdbcTypeInformation("LONGVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
@@ -128,19 +127,14 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
         forceBigDecimals = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
-        useJSR310Types = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
+                .isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
+        useJSR310Types = StringUtility.isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
     }
 
     @Override
-    public FullyQualifiedJavaType calculateJavaType(
-            IntrospectedColumn introspectedColumn) {
+    public FullyQualifiedJavaType calculateJavaType(IntrospectedColumn introspectedColumn) {
         FullyQualifiedJavaType answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
-                .get(introspectedColumn.getJdbcType());
+        JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {
             answer = jdbcTypeInformation.fullyQualifiedJavaType();
@@ -155,24 +149,24 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         FullyQualifiedJavaType answer = defaultType;
 
         switch (column.getJdbcType()) {
-        case Types.BIT:
-            answer = calculateBitReplacement(column, defaultType);
-            break;
-        case Types.DATE:
-            answer = calculateDateType(column, defaultType);
-            break;
-        case Types.DECIMAL:
-        case Types.NUMERIC:
-            answer = calculateBigDecimalReplacement(column, defaultType);
-            break;
-        case Types.TIME:
-            answer = calculateTimeType(column, defaultType);
-            break;
-        case Types.TIMESTAMP:
-            answer = calculateTimestampType(column, defaultType);
-            break;
-        default:
-            break;
+            case Types.BIT:
+                answer = calculateBitReplacement(column, defaultType);
+                break;
+            case Types.DATE:
+                answer = calculateDateType(column, defaultType);
+                break;
+            case Types.DECIMAL:
+            case Types.NUMERIC:
+                answer = calculateBigDecimalReplacement(column, defaultType);
+                break;
+            case Types.TIME:
+                answer = calculateTimeType(column, defaultType);
+                break;
+            case Types.TIMESTAMP:
+                answer = calculateTimestampType(column, defaultType);
+                break;
+            default:
+                break;
         }
 
         return answer;
@@ -248,8 +242,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     @Override
     public String calculateJdbcTypeName(IntrospectedColumn introspectedColumn) {
         String answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
-                .get(introspectedColumn.getJdbcType());
+        JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {
             answer = jdbcTypeInformation.jdbcTypeName();
@@ -268,5 +261,6 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         this.context = context;
     }
 
-    public record JdbcTypeInformation(String jdbcTypeName, FullyQualifiedJavaType fullyQualifiedJavaType) { }
+    public record JdbcTypeInformation(String jdbcTypeName, FullyQualifiedJavaType fullyQualifiedJavaType) {
+    }
 }

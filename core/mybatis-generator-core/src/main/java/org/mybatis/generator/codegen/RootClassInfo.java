@@ -47,11 +47,9 @@ public class RootClassInfo {
     }
 
     /**
-     * Clears the internal map containing root class info.  This method should be called at the beginning of
-     * a generation run to clear the cached root class info in case there has been a change.
-     * For example, when using the eclipse launcher, the cache would be kept until eclipse
-     * was restarted.
-     *
+     * Clears the internal map containing root class info. This method should be called at the beginning of a generation
+     * run to clear the cached root class info in case there has been a change. For example, when using the eclipse
+     * launcher, the cache would be kept until eclipse was restarted.
      */
     public static void reset() {
         rootClassInfoMap.clear();
@@ -94,8 +92,7 @@ public class RootClassInfo {
 
         boolean found = false;
         String propertyName = introspectedColumn.getJavaProperty();
-        String propertyType = introspectedColumn.getFullyQualifiedJavaType()
-                .getFullyQualifiedName();
+        String propertyType = introspectedColumn.getFullyQualifiedJavaType().getFullyQualifiedName();
 
         // get method names from class and check against this column definition.
         // better yet, have a map of method Names. check against it.
@@ -112,8 +109,7 @@ public class RootClassInfo {
     private boolean hasProperty(String propertyName, String propertyType, PropertyDescriptor propertyDescriptor) {
         return hasCorrectName(propertyName, propertyDescriptor)
                 && isProperType(propertyName, propertyType, propertyDescriptor)
-                && hasGetter(propertyName, propertyDescriptor)
-                && hasSetter(propertyName, propertyDescriptor);
+                && hasGetter(propertyName, propertyDescriptor) && hasSetter(propertyName, propertyDescriptor);
     }
 
     private boolean hasCorrectName(String propertyName, PropertyDescriptor propertyDescriptor) {

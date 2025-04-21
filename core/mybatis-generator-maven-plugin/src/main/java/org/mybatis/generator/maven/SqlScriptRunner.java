@@ -36,10 +36,8 @@ import org.mybatis.generator.internal.util.StringUtility;
 import org.mybatis.generator.internal.util.messages.Messages;
 
 /**
- * This class is used to execute an SQL script before a code generation
- * run if necessary.  Note that this class mainly exists to support the
- * MyBatis Generator build.  It is intentionally not documented and not
- * supported.
+ * This class is used to execute an SQL script before a code generation run if necessary. Note that this class mainly
+ * exists to support the MyBatis Generator build. It is intentionally not documented and not supported.
  *
  * @author Jeff Butler
  */
@@ -51,8 +49,8 @@ public class SqlScriptRunner {
     private final String sourceFile;
     private Log log;
 
-    public SqlScriptRunner(String sourceFile, String driver, String url,
-            String userId, String password) throws MojoExecutionException {
+    public SqlScriptRunner(String sourceFile, String driver, String url, String userId, String password)
+            throws MojoExecutionException {
 
         if (!StringUtility.stringHasValue(sourceFile)) {
             throw new MojoExecutionException("SQL script file is required");

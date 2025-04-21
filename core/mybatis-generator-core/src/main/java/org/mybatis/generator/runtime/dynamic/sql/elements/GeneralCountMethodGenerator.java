@@ -48,9 +48,7 @@ public class GeneralCountMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLine("return MyBatis3Utils.countFrom(this::count, " + tableFieldName //$NON-NLS-1$
                 + ", completer);"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

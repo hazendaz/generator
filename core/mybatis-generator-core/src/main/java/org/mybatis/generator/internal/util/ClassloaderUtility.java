@@ -60,8 +60,7 @@ public class ClassloaderUtility {
                     urls.add(file.toUri().toURL());
                 } catch (MalformedURLException e) {
                     // this shouldn't happen, but just in case...
-                    throw new RuntimeException(getString(
-                            "RuntimeError.9", classPathEntry)); //$NON-NLS-1$
+                    throw new RuntimeException(getString("RuntimeError.9", classPathEntry)); //$NON-NLS-1$
                 }
             }
         }

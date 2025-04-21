@@ -29,10 +29,10 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 /**
- * This test executes the same generator configuration that is in the mybatis-generator-systests-kotlin
- * project. The purpose of this test is to exercise the Kotlin code generators during the initial build
- * as a kind of smoke test - currently we do not try to parse the generated code. This test also shows
- * test coverage as it mimics the code paths executed by the integration test.
+ * This test executes the same generator configuration that is in the mybatis-generator-systests-kotlin project. The
+ * purpose of this test is to exercise the Kotlin code generators during the initial build as a kind of smoke test -
+ * currently we do not try to parse the generated code. This test also shows test coverage as it mimics the code paths
+ * executed by the integration test.
  *
  * @author Jeff Butler
  */

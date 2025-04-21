@@ -21,9 +21,8 @@ import org.mybatis.generator.config.Context;
 
 /**
  * This class is a convenient base class for implementing plugins.
- *
- * <p>This adapter does not implement the <code>validate</code> method - all plugins
- * must perform validation.
+ * <p>
+ * This adapter does not implement the <code>validate</code> method - all plugins must perform validation.
  *
  * @author Jeff Butler
  */

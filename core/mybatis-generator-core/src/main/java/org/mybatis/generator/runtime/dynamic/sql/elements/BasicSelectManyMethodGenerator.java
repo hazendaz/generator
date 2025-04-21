@@ -37,13 +37,10 @@ public class BasicSelectManyMethodGenerator extends AbstractMethodGenerator {
     public MethodAndImports generateMethodAndImports() {
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
-        FullyQualifiedJavaType parameterType =
-                new FullyQualifiedJavaType(
-                        "org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
-        FullyQualifiedJavaType adapter =
-                new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
-        FullyQualifiedJavaType annotation =
-                new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                "org.mybatis.dynamic.sql.select.render.SelectStatementProvider"); //$NON-NLS-1$
+        FullyQualifiedJavaType adapter = new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.SqlProviderAdapter"); //$NON-NLS-1$
+        FullyQualifiedJavaType annotation = new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectProvider"); //$NON-NLS-1$
 
         imports.add(parameterType);
         imports.add(adapter);
@@ -61,8 +58,7 @@ public class BasicSelectManyMethodGenerator extends AbstractMethodGenerator {
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addAnnotation("@SelectProvider(type=SqlProviderAdapter.class, method=\"select\")"); //$NON-NLS-1$
 
-        MethodAndImports.Builder builder = MethodAndImports.withMethod(method)
-                .withImports(imports);
+        MethodAndImports.Builder builder = MethodAndImports.withMethod(method).withImports(imports);
 
         MethodParts methodParts;
         if (introspectedTable.isConstructorBased()) {

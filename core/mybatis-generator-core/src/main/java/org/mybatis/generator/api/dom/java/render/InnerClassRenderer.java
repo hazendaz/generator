@@ -73,8 +73,7 @@ public class InnerClassRenderer {
     }
 
     private String renderSuperClass(InnerClass innerClass, CompilationUnit compilationUnit) {
-        return innerClass.getSuperClass()
-                .map(sc -> " extends " + JavaDomUtils.calculateTypeName(compilationUnit, sc)) //$NON-NLS-1$
+        return innerClass.getSuperClass().map(sc -> " extends " + JavaDomUtils.calculateTypeName(compilationUnit, sc)) //$NON-NLS-1$
                 .orElse(""); //$NON-NLS-1$
     }
 

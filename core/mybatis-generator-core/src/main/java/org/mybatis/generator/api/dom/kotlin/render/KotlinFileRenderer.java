@@ -39,8 +39,7 @@ public class KotlinFileRenderer {
         }
 
         lines.addAll(0, kotlinFile.getFileCommentLines());
-        return lines.stream()
-                .collect(Collectors.joining(System.lineSeparator()));
+        return lines.stream().collect(Collectors.joining(System.lineSeparator()));
     }
 
     private List<String> prependBlankLineIfNotEmpty(int currentLength, List<String> in) {
@@ -49,13 +48,11 @@ public class KotlinFileRenderer {
         }
 
         return Stream.of(Stream.of(""), in.stream()) //$NON-NLS-1$
-                .flatMap(Function.identity())
-                .toList();
+                .flatMap(Function.identity()).toList();
     }
 
     private List<String> renderImports(KotlinFile kotlinFile) {
-        return kotlinFile.getImports().stream()
-                .map(s -> "import " + s) //$NON-NLS-1$
+        return kotlinFile.getImports().stream().map(s -> "import " + s) //$NON-NLS-1$
                 .toList();
     }
 }

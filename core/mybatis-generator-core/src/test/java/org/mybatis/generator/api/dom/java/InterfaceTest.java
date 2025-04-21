@@ -108,12 +108,9 @@ class InterfaceTest {
         field.setInitializationString("\"one\"");
         interfaze.addField(field);
 
-        String expected = "package foo;" + System.lineSeparator()
-            + System.lineSeparator()
-            + "public interface Bar {" + System.lineSeparator()
-            + "    String EMPTY_STRING = \"\";" + System.lineSeparator() + System.lineSeparator()
-            + "    String ONE = \"one\";" + System.lineSeparator()
-            + "}";
+        String expected = "package foo;" + System.lineSeparator() + System.lineSeparator() + "public interface Bar {"
+                + System.lineSeparator() + "    String EMPTY_STRING = \"\";" + System.lineSeparator()
+                + System.lineSeparator() + "    String ONE = \"one\";" + System.lineSeparator() + "}";
 
         TopLevelInterfaceRenderer renderer = new TopLevelInterfaceRenderer();
         assertThat(renderer.render(interfaze)).isEqualTo(expected);

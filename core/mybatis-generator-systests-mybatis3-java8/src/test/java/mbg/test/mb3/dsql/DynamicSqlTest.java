@@ -80,8 +80,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setIntegerfield(5);
             mapper.insert(record);
 
-            List<Fieldsonly> answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(5)));
+            List<Fieldsonly> answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(5)));
             assertThat(answer.size()).isEqualTo(1);
 
             Fieldsonly returnedRecord = answer.get(0);
@@ -114,8 +113,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            List<Fieldsonly> answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
+            List<Fieldsonly> answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
             assertThat(answer.size()).isEqualTo(2);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -146,8 +144,7 @@ public class DynamicSqlTest extends AbstractTest {
 
             mapper.insertMultiple(Arrays.asList(record1, record2, record3));
 
-            List<Fieldsonly> answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
+            List<Fieldsonly> answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
             assertThat(answer.size()).isEqualTo(2);
 
             answer = mapper.select(SelectDSLCompleter.allRowsOrderedBy(fieldsonly.integerfield));
@@ -183,8 +180,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            List<Fieldsonly> answer = mapper.selectDistinct(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(5)));
+            List<Fieldsonly> answer = mapper.selectDistinct(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(5)));
             assertThat(answer.size()).isEqualTo(1);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -243,8 +239,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
+            int rows = mapper.delete(dsl -> dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
             assertThat(rows).isEqualTo(2);
 
             List<Fieldsonly> answer = mapper.select(SelectDSLCompleter.allRows());
@@ -275,8 +270,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setIntegerfield(9);
             mapper.insert(record);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
+            long rows = mapper.count(dsl -> dsl.where(fieldsonly.integerfield, isGreaterThan(5)));
             assertThat(rows).isEqualTo(2);
 
             rows = mapper.count(CountDSLCompleter.allRows());
@@ -339,8 +333,7 @@ public class DynamicSqlTest extends AbstractTest {
             key = new Pkonly(7, 8);
             mapper.insert(key);
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(pkonly.id, isGreaterThan(4)));
+            int rows = mapper.delete(dsl -> dsl.where(pkonly.id, isGreaterThan(4)));
             assertThat(rows).isEqualTo(2);
 
             List<Pkonly> answer = mapper.select(SelectDSLCompleter.allRows());
@@ -362,9 +355,7 @@ public class DynamicSqlTest extends AbstractTest {
             key = new Pkonly(7, 8);
             mapper.insert(key);
 
-            List<Pkonly> answer = mapper.select(dsl ->
-                    dsl.where(pkonly.id, isGreaterThan(4))
-                    .orderBy(pkonly.id));
+            List<Pkonly> answer = mapper.select(dsl -> dsl.where(pkonly.id, isGreaterThan(4)).orderBy(pkonly.id));
             assertThat(answer.size()).isEqualTo(2);
             assertThat(answer.get(0).getId().intValue()).isEqualTo(5);
             assertThat(answer.get(0).getSeqNum().intValue()).isEqualTo(6);
@@ -378,11 +369,9 @@ public class DynamicSqlTest extends AbstractTest {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkonlyMapper mapper = sqlSession.getMapper(PkonlyMapper.class);
 
-            mapper.insertMultiple(Arrays.asList(new Pkonly(1,3), new Pkonly(5, 6), new Pkonly(7, 8)));
+            mapper.insertMultiple(Arrays.asList(new Pkonly(1, 3), new Pkonly(5, 6), new Pkonly(7, 8)));
 
-            List<Pkonly> answer = mapper.select(dsl ->
-                    dsl.where(pkonly.id, isGreaterThan(4))
-                    .orderBy(pkonly.id));
+            List<Pkonly> answer = mapper.select(dsl -> dsl.where(pkonly.id, isGreaterThan(4)).orderBy(pkonly.id));
             assertThat(answer.size()).isEqualTo(2);
             assertThat(answer.get(0).getId().intValue()).isEqualTo(5);
             assertThat(answer.get(0).getSeqNum().intValue()).isEqualTo(6);
@@ -405,10 +394,7 @@ public class DynamicSqlTest extends AbstractTest {
             key = new Pkonly(7, 8);
             mapper.insert(key);
 
-            List<Pkonly> answer = mapper.select(c ->
-                c.where(pkonly.id, isGreaterThan(4))
-                .orderBy(pkonly.id)
-            );
+            List<Pkonly> answer = mapper.select(c -> c.where(pkonly.id, isGreaterThan(4)).orderBy(pkonly.id));
             assertThat(answer.size()).isEqualTo(2);
             assertThat(answer.get(0).getId().intValue()).isEqualTo(5);
             assertThat(answer.get(0).getSeqNum().intValue()).isEqualTo(6);
@@ -431,10 +417,7 @@ public class DynamicSqlTest extends AbstractTest {
             key = new Pkonly(7, 8);
             mapper.insert(key);
 
-            List<Pkonly> answer = mapper.select(c ->
-                c.where(pkonly.id, isGreaterThan(4))
-                .orderBy(pkonly.id)
-            );
+            List<Pkonly> answer = mapper.select(c -> c.where(pkonly.id, isGreaterThan(4)).orderBy(pkonly.id));
             assertThat(answer.size()).isEqualTo(2);
             assertThat(answer.get(0).getId().intValue()).isEqualTo(5);
             assertThat(answer.get(0).getSeqNum().intValue()).isEqualTo(6);
@@ -476,8 +459,7 @@ public class DynamicSqlTest extends AbstractTest {
             key = new Pkonly(7, 8);
             mapper.insert(key);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(pkonly.id, isGreaterThan(4)));
+            long rows = mapper.count(dsl -> dsl.where(pkonly.id, isGreaterThan(4)));
             assertEquals(2, rows);
 
             rows = mapper.count(dsl -> dsl);
@@ -640,8 +622,7 @@ public class DynamicSqlTest extends AbstractTest {
             List<Pkfields> answer = mapper.select(SelectDSLCompleter.allRows());
             assertEquals(2, answer.size());
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(pkfieldstable.lastname, isLike("J%")));
+            int rows = mapper.delete(dsl -> dsl.where(pkfieldstable.lastname, isLike("J%")));
             assertEquals(1, rows);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -726,8 +707,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldstable.firstname, isLike("B%"))
+            List<Pkfields> answer = mapper.select(dsl -> dsl.where(pkfieldstable.firstname, isLike("B%"))
                     .orderBy(pkfieldstable.id1, pkfieldstable.id2));
             assertEquals(3, answer.size());
             Pkfields returnedRecord = answer.get(0);
@@ -789,8 +769,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldstable.firstname, isNotLike("B%"))
+            List<Pkfields> answer = mapper.select(dsl -> dsl.where(pkfieldstable.firstname, isNotLike("B%"))
                     .orderBy(pkfieldstable.id1, pkfieldstable.id2));
             assertEquals(3, answer.size());
             Pkfields returnedRecord = answer.get(0);
@@ -852,10 +831,9 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldstable.firstname, isLike("B%"), and(pkfieldstable.id2, isEqualTo(3)))
-                    .or(pkfieldstable.firstname, isLike("Wi%"))
-                    .orderBy(pkfieldstable.id1, pkfieldstable.id2));
+            List<Pkfields> answer = mapper.select(
+                    dsl -> dsl.where(pkfieldstable.firstname, isLike("B%"), and(pkfieldstable.id2, isEqualTo(3)))
+                            .or(pkfieldstable.firstname, isLike("Wi%")).orderBy(pkfieldstable.id1, pkfieldstable.id2));
 
             assertEquals(2, answer.size());
             Pkfields returnedRecord = answer.get(0);
@@ -914,9 +892,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldstable.id2, isIn(1, 3))
-                    .orderBy(pkfieldstable.id1, pkfieldstable.id2));
+            List<Pkfields> answer = mapper.select(
+                    dsl -> dsl.where(pkfieldstable.id2, isIn(1, 3)).orderBy(pkfieldstable.id1, pkfieldstable.id2));
             assertEquals(4, answer.size());
             Pkfields returnedRecord = answer.get(0);
             assertEquals(1, returnedRecord.getId1().intValue());
@@ -980,8 +957,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldstable.id2, isBetween(1).and(3))
+            List<Pkfields> answer = mapper.select(dsl -> dsl.where(pkfieldstable.id2, isBetween(1).and(3))
                     .orderBy(pkfieldstable.id1, pkfieldstable.id2));
             assertEquals(6, answer.size());
         }
@@ -1034,8 +1010,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(3);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(
-                    SelectDSLCompleter.allRowsOrderedBy(pkfieldstable.id1, pkfieldstable.id2));
+            List<Pkfields> answer = mapper
+                    .select(SelectDSLCompleter.allRowsOrderedBy(pkfieldstable.id1, pkfieldstable.id2));
 
             assertEquals(6, answer.size());
         }
@@ -1095,8 +1071,8 @@ public class DynamicSqlTest extends AbstractTest {
 
             assertEquals(6, rowsInserted);
 
-            List<Pkfields> answer = mapper.select(
-                    SelectDSLCompleter.allRowsOrderedBy(pkfieldstable.id1, pkfieldstable.id2));
+            List<Pkfields> answer = mapper
+                    .select(SelectDSLCompleter.allRowsOrderedBy(pkfieldstable.id1, pkfieldstable.id2));
 
             assertEquals(6, answer.size());
         }
@@ -1155,10 +1131,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setWierdField(66);
             mapper.insert(record);
 
-            List<Pkfields> answer = mapper.select(DSL ->
-                    DSL.where(pkfieldstable.wierdField, isLessThan(40))
-                    .and(pkfieldstable.wierdField, isIn(11, 22))
-                    .orderBy(pkfieldstable.id1, pkfieldstable.id2));
+            List<Pkfields> answer = mapper.select(DSL -> DSL.where(pkfieldstable.wierdField, isLessThan(40))
+                    .and(pkfieldstable.wierdField, isIn(11, 22)).orderBy(pkfieldstable.id1, pkfieldstable.id2));
 
             assertEquals(2, answer.size());
         }
@@ -1183,8 +1157,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setId2(4);
             mapper.insert(record);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(pkfieldstable.lastname, isLike("J%")));
+            long rows = mapper.count(dsl -> dsl.where(pkfieldstable.lastname, isLike("J%")));
 
             assertEquals(1, rows);
 
@@ -1209,10 +1182,8 @@ public class DynamicSqlTest extends AbstractTest {
 
             Pkblobs returnedRecord = answer.get(0);
             assertEquals(record.getId(), returnedRecord.getId());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -1312,8 +1283,7 @@ public class DynamicSqlTest extends AbstractTest {
             List<Pkblobs> answer = mapper.select(SelectDSLCompleter.allRows());
             assertEquals(2, answer.size());
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(pkblobs.id, isLessThan(4)));
+            int rows = mapper.delete(dsl -> dsl.where(pkblobs.id, isLessThan(4)));
             assertEquals(1, rows);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -1365,8 +1335,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            List<Pkblobs> answer = mapper.select(DSL ->
-                    DSL.where(pkblobs.id, isGreaterThan(4)));
+            List<Pkblobs> answer = mapper.select(DSL -> DSL.where(pkblobs.id, isGreaterThan(4)));
 
             assertEquals(1, answer.size());
 
@@ -1399,8 +1368,7 @@ public class DynamicSqlTest extends AbstractTest {
             int recordsInserted = mapper.insertMultiple(records);
             assertEquals(2, recordsInserted);
 
-            List<Pkblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkblobs.id, isGreaterThan(4)));
+            List<Pkblobs> answer = mapper.select(dsl -> dsl.where(pkblobs.id, isGreaterThan(4)));
 
             assertEquals(1, answer.size());
 
@@ -1428,8 +1396,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(pkblobs.id, isLessThan(4)));
+            long rows = mapper.count(dsl -> dsl.where(pkblobs.id, isLessThan(4)));
             assertEquals(1, rows);
 
             rows = mapper.count(dsl -> dsl);
@@ -1458,8 +1425,7 @@ public class DynamicSqlTest extends AbstractTest {
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
         }
     }
 
@@ -1587,8 +1553,7 @@ public class DynamicSqlTest extends AbstractTest {
             List<Pkfieldsblobs> answer = mapper.select(SelectDSLCompleter.allRows());
             assertEquals(2, answer.size());
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
+            int rows = mapper.delete(dsl -> dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
             assertEquals(1, rows);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -1653,8 +1618,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            List<Pkfieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldsblobs.id2, isEqualTo(6)));
+            List<Pkfieldsblobs> answer = mapper.select(dsl -> dsl.where(pkfieldsblobs.id2, isEqualTo(6)));
             assertEquals(1, answer.size());
 
             Pkfieldsblobs newRecord = answer.get(0);
@@ -1692,8 +1656,7 @@ public class DynamicSqlTest extends AbstractTest {
             int rowsInserted = mapper.insertMultiple(records);
             assertEquals(2, rowsInserted);
 
-            List<Pkfieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldsblobs.id2, isEqualTo(6)));
+            List<Pkfieldsblobs> answer = mapper.select(dsl -> dsl.where(pkfieldsblobs.id2, isEqualTo(6)));
             assertEquals(1, answer.size());
 
             Pkfieldsblobs newRecord = answer.get(0);
@@ -1749,10 +1712,8 @@ public class DynamicSqlTest extends AbstractTest {
             Fieldsblobs returnedRecord = answer.get(0);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -1778,8 +1739,7 @@ public class DynamicSqlTest extends AbstractTest {
             List<Fieldsblobs> answer = mapper.select(SelectDSLCompleter.allRows());
             assertEquals(2, answer.size());
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(fieldsblobs.firstname, isLike("S%")));
+            int rows = mapper.delete(dsl -> dsl.where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, rows);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -1806,8 +1766,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setBlob2(generateRandomBlob());
             mapper.insert(record);
 
-            List<Fieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(fieldsblobs.firstname, isLike("S%")));
+            List<Fieldsblobs> answer = mapper.select(dsl -> dsl.where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, answer.size());
 
             Fieldsblobs newRecord = answer.get(0);
@@ -1842,8 +1801,7 @@ public class DynamicSqlTest extends AbstractTest {
             int rowsInserted = mapper.insertMultiple(records);
             assertEquals(2, rowsInserted);
 
-            List<Fieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(fieldsblobs.firstname, isLike("S%")));
+            List<Fieldsblobs> answer = mapper.select(dsl -> dsl.where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, answer.size());
 
             Fieldsblobs newRecord = answer.get(0);
@@ -1899,8 +1857,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setBlob1(generateRandomBlob());
             mapper.insert(record);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
+            long rows = mapper.count(dsl -> dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
             assertEquals(1, rows);
 
             rows = mapper.count(dsl -> dsl);
@@ -1928,14 +1885,13 @@ public class DynamicSqlTest extends AbstractTest {
 
             record.setActive(true);
             record.setActive1(Boolean.FALSE);
-            record.setActive2(new byte[]{-128, 127});
+            record.setActive2(new byte[] { -128, 127 });
 
             mapper.insert(record);
             Integer generatedCustomerId = record.getCustomerId();
             assertEquals(57, generatedCustomerId.intValue());
 
-            Optional<AwfulTable> returnedRecord = mapper
-                    .selectByPrimaryKey(generatedCustomerId);
+            Optional<AwfulTable> returnedRecord = mapper.selectByPrimaryKey(generatedCustomerId);
 
             assertThat(returnedRecord).hasValueSatisfying(rr -> {
                 assertEquals(generatedCustomerId, rr.getCustomerId());
@@ -1982,8 +1938,7 @@ public class DynamicSqlTest extends AbstractTest {
             Integer generatedCustomerId = record.getCustomerId();
             assertEquals(57, generatedCustomerId.intValue());
 
-            Optional<AwfulTable> returnedRecord = mapper
-                    .selectByPrimaryKey(generatedCustomerId);
+            Optional<AwfulTable> returnedRecord = mapper.selectByPrimaryKey(generatedCustomerId);
 
             assertThat(returnedRecord).hasValueSatisfying(rr -> {
                 assertEquals(generatedCustomerId, rr.getCustomerId());
@@ -2163,8 +2118,7 @@ public class DynamicSqlTest extends AbstractTest {
             List<AwfulTable> answer = mapper.select(SelectDSLCompleter.allRows());
             assertEquals(2, answer.size());
 
-            int rows = mapper.delete(dsl ->
-                    dsl.where(awfulTable.eMail, isLike("fred@%")));
+            int rows = mapper.delete(dsl -> dsl.where(awfulTable.eMail, isLike("fred@%")));
             assertEquals(1, rows);
 
             answer = mapper.select(SelectDSLCompleter.allRows());
@@ -2316,9 +2270,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.firstFirstName, isLike("b%"))
-                    .orderBy(awfulTable.customerId));
+            List<AwfulTable> answer = mapper
+                    .select(dsl -> dsl.where(awfulTable.firstFirstName, isLike("b%")).orderBy(awfulTable.customerId));
             assertEquals(3, answer.size());
             AwfulTable returnedRecord = answer.get(0);
             assertEquals(1111, returnedRecord.getId1().intValue());
@@ -2439,9 +2392,8 @@ public class DynamicSqlTest extends AbstractTest {
             assertEquals(61, records.get(4).getCustomerId());
             assertEquals(62, records.get(5).getCustomerId());
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.firstFirstName, isLike("b%"))
-                    .orderBy(awfulTable.customerId));
+            List<AwfulTable> answer = mapper
+                    .select(dsl -> dsl.where(awfulTable.firstFirstName, isLike("b%")).orderBy(awfulTable.customerId));
             assertEquals(3, answer.size());
             AwfulTable returnedRecord = answer.get(0);
             assertEquals(1111, returnedRecord.getId1().intValue());
@@ -2549,9 +2501,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.firstFirstName, isNotLike("b%"))
-                    .orderBy(awfulTable.customerId));
+            List<AwfulTable> answer = mapper.select(
+                    dsl -> dsl.where(awfulTable.firstFirstName, isNotLike("b%")).orderBy(awfulTable.customerId));
             assertEquals(3, answer.size());
             AwfulTable returnedRecord = answer.get(0);
             assertEquals(1, returnedRecord.getId1().intValue());
@@ -2654,10 +2605,9 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.firstFirstName, isLike("b%"), and(awfulTable.id2, isEqualTo(222222)))
-                    .or(awfulTable.firstFirstName, isLike("wi%"))
-                    .orderBy(awfulTable.customerId));
+            List<AwfulTable> answer = mapper.select(
+                    dsl -> dsl.where(awfulTable.firstFirstName, isLike("b%"), and(awfulTable.id2, isEqualTo(222222)))
+                            .or(awfulTable.firstFirstName, isLike("wi%")).orderBy(awfulTable.customerId));
 
             assertEquals(2, answer.size());
             AwfulTable returnedRecord = answer.get(0);
@@ -2758,9 +2708,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.id1, isIn(1, 11))
-                    .orderBy(awfulTable.customerId));
+            List<AwfulTable> answer = mapper
+                    .select(dsl -> dsl.where(awfulTable.id1, isIn(1, 11)).orderBy(awfulTable.customerId));
 
             assertEquals(2, answer.size());
             AwfulTable returnedRecord = answer.get(0);
@@ -2861,8 +2810,7 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.id1, isBetween(1).and(1000)));
+            List<AwfulTable> answer = mapper.select(dsl -> dsl.where(awfulTable.id1, isBetween(1).and(1000)));
             assertEquals(3, answer.size());
         }
     }
@@ -2955,8 +2903,8 @@ public class DynamicSqlTest extends AbstractTest {
             record.setThirdFirstName("bammbamm3");
             mapper.insert(record);
 
-            List<AwfulTable> answer = mapper.select(
-                    SelectDSLCompleter.allRowsOrderedBy(awfulTable.customerId.descending()));
+            List<AwfulTable> answer = mapper
+                    .select(SelectDSLCompleter.allRowsOrderedBy(awfulTable.customerId.descending()));
             assertEquals(6, answer.size());
             AwfulTable returnedRecord = answer.get(0);
             assertEquals(111111, returnedRecord.getId1().intValue());
@@ -3007,8 +2955,7 @@ public class DynamicSqlTest extends AbstractTest {
 
             mapper.insert(record);
 
-            long rows = mapper.count(dsl ->
-                    dsl.where(awfulTable.eMail, isLike("fred@%")));
+            long rows = mapper.count(dsl -> dsl.where(awfulTable.eMail, isLike("fred@%")));
             assertEquals(1, rows);
 
             rows = mapper.count(dsl -> dsl);
@@ -3018,7 +2965,7 @@ public class DynamicSqlTest extends AbstractTest {
 
     @Test
     public void testTranslationTable() {
-        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             TranslationMapper mapper = sqlSession.getMapper(TranslationMapper.class);
 
             Translation t = new Translation();
@@ -3052,7 +2999,7 @@ public class DynamicSqlTest extends AbstractTest {
 
     @Test
     public void testIdTable() {
-        try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IdMapper mapper = sqlSession.getMapper(IdMapper.class);
 
             Id id = new Id();

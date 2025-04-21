@@ -43,8 +43,8 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
         sb.append(escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime()));
         sb.append('\"');
 
-        String orderByClause = introspectedTable.getTableConfigurationProperty(
-                PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
+        String orderByClause = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
         boolean hasOrderBy = StringUtility.stringHasValue(orderByClause);
         if (hasOrderBy) {
             sb.append(',');

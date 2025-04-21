@@ -29,14 +29,14 @@ public class GeneralSelectDistinctMethodGenerator extends AbstractKotlinFunction
 
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".selectDistinct") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("completer") //$NON-NLS-1$
-                        .withDataType("SelectCompleter") //$NON-NLS-1$
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports
+                .withFunction(KotlinFunction.newOneLineFunction(mapperName + ".selectDistinct") //$NON-NLS-1$
+                        .withArgument(KotlinArg.newArg("completer") //$NON-NLS-1$
+                                .withDataType("SelectCompleter") //$NON-NLS-1$
+                                .build())
+                        .withCodeLine("selectDistinct(this::selectMany, columnList, " + tableFieldName //$NON-NLS-1$
+                                + ", completer)") //$NON-NLS-1$
                         .build())
-                .withCodeLine("selectDistinct(this::selectMany, columnList, " + tableFieldName //$NON-NLS-1$
-                        + ", completer)") //$NON-NLS-1$
-                .build())
                 .withImport("org.mybatis.dynamic.sql.util.kotlin.SelectCompleter") //$NON-NLS-1$
                 .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectDistinct") //$NON-NLS-1$
                 .build();

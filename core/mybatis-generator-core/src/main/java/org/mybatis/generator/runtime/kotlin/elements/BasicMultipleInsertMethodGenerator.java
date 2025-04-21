@@ -42,27 +42,25 @@ public class BasicMultipleInsertMethodGenerator extends AbstractKotlinFunctionGe
 
     private KotlinFunctionAndImports generateMethodWithGeneratedKeys(GeneratedKey gk) {
 
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction("insertMultiple") //$NON-NLS-1$
-                .withExplicitReturnType("Int") //$NON-NLS-1$
-                .withAnnotation("@InsertProvider(type = SqlProviderAdapter::class," //$NON-NLS-1$
-                        + " method = \"insertMultipleWithGeneratedKeys\")") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("insertStatement") //$NON-NLS-1$
-                        .withAnnotation("@Param(\"insertStatement\")") //$NON-NLS-1$
-                        .withDataType("String") //$NON-NLS-1$
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports
+                .withFunction(KotlinFunction.newOneLineFunction("insertMultiple") //$NON-NLS-1$
+                        .withExplicitReturnType("Int") //$NON-NLS-1$
+                        .withAnnotation("@InsertProvider(type = SqlProviderAdapter::class," //$NON-NLS-1$
+                                + " method = \"insertMultipleWithGeneratedKeys\")") //$NON-NLS-1$
+                        .withArgument(KotlinArg.newArg("insertStatement") //$NON-NLS-1$
+                                .withAnnotation("@Param(\"insertStatement\")") //$NON-NLS-1$
+                                .withDataType("String") //$NON-NLS-1$
+                                .build())
+                        .withArgument(KotlinArg.newArg("records") //$NON-NLS-1$
+                                .withAnnotation("@Param(\"records\")") //$NON-NLS-1$
+                                .withDataType("List<" //$NON-NLS-1$
+                                        + recordType.getShortNameWithTypeArguments() + ">") //$NON-NLS-1$
+                                .build())
                         .build())
-                .withArgument(KotlinArg.newArg("records") //$NON-NLS-1$
-                        .withAnnotation("@Param(\"records\")") //$NON-NLS-1$
-                        .withDataType("List<" //$NON-NLS-1$
-                                + recordType.getShortNameWithTypeArguments()
-                                + ">") //$NON-NLS-1$
-                        .build())
-                .build())
                 .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter") //$NON-NLS-1$
                 .withImport("org.apache.ibatis.annotations.InsertProvider") //$NON-NLS-1$
                 .withImport("org.apache.ibatis.annotations.Param") //$NON-NLS-1$
-                .withImports(recordType.getImportList())
-                .build();
+                .withImports(recordType.getImportList()).build();
 
         addFunctionComment(functionAndImports);
 

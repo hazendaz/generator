@@ -52,21 +52,18 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends AbstractMethodGe
 
         method.addBodyLine("return update(c ->"); //$NON-NLS-1$
 
-        method.addBodyLines(
-                fragmentGenerator.getSetEqualWhenPresentLines(introspectedTable.getNonPrimaryKeyColumns(),
-                        "    c", "    ", false)); //$NON-NLS-1$ //$NON-NLS-2$
+        method.addBodyLines(fragmentGenerator.getSetEqualWhenPresentLines(introspectedTable.getNonPrimaryKeyColumns(),
+                "    c", "    ", false)); //$NON-NLS-1$ //$NON-NLS-2$
         method.addBodyLines(fragmentGenerator.getPrimaryKeyWhereClauseForUpdate("    ")); //$NON-NLS-1$
 
         method.addBodyLine(");"); //$NON-NLS-1$
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override
     public boolean callPlugins(Method method, Interface interfaze) {
-        return context.getPlugins()
-                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method, interfaze, introspectedTable);
+        return context.getPlugins().clientUpdateByPrimaryKeySelectiveMethodGenerated(method, interfaze,
+                introspectedTable);
     }
 
     public static class Builder extends BaseBuilder<Builder> {

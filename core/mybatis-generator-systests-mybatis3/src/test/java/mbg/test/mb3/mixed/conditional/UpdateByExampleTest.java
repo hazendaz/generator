@@ -181,17 +181,13 @@ public class UpdateByExampleTest extends AbstractMixedConditionalTest {
             assertEquals(2, rows);
 
             example.clear();
-            example.createCriteria()
-                    .andIdEqualTo(5)
-                    .andSeqNumEqualTo(3);
+            example.createCriteria().andIdEqualTo(5).andSeqNumEqualTo(3);
 
             long returnedRows = mapper.countByExample(example);
             assertEquals(1, returnedRows);
 
             example.clear();
-            example.createCriteria()
-                    .andIdEqualTo(7)
-                    .andSeqNumEqualTo(3);
+            example.createCriteria().andIdEqualTo(7).andSeqNumEqualTo(3);
 
             returnedRows = mapper.countByExample(example);
             assertEquals(1, returnedRows);
@@ -222,15 +218,12 @@ public class UpdateByExampleTest extends AbstractMixedConditionalTest {
             key.setSeqNum(3);
             key.setId(22);
             PkonlyExample example = new PkonlyExample();
-            example.createCriteria()
-                    .andIdEqualTo(7);
+            example.createCriteria().andIdEqualTo(7);
             int rows = mapper.updateByExample(key, example);
             assertEquals(1, rows);
 
             example.clear();
-            example.createCriteria()
-                    .andIdEqualTo(22)
-                    .andSeqNumEqualTo(3);
+            example.createCriteria().andIdEqualTo(22).andSeqNumEqualTo(3);
 
             long returnedRows = mapper.countByExample(example);
             assertEquals(1, returnedRows);
@@ -265,10 +258,7 @@ public class UpdateByExampleTest extends AbstractMixedConditionalTest {
             assertEquals(1, rows);
 
             example.clear();
-            example.createCriteria()
-                    .andFirstnameEqualTo("Fred")
-                    .andLastnameEqualTo("Jones")
-                    .andId1EqualTo(3)
+            example.createCriteria().andFirstnameEqualTo("Fred").andLastnameEqualTo("Jones").andId1EqualTo(3)
                     .andId2EqualTo(4);
 
             long returnedRows = mapper.countByExample(example);
@@ -301,19 +291,13 @@ public class UpdateByExampleTest extends AbstractMixedConditionalTest {
             record.setId1(3);
             record.setId2(4);
             PkfieldsExample example = new PkfieldsExample();
-            example.createCriteria()
-                    .andId1EqualTo(3)
-                    .andId2EqualTo(4);
+            example.createCriteria().andId1EqualTo(3).andId2EqualTo(4);
 
             int rows = mapper.updateByExample(record, example);
             assertEquals(1, rows);
 
             example.clear();
-            example.createCriteria()
-                    .andFirstnameEqualTo("Fred")
-                    .andLastnameIsNull()
-                    .andId1EqualTo(3)
-                    .andId2EqualTo(4);
+            example.createCriteria().andFirstnameEqualTo("Fred").andLastnameIsNull().andId1EqualTo(3).andId2EqualTo(4);
 
             long returnedRows = mapper.countByExample(example);
             assertEquals(1, returnedRows);

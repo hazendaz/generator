@@ -20,27 +20,23 @@ import java.util.List;
 import org.mybatis.generator.api.IntrospectedColumn;
 
 /**
- * Couple of little utility methods to make dealing with generated always
- * columns easier.  If a column is GENERATED ALWAYS, it should not
- * be referenced on an insert or update method.
- *
- * <p>If a column is identity, it should not be referenced on an insert method.
+ * Couple of little utility methods to make dealing with generated always columns easier. If a column is GENERATED
+ * ALWAYS, it should not be referenced on an insert or update method.
+ * <p>
+ * If a column is identity, it should not be referenced on an insert method.
  *
  * @author Jeff Butler
  */
 public class ListUtilities {
 
-    private ListUtilities() {}
+    private ListUtilities() {
+    }
 
     public static List<IntrospectedColumn> removeGeneratedAlwaysColumns(List<IntrospectedColumn> columns) {
-        return columns.stream()
-                .filter(ic -> !ic.isGeneratedAlways())
-                .toList();
+        return columns.stream().filter(ic -> !ic.isGeneratedAlways()).toList();
     }
 
     public static List<IntrospectedColumn> removeIdentityAndGeneratedAlwaysColumns(List<IntrospectedColumn> columns) {
-        return columns.stream()
-                .filter(ic -> !ic.isGeneratedAlways() && !ic.isIdentity())
-                .toList();
+        return columns.stream().filter(ic -> !ic.isGeneratedAlways() && !ic.isIdentity()).toList();
     }
 }

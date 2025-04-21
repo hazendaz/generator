@@ -29,9 +29,8 @@ public class GeneratedXmlFile extends GeneratedFile {
 
     private final XmlFormatter xmlFormatter;
 
-    public GeneratedXmlFile(Document document, String fileName,
-            String targetPackage, String targetProject, boolean isMergeable,
-            XmlFormatter xmlFormatter) {
+    public GeneratedXmlFile(Document document, String fileName, String targetPackage, String targetProject,
+            boolean isMergeable, XmlFormatter xmlFormatter) {
         super(targetProject);
         this.document = document;
         this.fileName = fileName;

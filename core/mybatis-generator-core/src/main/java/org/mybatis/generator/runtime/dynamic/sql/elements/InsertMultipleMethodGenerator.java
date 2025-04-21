@@ -67,8 +67,8 @@ public class InsertMultipleMethodGenerator extends AbstractMethodGenerator {
                 + tableFieldName // $NON-NLS-1$
                 + ", c ->"); //$NON-NLS-1$
 
-        List<IntrospectedColumn> columns =
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
+        List<IntrospectedColumn> columns = ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
         boolean first = true;
         for (IntrospectedColumn column : columns) {
             String fieldName = calculateFieldName(column);
@@ -87,9 +87,7 @@ public class InsertMultipleMethodGenerator extends AbstractMethodGenerator {
 
         method.addBodyLine(");"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

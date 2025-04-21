@@ -49,8 +49,8 @@ public class SimpleAnnotatedClientGenerator extends SimpleJavaClientGenerator {
     @Override
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
-            AbstractJavaMapperMethodGenerator methodGenerator =
-                    new AnnotatedSelectByPrimaryKeyMethodGenerator(false, true);
+            AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedSelectByPrimaryKeyMethodGenerator(false,
+                    true);
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
@@ -64,8 +64,8 @@ public class SimpleAnnotatedClientGenerator extends SimpleJavaClientGenerator {
     @Override
     protected void addUpdateByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateUpdateByPrimaryKeySelective()) {
-            AbstractJavaMapperMethodGenerator methodGenerator =
-                    new AnnotatedUpdateByPrimaryKeyWithoutBLOBsMethodGenerator(true);
+            AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedUpdateByPrimaryKeyWithoutBLOBsMethodGenerator(
+                    true);
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }

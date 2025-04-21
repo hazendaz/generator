@@ -64,8 +64,7 @@ public class FieldRenderer {
     }
 
     private String renderInitializationString(Field field) {
-        return field.getInitializationString()
-                .map(is -> " = " + is) //$NON-NLS-1$
+        return field.getInitializationString().map(is -> " = " + is) //$NON-NLS-1$
                 .orElse(""); //$NON-NLS-1$
     }
 }

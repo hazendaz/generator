@@ -51,11 +51,10 @@ public class InsertSelectiveElementGenerator extends AbstractXmlElementGenerator
         valuesTrimElement.addAttribute(new Attribute("suffixOverrides", ",")); //$NON-NLS-1$ //$NON-NLS-2$
         answer.addElement(valuesTrimElement);
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
 
-            if (introspectedColumn.isSequenceColumn()
-                    || introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
+            if (introspectedColumn.isSequenceColumn() || introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 // if it is a sequence column, it is not optional
                 // This is required for MyBatis3 because MyBatis3 parses
                 // and calculates the SQL before executing the selectKey
@@ -78,8 +77,7 @@ public class InsertSelectiveElementGenerator extends AbstractXmlElementGenerator
             sb.append(introspectedColumn.getJavaProperty());
             sb.append(" != null"); //$NON-NLS-1$
             XmlElement insertNotNullElement = new XmlElement("if"); //$NON-NLS-1$
-            insertNotNullElement.addAttribute(new Attribute(
-                    "test", sb.toString())); //$NON-NLS-1$
+            insertNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
 
             sb.setLength(0);
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));

@@ -51,21 +51,19 @@ class PropertyParserTest {
         extendedProperties.setProperty("jdbc.pfoo.dev.url", "mysql");
 
         return Stream.of(
-            arguments(null, "${gen.code.package}.${gen.code.mapper}.${gen.code.subpackage}",
+                arguments(null, "${gen.code.package}.${gen.code.mapper}.${gen.code.subpackage}",
                         "${gen.code.package}.${gen.code.mapper}.${gen.code.subpackage}"),
-            arguments(null, "someValue", "someValue"),
-            arguments(null, "${someValue", "${someValue"),
-            arguments(properties, "${gen.code.package}", "value1"),
-            arguments(properties, "${gen.code.mapper}", "value2"),
-            arguments(properties, "${gen.code.subpackage}", "value3"),
-            arguments(properties, "${gen.code.package}.pg", "value1.pg"),
-            arguments(properties, "${gen.code.package}.${gen.code.mapper}", "value1.value2"),
-            arguments(properties, "${gen.code.package}${gen.code.mapper}", "value1value2"),
-            arguments(properties, "${gen.code.package}.${gen.code.mapper}.pg", "value1.value2.pg"),
-            arguments(properties, "${gen.code.package}.${gen.code.mapper}.", "value1.value2."),
-            arguments(properties, "${gen.code.package}.${gen.code.mapper}.${gen.code.subpackage}",
-                    "value1.value2.value3"),
-            arguments(extendedProperties, "${jdbc.${project.${domain}}.${env.${addr}}.url}", "mysql")
-        );
+                arguments(null, "someValue", "someValue"), arguments(null, "${someValue", "${someValue"),
+                arguments(properties, "${gen.code.package}", "value1"),
+                arguments(properties, "${gen.code.mapper}", "value2"),
+                arguments(properties, "${gen.code.subpackage}", "value3"),
+                arguments(properties, "${gen.code.package}.pg", "value1.pg"),
+                arguments(properties, "${gen.code.package}.${gen.code.mapper}", "value1.value2"),
+                arguments(properties, "${gen.code.package}${gen.code.mapper}", "value1value2"),
+                arguments(properties, "${gen.code.package}.${gen.code.mapper}.pg", "value1.value2.pg"),
+                arguments(properties, "${gen.code.package}.${gen.code.mapper}.", "value1.value2."),
+                arguments(properties, "${gen.code.package}.${gen.code.mapper}.${gen.code.subpackage}",
+                        "value1.value2.value3"),
+                arguments(extendedProperties, "${jdbc.${project.${domain}}.${env.${addr}}.url}", "mysql"));
     }
 }

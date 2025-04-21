@@ -87,8 +87,8 @@ public class IntrospectedColumn {
     protected boolean isGeneratedAlways;
 
     /**
-     * Constructs a Column definition. This object holds all the information
-     * about a column that is required to generate Java objects and SQL maps;
+     * Constructs a Column definition. This object holds all the information about a column that is required to generate
+     * Java objects and SQL maps;
      */
     public IntrospectedColumn() {
         super();
@@ -128,29 +128,22 @@ public class IntrospectedColumn {
     }
 
     /*
-     * This method is primarily used for debugging, so we don't externalize the
-     * strings
+     * This method is primarily used for debugging, so we don't externalize the strings
      */
     @Override
     public String toString() {
         return "Actual Column Name: " //$NON-NLS-1$
-                + actualColumnName
-                + ", JDBC Type: " //$NON-NLS-1$
-                + jdbcType
-                + ", Nullable: " //$NON-NLS-1$
-                + nullable
-                + ", Length: " //$NON-NLS-1$
-                + length
-                + ", Scale: " //$NON-NLS-1$
-                + scale
-                + ", Identity: " //$NON-NLS-1$
+                + actualColumnName + ", JDBC Type: " //$NON-NLS-1$
+                + jdbcType + ", Nullable: " //$NON-NLS-1$
+                + nullable + ", Length: " //$NON-NLS-1$
+                + length + ", Scale: " //$NON-NLS-1$
+                + scale + ", Identity: " //$NON-NLS-1$
                 + identity;
     }
 
     public void setActualColumnName(String actualColumnName) {
         this.actualColumnName = actualColumnName;
-        isColumnNameDelimited = StringUtility
-                .stringContainsSpace(actualColumnName);
+        isColumnNameDelimited = StringUtility.stringContainsSpace(actualColumnName);
     }
 
     public boolean isIdentity() {
@@ -171,14 +164,12 @@ public class IntrospectedColumn {
     }
 
     public boolean isStringColumn() {
-        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType
-                .getStringInstance());
+        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType.getStringInstance());
     }
 
     public boolean isJdbcCharacterColumn() {
-        return jdbcType == Types.CHAR || jdbcType == Types.CLOB
-                || jdbcType == Types.LONGVARCHAR || jdbcType == Types.VARCHAR
-                || jdbcType == Types.LONGNVARCHAR || jdbcType == Types.NCHAR
+        return jdbcType == Types.CHAR || jdbcType == Types.CLOB || jdbcType == Types.LONGVARCHAR
+                || jdbcType == Types.VARCHAR || jdbcType == Types.LONGNVARCHAR || jdbcType == Types.NCHAR
                 || jdbcType == Types.NCLOB || jdbcType == Types.NVARCHAR;
     }
 
@@ -199,14 +190,12 @@ public class IntrospectedColumn {
     }
 
     public boolean isJDBCDateColumn() {
-        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType
-                .getDateInstance())
+        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType.getDateInstance())
                 && "DATE".equalsIgnoreCase(jdbcTypeName); //$NON-NLS-1$
     }
 
     public boolean isJDBCTimeColumn() {
-        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType
-                .getDateInstance())
+        return fullyQualifiedJavaType.equals(FullyQualifiedJavaType.getDateInstance())
                 && "TIME".equalsIgnoreCase(jdbcTypeName); //$NON-NLS-1$
     }
 
@@ -242,8 +231,7 @@ public class IntrospectedColumn {
         return fullyQualifiedJavaType;
     }
 
-    public void setFullyQualifiedJavaType(
-            FullyQualifiedJavaType fullyQualifiedJavaType) {
+    public void setFullyQualifiedJavaType(FullyQualifiedJavaType fullyQualifiedJavaType) {
         this.fullyQualifiedJavaType = fullyQualifiedJavaType;
     }
 
@@ -328,9 +316,9 @@ public class IntrospectedColumn {
     }
 
     /**
-     * The platform specific type name as reported by the JDBC driver. This value is determined
-     * from the DatabaseMetadata.getColumns() call - specifically ResultSet.getString("TYPE_NAME").
-     * This value is platform dependent.
+     * The platform specific type name as reported by the JDBC driver. This value is determined from the
+     * DatabaseMetadata.getColumns() call - specifically ResultSet.getString("TYPE_NAME"). This value is platform
+     * dependent.
      *
      * @return the platform specific type name as reported by the JDBC driver
      */

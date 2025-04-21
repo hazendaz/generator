@@ -53,9 +53,7 @@ public class GeneralUpdateMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLine("return MyBatis3Utils.update(this::update, " //$NON-NLS-1$
                 + tableFieldName + ", completer);"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

@@ -30,16 +30,14 @@ public class PrimitiveTypeWrapper extends FullyQualifiedJavaType {
     private final String toPrimitiveMethod;
 
     /**
-     * Use the static getXXXInstance methods to gain access to one of the type
-     * wrappers.
+     * Use the static getXXXInstance methods to gain access to one of the type wrappers.
      *
      * @param fullyQualifiedName
      *            fully qualified name of the wrapper type
      * @param toPrimitiveMethod
      *            the method that returns the wrapped primitive
      */
-    private PrimitiveTypeWrapper(String fullyQualifiedName,
-            String toPrimitiveMethod) {
+    private PrimitiveTypeWrapper(String fullyQualifiedName, String toPrimitiveMethod) {
         super(fullyQualifiedName);
         this.toPrimitiveMethod = toPrimitiveMethod;
     }
@@ -64,56 +62,52 @@ public class PrimitiveTypeWrapper extends FullyQualifiedJavaType {
     public static PrimitiveTypeWrapper getBooleanInstance() {
         booleanInstance = Objects.requireNonNullElseGet(booleanInstance,
                 () -> new PrimitiveTypeWrapper("java.lang.Boolean", //$NON-NLS-1$
-                    "booleanValue()")); //$NON-NLS-1$
+                        "booleanValue()")); //$NON-NLS-1$
         return booleanInstance;
     }
 
     public static PrimitiveTypeWrapper getByteInstance() {
-        byteInstance = Objects.requireNonNullElseGet(byteInstance,
-                () -> new PrimitiveTypeWrapper("java.lang.Byte", //$NON-NLS-1$
-                    "byteValue()")); //$NON-NLS-1$
+        byteInstance = Objects.requireNonNullElseGet(byteInstance, () -> new PrimitiveTypeWrapper("java.lang.Byte", //$NON-NLS-1$
+                "byteValue()")); //$NON-NLS-1$
         return byteInstance;
     }
 
     public static PrimitiveTypeWrapper getCharacterInstance() {
         characterInstance = Objects.requireNonNullElseGet(characterInstance,
                 () -> new PrimitiveTypeWrapper("java.lang.Character", //$NON-NLS-1$
-                    "charValue()")); //$NON-NLS-1$
+                        "charValue()")); //$NON-NLS-1$
         return characterInstance;
     }
 
     public static PrimitiveTypeWrapper getDoubleInstance() {
         doubleInstance = Objects.requireNonNullElseGet(doubleInstance,
                 () -> new PrimitiveTypeWrapper("java.lang.Double", //$NON-NLS-1$
-                    "doubleValue()")); //$NON-NLS-1$
+                        "doubleValue()")); //$NON-NLS-1$
         return doubleInstance;
     }
 
     public static PrimitiveTypeWrapper getFloatInstance() {
-        floatInstance = Objects.requireNonNullElseGet(floatInstance,
-                () -> new PrimitiveTypeWrapper("java.lang.Float", //$NON-NLS-1$
-                    "floatValue()")); //$NON-NLS-1$
+        floatInstance = Objects.requireNonNullElseGet(floatInstance, () -> new PrimitiveTypeWrapper("java.lang.Float", //$NON-NLS-1$
+                "floatValue()")); //$NON-NLS-1$
         return floatInstance;
     }
 
     public static PrimitiveTypeWrapper getIntegerInstance() {
         integerInstance = Objects.requireNonNullElseGet(integerInstance,
                 () -> new PrimitiveTypeWrapper("java.lang.Integer", //$NON-NLS-1$
-                    "intValue()")); //$NON-NLS-1$
+                        "intValue()")); //$NON-NLS-1$
         return integerInstance;
     }
 
     public static PrimitiveTypeWrapper getLongInstance() {
-        longInstance = Objects.requireNonNullElseGet(longInstance,
-                () -> new PrimitiveTypeWrapper("java.lang.Long", //$NON-NLS-1$
-                    "longValue()")); //$NON-NLS-1$
+        longInstance = Objects.requireNonNullElseGet(longInstance, () -> new PrimitiveTypeWrapper("java.lang.Long", //$NON-NLS-1$
+                "longValue()")); //$NON-NLS-1$
         return longInstance;
     }
 
     public static PrimitiveTypeWrapper getShortInstance() {
-        shortInstance = Objects.requireNonNullElseGet(shortInstance,
-                () -> new PrimitiveTypeWrapper("java.lang.Short", //$NON-NLS-1$
-                    "shortValue()")); //$NON-NLS-1$
+        shortInstance = Objects.requireNonNullElseGet(shortInstance, () -> new PrimitiveTypeWrapper("java.lang.Short", //$NON-NLS-1$
+                "shortValue()")); //$NON-NLS-1$
         return shortInstance;
     }
 }

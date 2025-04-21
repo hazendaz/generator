@@ -40,8 +40,7 @@ public class MyTimeTypeHandler implements TypeHandler<MyTime> {
     }
 
     @Override
-    public MyTime getResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
+    public MyTime getResult(CallableStatement cs, int columnIndex) throws SQLException {
         MyTime answer = null;
         Time time = cs.getTime(columnIndex);
         if (time != null) {
@@ -59,8 +58,7 @@ public class MyTimeTypeHandler implements TypeHandler<MyTime> {
     }
 
     @Override
-    public MyTime getResult(ResultSet rs, String columnName)
-            throws SQLException {
+    public MyTime getResult(ResultSet rs, String columnName) throws SQLException {
         MyTime answer = null;
         Time time = rs.getTime(columnName);
         if (time != null) {
@@ -78,8 +76,7 @@ public class MyTimeTypeHandler implements TypeHandler<MyTime> {
     }
 
     @Override
-    public MyTime getResult(ResultSet rs, int columnIndex)
-            throws SQLException {
+    public MyTime getResult(ResultSet rs, int columnIndex) throws SQLException {
         MyTime answer = null;
         Time time = rs.getTime(columnIndex);
         if (time != null) {
@@ -97,8 +94,7 @@ public class MyTimeTypeHandler implements TypeHandler<MyTime> {
     }
 
     @Override
-    public void setParameter(PreparedStatement ps, int i, MyTime parameter,
-            JdbcType jdbcType) throws SQLException {
+    public void setParameter(PreparedStatement ps, int i, MyTime parameter, JdbcType jdbcType) throws SQLException {
         if (parameter == null) {
             ps.setNull(i, jdbcType.TYPE_CODE);
         } else {
