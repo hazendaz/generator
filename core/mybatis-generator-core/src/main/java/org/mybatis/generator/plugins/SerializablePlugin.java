@@ -29,14 +29,12 @@ import org.mybatis.generator.api.dom.kotlin.KotlinFile;
 import org.mybatis.generator.api.dom.kotlin.KotlinType;
 
 /**
- * This plugin adds the java.io.Serializable marker interface to all generated
- * model objects.
- *
- * <p>This plugin demonstrates adding capabilities to generated Java artifacts, and
- * shows the proper way to add imports to a compilation unit.
- *
- * <p>Important: This is a simplistic implementation of serializable and does not
- * attempt to do any versioning of classes.
+ * This plugin adds the java.io.Serializable marker interface to all generated model objects.
+ * <p>
+ * This plugin demonstrates adding capabilities to generated Java artifacts, and shows the proper way to add imports to
+ * a compilation unit.
+ * <p>
+ * Important: This is a simplistic implementation of serializable and does not attempt to do any versioning of classes.
  *
  * @author Jeff Butler
  */
@@ -67,28 +65,25 @@ public class SerializablePlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelRecordWithBLOBsClassGenerated(
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass,
+            IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
-    protected void makeSerializable(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    protected void makeSerializable(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         if (addGWTInterface) {
             topLevelClass.addImportedType(gwtSerializable);
             topLevelClass.addSuperInterface(gwtSerializable);

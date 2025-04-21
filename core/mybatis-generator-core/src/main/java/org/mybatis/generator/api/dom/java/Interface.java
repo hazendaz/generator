@@ -43,8 +43,7 @@ public class Interface extends InnerInterface implements CompilationUnit {
 
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
-        if (importedType.isExplicitlyImported()
-                && !importedType.getPackageName().equals(getType().getPackageName())) {
+        if (importedType.isExplicitlyImported() && !importedType.getPackageName().equals(getType().getPackageName())) {
             importedTypes.add(importedType);
         }
     }

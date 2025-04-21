@@ -42,15 +42,12 @@ public class UpdateByPrimaryKeyMethodGenerator extends AbstractKotlinFunctionGen
             return null;
         }
 
-        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".updateByPrimaryKey") //$NON-NLS-1$
+        KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(KotlinFunction
+                .newOneLineFunction(mapperName + ".updateByPrimaryKey") //$NON-NLS-1$
                 .withArgument(KotlinArg.newArg("row") //$NON-NLS-1$
-                        .withDataType(recordType.getShortNameWithTypeArguments())
-                        .build())
+                        .withDataType(recordType.getShortNameWithTypeArguments()).build())
                 .withCodeLine("update {") //$NON-NLS-1$
-                .build())
-                .withImports(recordType.getImportList())
-                .build();
+                .build()).withImports(recordType.getImportList()).build();
 
         addFunctionComment(functionAndImports);
 
@@ -67,8 +64,8 @@ public class UpdateByPrimaryKeyMethodGenerator extends AbstractKotlinFunctionGen
 
     @Override
     public boolean callPlugins(KotlinFunction kotlinFunction, KotlinFile kotlinFile) {
-        return context.getPlugins().clientUpdateByPrimaryKeyMethodGenerated(kotlinFunction,
-                kotlinFile, introspectedTable);
+        return context.getPlugins().clientUpdateByPrimaryKeyMethodGenerated(kotlinFunction, kotlinFile,
+                introspectedTable);
     }
 
     public static class Builder extends BaseBuilder<Builder> {

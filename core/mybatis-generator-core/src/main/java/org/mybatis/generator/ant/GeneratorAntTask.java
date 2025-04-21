@@ -40,8 +40,8 @@ import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 /**
- * This is an Ant task that will run the generator. The following is a sample
- * Ant script that shows how to run the generator from Ant:
+ * This is an Ant task that will run the generator. The following is a sample Ant script that shows how to run the
+ * generator from Ant:
  *
  * <pre>
  *  &lt;project default="genfiles" basedir="."&gt;
@@ -58,22 +58,17 @@ import org.mybatis.generator.internal.DefaultShellCallback;
  *    &lt;/target&gt;
  *  &lt;/project&gt;
  * </pre>
- *
- * <p>The task requires that the attribute "configFile" be set to an existing XML
- * configuration file.
- *
- * <p>The task supports these optional attributes:
+ * <p>
+ * The task requires that the attribute "configFile" be set to an existing XML configuration file.
+ * <p>
+ * The task supports these optional attributes:
  * <ul>
- * <li>"overwrite" - if true, then existing Java files will be overwritten. if
- * false (default), then existing Java files will be untouched and the generator
- * will write new Java files with a unique name</li>
- * <li>"verbose" - if true, then the generator will log progress messages to the
- * Ant log. Default is false</li>
+ * <li>"overwrite" - if true, then existing Java files will be overwritten. if false (default), then existing Java files
+ * will be untouched and the generator will write new Java files with a unique name</li>
+ * <li>"verbose" - if true, then the generator will log progress messages to the Ant log. Default is false</li>
  * <li>"contextIds" - a comma delimited list of contaxtIds to use for this run</li>
- * <li>"fullyQualifiedTableNames" - a comma-delimited list of fully qualified
- * table names to use for this run</li>
+ * <li>"fullyQualifiedTableNames" - a comma-delimited list of fully qualified table names to use for this run</li>
  * </ul>
- *
  *
  * @author Jeff Butler
  */
@@ -98,8 +93,7 @@ public class GeneratorAntTask extends Task {
 
         List<String> warnings = new ArrayList<>();
         try {
-            Properties p = propertyset == null ? null : propertyset
-                    .getProperties();
+            Properties p = propertyset == null ? null : propertyset.getProperties();
 
             ConfigurationParser cp = new ConfigurationParser(p, warnings);
             Configuration config = cp.parseConfiguration(configurationFile);
@@ -108,8 +102,7 @@ public class GeneratorAntTask extends Task {
 
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 
-            myBatisGenerator.generate(new AntProgressCallback(this, verbose), contexts,
-                    fullyqualifiedTables);
+            myBatisGenerator.generate(new AntProgressCallback(this, verbose), contexts, fullyqualifiedTables);
 
         } catch (XMLParserException | InvalidConfigurationException e) {
             for (String error : e.getErrors()) {
@@ -148,8 +141,7 @@ public class GeneratorAntTask extends Task {
     private Set<String> calculateTables() {
         Set<String> fullyqualifiedTables = new HashSet<>();
         if (stringHasValue(fullyQualifiedTableNames)) {
-            StringTokenizer st = new StringTokenizer(fullyQualifiedTableNames,
-                    ","); //$NON-NLS-1$
+            StringTokenizer st = new StringTokenizer(fullyQualifiedTableNames, ","); //$NON-NLS-1$
             while (st.hasMoreTokens()) {
                 String s = st.nextToken().trim();
                 if (!s.isEmpty()) {
@@ -165,11 +157,9 @@ public class GeneratorAntTask extends Task {
             throw new BuildException(getString("RuntimeError.0")); //$NON-NLS-1$
         }
 
-
         File configurationFile = new File(configfile);
         if (!configurationFile.exists()) {
-            throw new BuildException(getString(
-                    "RuntimeError.1", configfile)); //$NON-NLS-1$
+            throw new BuildException(getString("RuntimeError.1", configfile)); //$NON-NLS-1$
         }
         return configurationFile;
     }

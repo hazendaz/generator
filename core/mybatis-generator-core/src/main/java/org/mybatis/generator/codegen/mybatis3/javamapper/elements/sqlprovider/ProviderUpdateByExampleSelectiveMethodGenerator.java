@@ -37,9 +37,9 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
         Method method = new Method(introspectedTable.getUpdateByExampleSelectiveStatementId());
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(
-                new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
-                "parameter")); //$NON-NLS-1$
+        method.addParameter(
+                new Parameter(new FullyQualifiedJavaType("java.util.Map<java.lang.String, java.lang.Object>"), //$NON-NLS-1$
+                        "parameter")); //$NON-NLS-1$
 
         Set<FullyQualifiedJavaType> importedTypes = initializeImportedTypes("java.util.Map"); //$NON-NLS-1$
 
@@ -63,8 +63,8 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
                 escapeStringForJava(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime())));
         method.addBodyLine(""); //$NON-NLS-1$
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 method.addBodyLine(String.format("if (row.%s() != null) {", //$NON-NLS-1$
                         getGetterMethodName(introspectedColumn.getJavaProperty(),
@@ -76,8 +76,7 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
             sb.insert(2, "row."); //$NON-NLS-1$
 
             method.addBodyLine(String.format("sql.SET(\"%s = %s\");", //$NON-NLS-1$
-                    escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)),
-                    sb));
+                    escapeStringForJava(getAliasedEscapedColumnName(introspectedColumn)), sb));
 
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 method.addBodyLine("}"); //$NON-NLS-1$
@@ -89,8 +88,8 @@ public class ProviderUpdateByExampleSelectiveMethodGenerator extends AbstractJav
         method.addBodyLine("applyWhere(sql, example, true);"); //$NON-NLS-1$
         method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
 
-        if (context.getPlugins()
-                .providerUpdateByExampleSelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
+        if (context.getPlugins().providerUpdateByExampleSelectiveMethodGenerated(method, topLevelClass,
+                introspectedTable)) {
             topLevelClass.addImportedTypes(importedTypes);
             topLevelClass.addMethod(method);
         }

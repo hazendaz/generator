@@ -51,8 +51,8 @@ public class InsertSelectiveMethodGenerator extends AbstractMethodGenerator {
         method.addBodyLine("return MyBatis3Utils.insert(this::insert, row, " + tableFieldName //$NON-NLS-1$
                 + ", c ->"); //$NON-NLS-1$
 
-        List<IntrospectedColumn> columns = ListUtilities.removeIdentityAndGeneratedAlwaysColumns(
-                introspectedTable.getAllColumns());
+        List<IntrospectedColumn> columns = ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
         boolean first = true;
         for (IntrospectedColumn column : columns) {
             String fieldName = calculateFieldName(column);
@@ -68,9 +68,8 @@ public class InsertSelectiveMethodGenerator extends AbstractMethodGenerator {
                             + "\")"); //$NON-NLS-1$
                 }
             } else {
-                String methodName =
-                        JavaBeansUtil.getGetterMethodName(column.getJavaProperty(),
-                                column.getFullyQualifiedJavaType());
+                String methodName = JavaBeansUtil.getGetterMethodName(column.getJavaProperty(),
+                        column.getFullyQualifiedJavaType());
                 if (first) {
                     method.addBodyLine("    c.map(" + fieldName //$NON-NLS-1$
                             + ").toPropertyWhenPresent(\"" + column.getJavaProperty() //$NON-NLS-1$
@@ -88,9 +87,7 @@ public class InsertSelectiveMethodGenerator extends AbstractMethodGenerator {
 
         method.addBodyLine(");"); //$NON-NLS-1$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

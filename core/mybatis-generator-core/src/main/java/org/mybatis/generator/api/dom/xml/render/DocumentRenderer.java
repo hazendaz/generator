@@ -25,11 +25,8 @@ import org.mybatis.generator.api.dom.xml.Document;
 public class DocumentRenderer {
 
     public String render(Document document) {
-        return Stream.of(renderXmlHeader(),
-                renderDocType(document),
-                renderRootElement(document))
-                .flatMap(Function.identity())
-                .collect(Collectors.joining(System.lineSeparator()));
+        return Stream.of(renderXmlHeader(), renderDocType(document), renderRootElement(document))
+                .flatMap(Function.identity()).collect(Collectors.joining(System.lineSeparator()));
     }
 
     private Stream<String> renderXmlHeader() {
@@ -38,8 +35,7 @@ public class DocumentRenderer {
 
     private Stream<String> renderDocType(Document document) {
         return Stream.of("<!DOCTYPE " //$NON-NLS-1$
-                + document.getRootElement().getName()
-                + document.getDocType().map(this::renderDocType).orElse("") //$NON-NLS-1$
+                + document.getRootElement().getName() + document.getDocType().map(this::renderDocType).orElse("") //$NON-NLS-1$
                 + ">"); //$NON-NLS-1$
     }
 

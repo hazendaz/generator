@@ -28,8 +28,8 @@ import org.mybatis.generator.internal.ObjectFactory;
 
 /**
  * Introspected table implementation for generating simple MyBatis3 artifacts.
- *
- * <p>Simple means no "by example" methods, flat model, etc.
+ * <p>
+ * Simple means no "by example" methods, flat model, etc.
  *
  * @author Jeff Butler
  */

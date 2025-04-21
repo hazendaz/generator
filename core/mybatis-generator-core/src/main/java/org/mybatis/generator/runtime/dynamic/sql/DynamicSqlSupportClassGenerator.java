@@ -65,28 +65,27 @@ public class DynamicSqlSupportClassGenerator {
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         topLevelClass.setFinal(true);
         topLevelClass.addImportedType(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.SqlColumn")); //$NON-NLS-1$
-        topLevelClass.addImportedType(
-                new FullyQualifiedJavaType("org.mybatis.dynamic.sql.AliasableSqlTable")); //$NON-NLS-1$
+        topLevelClass.addImportedType(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.AliasableSqlTable")); //$NON-NLS-1$
         topLevelClass.addImportedType(new FullyQualifiedJavaType("java.sql.JDBCType")); //$NON-NLS-1$
         return topLevelClass;
     }
 
     private InnerClass buildInnerTableClass(TopLevelClass topLevelClass) {
-        FullyQualifiedJavaType fqjt =
-                new FullyQualifiedJavaType(introspectedTable.getMyBatisDynamicSQLTableObjectName());
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                introspectedTable.getMyBatisDynamicSQLTableObjectName());
         InnerClass innerClass = new InnerClass(fqjt.getShortName());
         innerClass.setVisibility(JavaVisibility.PUBLIC);
         innerClass.setStatic(true);
         innerClass.setFinal(true);
         innerClass.setSuperClass(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.AliasableSqlTable<" //$NON-NLS-1$
-                        + fqjt.getShortName() + ">")); //$NON-NLS-1$
+                + fqjt.getShortName() + ">")); //$NON-NLS-1$
 
         Method method = new Method(fqjt.getShortName());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setConstructor(true);
         method.addBodyLine("super(\"" //$NON-NLS-1$
-                + escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())
-                + "\", " + fqjt.getShortName() + "::new" //$NON-NLS-1$ //$NON-NLS-2$
+                + escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime()) + "\", " //$NON-NLS-1$
+                + fqjt.getShortName() + "::new" //$NON-NLS-1$
                 + ");"); //$NON-NLS-1$
         innerClass.addMethod(method);
 
@@ -96,10 +95,9 @@ public class DynamicSqlSupportClassGenerator {
     }
 
     private Field calculateTableDefinition(TopLevelClass topLevelClass) {
-        FullyQualifiedJavaType fqjt =
-                new FullyQualifiedJavaType(introspectedTable.getMyBatisDynamicSQLTableObjectName());
-        String fieldName =
-                JavaBeansUtil.getValidPropertyName(introspectedTable.getMyBatisDynamicSQLTableObjectName());
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                introspectedTable.getMyBatisDynamicSQLTableObjectName());
+        String fieldName = JavaBeansUtil.getValidPropertyName(introspectedTable.getMyBatisDynamicSQLTableObjectName());
         Field field = new Field(fieldName, fqjt);
         commentGenerator.addFieldAnnotation(field, introspectedTable, topLevelClass.getImportedTypes());
         field.setVisibility(JavaVisibility.PUBLIC);
@@ -112,8 +110,8 @@ public class DynamicSqlSupportClassGenerator {
         return field;
     }
 
-    private void handleColumn(TopLevelClass topLevelClass, InnerClass innerClass,
-            IntrospectedColumn column, String tableFieldName) {
+    private void handleColumn(TopLevelClass topLevelClass, InnerClass innerClass, IntrospectedColumn column,
+            String tableFieldName) {
         topLevelClass.addImportedType(column.getFullyQualifiedJavaType());
 
         FullyQualifiedJavaType javaType;
@@ -128,9 +126,8 @@ public class DynamicSqlSupportClassGenerator {
 
         if (fieldName.equals(tableFieldName)) {
             // name collision, skip the shortcut field
-            warnings.add(
-                    Messages.getString("Warning.29", //$NON-NLS-1$
-                            fieldName, topLevelClass.getType().getFullyQualifiedName()));
+            warnings.add(Messages.getString("Warning.29", //$NON-NLS-1$
+                    fieldName, topLevelClass.getType().getFullyQualifiedName()));
         } else {
             // shortcut field
             Field field = new Field(fieldName, fieldType);
@@ -158,18 +155,16 @@ public class DynamicSqlSupportClassGenerator {
         StringBuilder initializationString = new StringBuilder();
 
         initializationString.append(String.format("column(\"%s\", JDBCType.%s", //$NON-NLS-1$ //$NON-NLS-2$
-                escapeStringForJava(getEscapedColumnName(column)),
-                column.getJdbcTypeName()));
+                escapeStringForJava(getEscapedColumnName(column)), column.getJdbcTypeName()));
 
         if (StringUtility.stringHasValue(column.getTypeHandler())) {
             initializationString.append(String.format(", \"%s\")", column.getTypeHandler())); //$NON-NLS-1$
         } else {
-            initializationString.append(')'); //$NON-NLS-1$
+            initializationString.append(')'); // $NON-NLS-1$
         }
 
-
-        if (StringUtility.isTrue(
-                column.getProperties().getProperty(PropertyRegistry.COLUMN_OVERRIDE_FORCE_JAVA_TYPE))) {
+        if (StringUtility
+                .isTrue(column.getProperties().getProperty(PropertyRegistry.COLUMN_OVERRIDE_FORCE_JAVA_TYPE))) {
             initializationString.append(".withJavaType("); //$NON-NLS-1$
             initializationString.append(javaType.getShortName());
             initializationString.append(".class)"); //$NON-NLS-1$

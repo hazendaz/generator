@@ -48,16 +48,14 @@ public class AnnotatedInsertMethodGenerator extends InsertMethodGenerator {
         javaIndent(valuesClause, 1);
 
         insertClause.append("\"insert into "); //$NON-NLS-1$
-        insertClause.append(escapeStringForJava(introspectedTable
-                .getFullyQualifiedTableNameAtRuntime()));
+        insertClause.append(escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime()));
         insertClause.append(" ("); //$NON-NLS-1$
 
         valuesClause.append("\"values ("); //$NON-NLS-1$
 
         List<String> valuesClauses = new ArrayList<>();
-        Iterator<IntrospectedColumn> iter =
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())
-                .iterator();
+        Iterator<IntrospectedColumn> iter = ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns()).iterator();
         boolean hasFields = false;
         while (iter.hasNext()) {
             IntrospectedColumn introspectedColumn = iter.next();

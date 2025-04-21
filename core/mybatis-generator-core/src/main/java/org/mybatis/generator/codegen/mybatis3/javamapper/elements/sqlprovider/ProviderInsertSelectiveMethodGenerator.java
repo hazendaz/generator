@@ -46,8 +46,8 @@ public class ProviderInsertSelectiveMethodGenerator extends AbstractJavaProvider
         method.addBodyLine(String.format("sql.INSERT_INTO(\"%s\");", //$NON-NLS-1$
                 escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
 
             method.addBodyLine(""); //$NON-NLS-1$
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()

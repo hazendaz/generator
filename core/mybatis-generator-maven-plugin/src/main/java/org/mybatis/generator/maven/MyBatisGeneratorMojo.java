@@ -46,8 +46,7 @@ import org.mybatis.generator.internal.util.messages.Messages;
 /**
  * Goal which generates MyBatis artifacts.
  */
-@Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES,
-        requiresDependencyResolution = ResolutionScope.TEST)
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES, requiresDependencyResolution = ResolutionScope.TEST)
 public class MyBatisGeneratorMojo extends AbstractMojo {
 
     private final ThreadLocal<ClassLoader> savedClassloader = new ThreadLocal<>();
@@ -61,15 +60,13 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
     /**
      * Output Directory.
      */
-    @Parameter(property = "mybatis.generator.outputDirectory",
-            defaultValue = "${project.build.directory}/generated-sources/mybatis-generator", required = true)
+    @Parameter(property = "mybatis.generator.outputDirectory", defaultValue = "${project.build.directory}/generated-sources/mybatis-generator", required = true)
     private File outputDirectory;
 
     /**
      * Location of the configuration file.
      */
-    @Parameter(property = "mybatis.generator.configurationFile",
-            defaultValue = "${project.basedir}/src/main/resources/generatorConfig.xml", required = true)
+    @Parameter(property = "mybatis.generator.configurationFile", defaultValue = "${project.basedir}/src/main/resources/generatorConfig.xml", required = true)
     private File configurationFile;
 
     /**
@@ -79,17 +76,15 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
     private boolean verbose;
 
     /**
-     * Specifies whether the mojo overwrites existing Java files. Default is false.
-     * <br>
+     * Specifies whether the mojo overwrites existing Java files. Default is false. <br>
      * Note that XML files are always merged.
      */
     @Parameter(property = "mybatis.generator.overwrite", defaultValue = "false")
     private boolean overwrite;
 
     /**
-     * Location of a SQL script file to run before generating code. If null,
-     * then no script will be run. If not null, then jdbcDriver, jdbcURL must be
-     * supplied also, and jdbcUserId and jdbcPassword may be supplied.
+     * Location of a SQL script file to run before generating code. If null, then no script will be run. If not null,
+     * then jdbcDriver, jdbcURL must be supplied also, and jdbcUserId and jdbcPassword may be supplied.
      */
     @Parameter(property = "mybatis.generator.sqlScript")
     private String sqlScript;
@@ -137,17 +132,16 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
     private boolean skip;
 
     /**
-     * If true, then dependencies in scope compile, provided, and system scopes will be
-     * added to the classpath of the generator.  These dependencies will be searched for
-     * JDBC drivers, root classes, root interfaces, generator plugins, etc.
+     * If true, then dependencies in scope compile, provided, and system scopes will be added to the classpath of the
+     * generator. These dependencies will be searched for JDBC drivers, root classes, root interfaces, generator
+     * plugins, etc.
      */
     @Parameter(property = "mybatis.generator.includeCompileDependencies", defaultValue = "false")
     private boolean includeCompileDependencies;
 
     /**
-     * If true, then dependencies in all scopes will be
-     * added to the classpath of the generator.  These dependencies will be searched for
-     * JDBC drivers, root classes, root interfaces, generator plugins, etc.
+     * If true, then dependencies in all scopes will be added to the classpath of the generator. These dependencies will
+     * be searched for JDBC drivers, root classes, root interfaces, generator plugins, etc.
      */
     @Parameter(property = "mybatis.generator.includeAllDependencies", defaultValue = "false")
     private boolean includeAllDependencies;
@@ -163,13 +157,13 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
 
         calculateClassPath();
 
-        // add resource directories to the classpath.  This is required to support
-        // use of a properties file in the build.  Typically, the properties file
+        // add resource directories to the classpath. This is required to support
+        // use of a properties file in the build. Typically, the properties file
         // is in the project's source tree, but the plugin classpath does not
         // include the project classpath.
         List<Resource> resources = project.getResources();
         List<String> resourceDirectories = new ArrayList<>();
-        for (Resource resource: resources) {
+        for (Resource resource : resources) {
             resourceDirectories.add(resource.getDirectory());
         }
         ClassLoader cl = ClassloaderUtility.getCustomClassloader(resourceDirectories);
@@ -199,7 +193,8 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
 
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 
-            myBatisGenerator.generate(new MavenProgressCallback(getLog(), verbose), contextsToRun, fullyQualifiedTables);
+            myBatisGenerator.generate(new MavenProgressCallback(getLog(), verbose), contextsToRun,
+                    fullyQualifiedTables);
 
         } catch (XMLParserException | InvalidConfigurationException e) {
             for (String error : e.getErrors()) {
@@ -264,8 +259,7 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
             return;
         }
 
-        SqlScriptRunner scriptRunner = new SqlScriptRunner(sqlScript,
-                jdbcDriver, jdbcURL, jdbcUserId, jdbcPassword);
+        SqlScriptRunner scriptRunner = new SqlScriptRunner(sqlScript, jdbcDriver, jdbcURL, jdbcUserId, jdbcPassword);
         scriptRunner.setLog(getLog());
         scriptRunner.executeScript();
     }

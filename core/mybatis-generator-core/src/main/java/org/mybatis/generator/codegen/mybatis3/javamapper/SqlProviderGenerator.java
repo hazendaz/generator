@@ -123,8 +123,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
     protected boolean addSelectByExampleWithoutBLOBsMethod(TopLevelClass topLevelClass) {
         boolean rc = false;
         if (introspectedTable.getRules().generateSelectByExampleWithoutBLOBs()) {
-            AbstractJavaProviderMethodGenerator methodGenerator =
-                    new ProviderSelectByExampleWithoutBLOBsMethodGenerator();
+            AbstractJavaProviderMethodGenerator methodGenerator = new ProviderSelectByExampleWithoutBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, topLevelClass);
             rc = true;
         }
@@ -157,8 +156,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
     protected boolean addUpdateByExampleWithoutBLOBsMethod(TopLevelClass topLevelClass) {
         boolean rc = false;
         if (introspectedTable.getRules().generateUpdateByExampleWithoutBLOBs()) {
-            AbstractJavaProviderMethodGenerator methodGenerator =
-                    new ProviderUpdateByExampleWithoutBLOBsMethodGenerator();
+            AbstractJavaProviderMethodGenerator methodGenerator = new ProviderUpdateByExampleWithoutBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, topLevelClass);
             rc = true;
         }
@@ -168,8 +166,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
 
     protected void addUpdateByPrimaryKeySelectiveMethod(TopLevelClass topLevelClass) {
         if (introspectedTable.getRules().generateUpdateByPrimaryKeySelective()) {
-            AbstractJavaProviderMethodGenerator methodGenerator =
-                    new ProviderUpdateByPrimaryKeySelectiveMethodGenerator();
+            AbstractJavaProviderMethodGenerator methodGenerator = new ProviderUpdateByPrimaryKeySelectiveMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, topLevelClass);
         }
     }
@@ -180,7 +177,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
     }
 
     protected void initializeAndExecuteGenerator(AbstractJavaProviderMethodGenerator methodGenerator,
-                                                 TopLevelClass topLevelClass) {
+            TopLevelClass topLevelClass) {
         methodGenerator.setContext(context);
         methodGenerator.setIntrospectedTable(introspectedTable);
         methodGenerator.setProgressCallback(progressCallback);

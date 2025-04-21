@@ -85,21 +85,16 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
             MyObject returnedRecord = mapper.selectByPrimaryKey(key);
             assertNotNull(returnedRecord);
 
-            assertTrue(datesAreEqual(record.getStartDate(), returnedRecord
-                    .getStartDate()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertTrue(datesAreEqual(record.getStartDate(), returnedRecord.getStartDate()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal60field(), returnedRecord.getDecimal60field());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
             assertEquals(record.getTimefield(), returnedRecord.getTimefield());
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -172,26 +167,20 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
 
             MyObject returnedRecord = mapper.selectByPrimaryKey(key);
 
-            assertTrue(datesAreEqual(newRecord.getStartDate(), returnedRecord
-                    .getStartDate()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
+            assertTrue(datesAreEqual(newRecord.getStartDate(), returnedRecord.getStartDate()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
 
             // with columns mapped to primitive types, the column is always
             // updated
-            assertEquals(newRecord.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertEquals(newRecord.getDecimal60field(), returnedRecord.getDecimal60field());
 
-            assertEquals(newRecord.getFirstname(), returnedRecord
-                    .getFirstname());
+            assertEquals(newRecord.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
             assertEquals(record.getTimefield(), returnedRecord.getTimefield());
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -724,21 +713,16 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
             assertEquals(1, results.size());
             MyObject returnedRecord = results.get(0);
 
-            assertTrue(datesAreEqual(record.getStartDate(), returnedRecord
-                    .getStartDate()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertTrue(datesAreEqual(record.getStartDate(), returnedRecord.getStartDate()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal60field(), returnedRecord.getDecimal60field());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
             assertEquals(record.getTimefield(), returnedRecord.getTimefield());
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -754,8 +738,7 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
         firstname.setValue("Bob");
 
         Integer wierdField = 4711;
-        myObject.withWierdField(wierdField)
-                .withFirstname(firstname);
+        myObject.withWierdField(wierdField).withFirstname(firstname);
 
         assertEquals("Bob", myObject.getFirstname().getValue());
         assertEquals(wierdField, myObject.getWierdField());
@@ -837,9 +820,7 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
             newRecord.setId2(4);
 
             MyObjectCriteria example = new MyObjectCriteria();
-            example.createCriteria()
-                    .andId1EqualTo(3)
-                    .andId2EqualTo(4);
+            example.createCriteria().andId1EqualTo(3).andId2EqualTo(4);
             int rows = mapper.updateByExample(newRecord, example);
             assertEquals(1, rows);
 
@@ -911,9 +892,8 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
             Anotherawfultable key = new Anotherawfultable();
             key.setId(5);
 
-            Anotherawfultable returnedRecord =
-                    sqlSession.selectOne("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByPrimaryKey",
-                    key);
+            Anotherawfultable returnedRecord = sqlSession.selectOne(
+                    "mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByPrimaryKey", key);
 
             assertEquals(record.getId(), returnedRecord.getId());
             assertEquals(record.getSelect(), returnedRecord.getSelect());
@@ -937,9 +917,8 @@ public class MiscellaneousTest extends AbstractMiscellaneousTest {
             AnotherawfultableExample example = new AnotherawfultableExample();
             example.or().andIdEqualTo(5);
 
-            List<?> returnedRecords =
-                    sqlSession.selectList("mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByExample",
-                            example);
+            List<?> returnedRecords = sqlSession.selectList(
+                    "mbg.test.mb3.generated.miscellaneous.xml.AnotherawfultableMapper.selectByExample", example);
 
             assertEquals(1, returnedRecords.size());
 

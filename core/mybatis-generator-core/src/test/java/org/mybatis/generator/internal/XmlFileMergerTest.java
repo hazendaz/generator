@@ -34,8 +34,7 @@ import org.mybatis.generator.config.PropertyRegistry;
 import org.xml.sax.InputSource;
 
 /**
- * This test is related to issue #87 where XML files are slightly different
- * after running through the XML merger.
+ * This test is related to issue #87 where XML files are slightly different after running through the XML merger.
  *
  * @author Jeff Butler
  */
@@ -132,18 +131,20 @@ class XmlFileMergerTest {
         root.addElement(element);
 
         DefaultXmlFormatter xmlFormatter = new DefaultXmlFormatter();
-        GeneratedXmlFile existingGeneratedFile = new GeneratedXmlFile(existingDocument, "TestMapper.xml", "org.mybatis.test", "src",
-                true, xmlFormatter);
-        InputSource existingFileInputSource = new InputSource(new StringReader(existingGeneratedFile.getFormattedContent()));
+        GeneratedXmlFile existingGeneratedFile = new GeneratedXmlFile(existingDocument, "TestMapper.xml",
+                "org.mybatis.test", "src", true, xmlFormatter);
+        InputSource existingFileInputSource = new InputSource(
+                new StringReader(existingGeneratedFile.getFormattedContent()));
 
-        GeneratedXmlFile newGeneratedFile = new GeneratedXmlFile(newDocument, "TestMapper.xml", "org.mybatis.test", "src",
-                true, xmlFormatter);
+        GeneratedXmlFile newGeneratedFile = new GeneratedXmlFile(newDocument, "TestMapper.xml", "org.mybatis.test",
+                "src", true, xmlFormatter);
         InputSource newFileInputSource = new InputSource(new StringReader(newGeneratedFile.getFormattedContent()));
 
-        GeneratedXmlFile expectedGeneratedFile = new GeneratedXmlFile(expectedDocument, "TestMapper.xml", "org.mybatis.test", "src",
-                true, xmlFormatter);
+        GeneratedXmlFile expectedGeneratedFile = new GeneratedXmlFile(expectedDocument, "TestMapper.xml",
+                "org.mybatis.test", "src", true, xmlFormatter);
 
-        String mergedSource = XmlFileMergerJaxp.getMergedSource(newFileInputSource, existingFileInputSource, "TestMapper.xml");
+        String mergedSource = XmlFileMergerJaxp.getMergedSource(newFileInputSource, existingFileInputSource,
+                "TestMapper.xml");
 
         assertEquals(expectedGeneratedFile.getFormattedContent(), mergedSource);
     }
@@ -175,9 +176,7 @@ class XmlFileMergerTest {
 
         commentGenerator.addComment(answer);
 
-        String insertClause = "insert into " +
-                "myschema.mytable" +
-                " (id, description)";
+        String insertClause = "insert into " + "myschema.mytable" + " (id, description)";
 
         String valuesClause = "values (#{id}, #{description})";
 

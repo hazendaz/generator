@@ -33,24 +33,20 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.XmlConstants;
 
 /**
- * This plugin generates a MapperConfig file containing mapper entries for SQL
- * maps generated for MyBatis3. This demonstrates hooking into the code
- * generation lifecycle and generating additional XML files.
- *
- * <p>This plugin accepts three properties:
- *
+ * This plugin generates a MapperConfig file containing mapper entries for SQL maps generated for MyBatis3. This
+ * demonstrates hooking into the code generation lifecycle and generating additional XML files.
+ * <p>
+ * This plugin accepts three properties:
  * <ul>
- * <li><code>fileName</code> (optional) the name of the generated file. this
- * defaults to "SqlMapConfig.xml" if not specified.</li>
- * <li><code>targetPackage</code> (required) the name of the package where the file
- * should be placed. Specified like "com.mycompany.sql".</li>
- * <li><code>targetProject</code> (required) the name of the project where the file
- * should be placed.</li>
+ * <li><code>fileName</code> (optional) the name of the generated file. this defaults to "SqlMapConfig.xml" if not
+ * specified.</li>
+ * <li><code>targetPackage</code> (required) the name of the package where the file should be placed. Specified like
+ * "com.mycompany.sql".</li>
+ * <li><code>targetProject</code> (required) the name of the project where the file should be placed.</li>
  * </ul>
- *
- * <p>Note: targetPackage and targetProject follow the same rules as the
- * targetPackage and targetProject values on the sqlMapGenerator configuration
- * element.
+ * <p>
+ * Note: targetPackage and targetProject follow the same rules as the targetPackage and targetProject values on the
+ * sqlMapGenerator configuration element.
  *
  * @author Jeff Butler
  */
@@ -62,16 +58,14 @@ public class MapperConfigPlugin extends PluginAdapter {
     public boolean validate(List<String> warnings) {
         boolean valid = true;
 
-        if (!stringHasValue(properties
-                .getProperty("targetProject"))) { //$NON-NLS-1$
+        if (!stringHasValue(properties.getProperty("targetProject"))) { //$NON-NLS-1$
             warnings.add(getString("ValidationError.18", //$NON-NLS-1$
                     "MapperConfigPlugin", //$NON-NLS-1$
                     "targetProject")); //$NON-NLS-1$
             valid = false;
         }
 
-        if (!stringHasValue(properties
-                .getProperty("targetPackage"))) { //$NON-NLS-1$
+        if (!stringHasValue(properties.getProperty("targetPackage"))) { //$NON-NLS-1$
             warnings.add(getString("ValidationError.18", //$NON-NLS-1$
                     "MapperConfigPlugin", //$NON-NLS-1$
                     "targetPackage")); //$NON-NLS-1$
@@ -83,8 +77,7 @@ public class MapperConfigPlugin extends PluginAdapter {
 
     @Override
     public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles() {
-        Document document = new Document(
-                XmlConstants.MYBATIS3_MAPPER_CONFIG_PUBLIC_ID,
+        Document document = new Document(XmlConstants.MYBATIS3_MAPPER_CONFIG_PUBLIC_ID,
                 XmlConstants.MYBATIS3_MAPPER_CONFIG_SYSTEM_ID);
 
         if (mapperFiles.isEmpty()) {
@@ -115,8 +108,7 @@ public class MapperConfigPlugin extends PluginAdapter {
             mappers.addElement(mapper);
         }
 
-        GeneratedXmlFile gxf = new GeneratedXmlFile(document, properties
-                .getProperty("fileName", "MapperConfig.xml"), //$NON-NLS-1$ //$NON-NLS-2$
+        GeneratedXmlFile gxf = new GeneratedXmlFile(document, properties.getProperty("fileName", "MapperConfig.xml"), //$NON-NLS-1$ //$NON-NLS-2$
                 properties.getProperty("targetPackage"), //$NON-NLS-1$
                 properties.getProperty("targetProject"), //$NON-NLS-1$
                 false, context.getXmlFormatter());
@@ -128,12 +120,10 @@ public class MapperConfigPlugin extends PluginAdapter {
     }
 
     /*
-     * This method collects the name of every SqlMap file generated in
-     * this context.
+     * This method collects the name of every SqlMap file generated in this context.
      */
     @Override
-    public boolean sqlMapGenerated(GeneratedXmlFile sqlMap,
-            IntrospectedTable introspectedTable) {
+    public boolean sqlMapGenerated(GeneratedXmlFile sqlMap, IntrospectedTable introspectedTable) {
         StringBuilder sb = new StringBuilder();
         sb.append(sqlMap.getTargetPackage());
         sb.append('.');

@@ -71,10 +71,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             assertEquals(1, answer.size());
 
             Fieldsonly returnedRecord = answer.get(0);
-            assertEquals(record.getIntegerfield(), returnedRecord
-                    .getIntegerfield());
-            assertEquals(record.getDoublefield(), returnedRecord
-                    .getDoublefield());
+            assertEquals(record.getIntegerfield(), returnedRecord.getIntegerfield());
+            assertEquals(record.getDoublefield(), returnedRecord.getDoublefield());
             assertEquals(record.getFloatfield(), returnedRecord.getFloatfield());
         }
     }
@@ -339,24 +337,17 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             Pkfields returnedRecord = mapper.selectByPrimaryKey(key);
             assertNotNull(returnedRecord);
 
-            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
-                    .getDatefield()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal30field(), returnedRecord
-                    .getDecimal30field());
-            assertEquals(record.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord.getDatefield()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal30field(), returnedRecord.getDecimal30field());
+            assertEquals(record.getDecimal60field(), returnedRecord.getDecimal60field());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord
-                    .getTimefield()));
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord.getTimefield()));
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -421,25 +412,17 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
             Pkfields returnedRecord = mapper.selectByPrimaryKey(key);
 
-            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
-                    .getDatefield()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal30field(), returnedRecord
-                    .getDecimal30field());
-            assertEquals(newRecord.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
-            assertEquals(newRecord.getFirstname(), returnedRecord
-                    .getFirstname());
+            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord.getDatefield()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal30field(), returnedRecord.getDecimal30field());
+            assertEquals(newRecord.getDecimal60field(), returnedRecord.getDecimal60field());
+            assertEquals(newRecord.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord
-                    .getTimefield()));
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord.getTimefield()));
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -969,8 +952,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             values.add(22);
 
             PkfieldsExample example = new PkfieldsExample();
-            example.createCriteria().andWierdFieldLessThan(40).andWierdFieldIn(
-                    values);
+            example.createCriteria().andWierdFieldLessThan(40).andWierdFieldIn(values);
 
             example.setOrderByClause("ID1, ID2");
             List<Pkfields> answer = mapper.selectByExample(example);
@@ -1014,21 +996,17 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
-            List<Pkblobs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
             Pkblobs returnedRecord = answer.get(0);
             assertEquals(record.getId(), returnedRecord.getId());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
             assertEquals(record.getCharacterlob(), returnedRecord.getCharacterlob());
         }
     }
@@ -1038,12 +1016,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             int rows = mapper.updateByPrimaryKeyWithBLOBs(record);
             assertEquals(1, rows);
 
@@ -1062,21 +1038,17 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            Pkblobs newRecord = new Pkblobs(3, null, generateRandomBlob(),
-                    "Long String 2");
+            Pkblobs newRecord = new Pkblobs(3, null, generateRandomBlob(), "Long String 2");
             mapper.updateByPrimaryKeySelective(newRecord);
 
             Pkblobs returnedRecord = mapper.selectByPrimaryKey(3);
             assertNotNull(returnedRecord);
             assertEquals(record.getId(), returnedRecord.getId());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(newRecord.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(newRecord.getBlob2(), returnedRecord.getBlob2()));
             assertEquals(newRecord.getCharacterlob(), returnedRecord.getCharacterlob());
         }
     }
@@ -1086,8 +1058,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
@@ -1108,12 +1079,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
@@ -1136,12 +1105,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             Pkblobs newRecord = mapper.selectByPrimaryKey(6);
@@ -1158,12 +1125,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
@@ -1182,12 +1147,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
@@ -1203,18 +1166,15 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
             example.createCriteria().andIdGreaterThan(4);
-            List<Pkblobs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<Pkblobs> answer = mapper.selectByExampleWithBLOBs(example);
 
             assertEquals(1, answer.size());
 
@@ -1231,12 +1191,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             PkblobsMapper mapper = sqlSession.getMapper(PkblobsMapper.class);
-            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 1");
+            Pkblobs record = new Pkblobs(3, generateRandomBlob(), generateRandomBlob(), "Long String 1");
             mapper.insert(record);
 
-            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(),
-                    "Long String 2");
+            record = new Pkblobs(6, generateRandomBlob(), generateRandomBlob(), "Long String 2");
             mapper.insert(record);
 
             PkblobsExample example = new PkblobsExample();
@@ -1259,8 +1217,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             mapper.insert(record);
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
             Pkfieldsblobs returnedRecord = answer.get(0);
@@ -1268,8 +1225,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
         }
     }
 
@@ -1292,8 +1248,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             assertEquals(updateRecord.getLastname(), newRecord.getLastname());
             assertEquals(record.getId1(), newRecord.getId1());
             assertEquals(record.getId2(), newRecord.getId2());
-            assertTrue(blobsAreEqual(updateRecord.getBlob1(), newRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(updateRecord.getBlob1(), newRecord.getBlob1()));
         }
     }
 
@@ -1336,12 +1291,10 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             PkfieldsblobsKey key = new PkfieldsblobsKey(3, 4);
             Pkfieldsblobs returnedRecord = mapper.selectByPrimaryKey(key);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
-            assertEquals(updateRecord.getLastname(), returnedRecord
-                    .getLastname());
+            assertEquals(updateRecord.getLastname(), returnedRecord.getLastname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
         }
     }
 
@@ -1357,8 +1310,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             mapper.insert(record);
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExample(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
             PkfieldsblobsKey key = new PkfieldsblobsKey(5, 6);
@@ -1383,8 +1335,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             mapper.insert(record);
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExample(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
             example = new PkfieldsblobsExample();
@@ -1410,8 +1361,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
             mapper.insert(record);
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExample(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExample(example);
             assertEquals(2, answer.size());
 
             PkfieldsblobsKey key = new PkfieldsblobsKey(5, 6);
@@ -1437,8 +1387,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
             example.createCriteria().andId2EqualTo(6);
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExample(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExample(example);
             assertEquals(1, answer.size());
 
             Pkfieldsblobs newRecord = answer.get(0);
@@ -1462,8 +1411,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
             example.createCriteria().andId2EqualTo(6);
-            List<Pkfieldsblobs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
             Pkfieldsblobs newRecord = answer.get(0);
@@ -1520,21 +1468,19 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             FieldsblobsExample example = new FieldsblobsExample();
-            List<FieldsblobsWithBLOBs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<FieldsblobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
             FieldsblobsWithBLOBs returnedRecord = answer.get(0);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -1543,7 +1489,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             record = new FieldsblobsWithBLOBs("Scott", "Jones", generateRandomBlob(), generateRandomBlob(), null);
@@ -1569,7 +1516,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             record = new FieldsblobsWithBLOBs("Scott", "Jones", generateRandomBlob(), generateRandomBlob(), null);
@@ -1592,7 +1540,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             record = new FieldsblobsWithBLOBs("Scott", "Jones", generateRandomBlob(), generateRandomBlob(), null);
@@ -1600,8 +1549,7 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
             FieldsblobsExample example = new FieldsblobsExample();
             example.createCriteria().andFirstnameLike("S%");
-            List<FieldsblobsWithBLOBs> answer = mapper
-                    .selectByExampleWithBLOBs(example);
+            List<FieldsblobsWithBLOBs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
             FieldsblobsWithBLOBs newRecord = answer.get(0);
@@ -1617,7 +1565,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             record = new FieldsblobsWithBLOBs("Scott", "Jones", generateRandomBlob(), generateRandomBlob(), null);
@@ -1635,7 +1584,8 @@ public class ConditionalJava5Test extends AbstractConditionalImmutableTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             FieldsblobsMapper mapper = sqlSession.getMapper(FieldsblobsMapper.class);
-            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(), generateRandomBlob(), null);
+            FieldsblobsWithBLOBs record = new FieldsblobsWithBLOBs("Jeff", "Smith", generateRandomBlob(),
+                    generateRandomBlob(), null);
             mapper.insert(record);
 
             record = new FieldsblobsWithBLOBs("Scott", "Jones", generateRandomBlob(), generateRandomBlob(), null);

@@ -23,24 +23,21 @@ class FullyQualifiedKotlinTypeTest {
 
     @Test
     void testKotlinPrimitive() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("kotlin.String"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("kotlin.String"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("String"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }
 
     @Test
     void testKotlinPrimitive2() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("String"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("String"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("String"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }
 
     @Test
     void testSimpleType() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("com.foo.Bar"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("com.foo.Bar"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("Bar"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).hasSize(1);
         assertThat(fqjt.getImportList()).contains("com.foo.Bar");
@@ -48,8 +45,7 @@ class FullyQualifiedKotlinTypeTest {
 
     @Test
     void testSimpleType2() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("com.foo.bar"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("com.foo.bar"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("bar"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).hasSize(1);
         assertThat(fqjt.getImportList()).contains("com.foo.bar"); //$NON-NLS-1$
@@ -57,32 +53,29 @@ class FullyQualifiedKotlinTypeTest {
 
     @Test
     void testGenericType1() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("kotlin.collections.List<kotlin.String>"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("kotlin.collections.List<kotlin.String>"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("List<String>"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }
 
     @Test
     void testGenericType2() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("List<String>"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("List<String>"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("List<String>"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }
 
     @Test
     void testGenericType3() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType(
+                "kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("Map<String, List<String>>"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }
 
     @Test
     void testGenericType4() {
-        FullyQualifiedKotlinType fqjt =
-            new FullyQualifiedKotlinType("List<Map<String, String>>"); //$NON-NLS-1$
+        FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType("List<Map<String, String>>"); //$NON-NLS-1$
         assertThat(fqjt.getShortNameWithTypeArguments()).isEqualTo("List<Map<String, String>>"); //$NON-NLS-1$
         assertThat(fqjt.getImportList()).isEmpty();
     }

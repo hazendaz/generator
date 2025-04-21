@@ -24,7 +24,7 @@
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
     <version>49</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>org.mybatis.generator</groupId>
@@ -32,9 +32,9 @@
   <version>1.4.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>MyBatis Generator</name>
-  <url>https://www.mybatis.org/generator/</url>
 
   <description>Parent POM for MyBatis Generator</description>
+  <url>https://www.mybatis.org/generator/</url>
 
   <inceptionYear>2006</inceptionYear>
 
@@ -325,7 +325,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -339,7 +339,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -352,7 +352,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                   </pluginExecutions>
