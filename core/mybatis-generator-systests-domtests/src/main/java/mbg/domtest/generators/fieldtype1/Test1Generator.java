@@ -29,10 +29,8 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import mbg.domtest.CompilationUnitGenerator;
 
 /**
- * This class generates a hierarchy with multiple classes that have the same name in
- * different packages.  It tests the ability of the generator to use fully qualified names
- * in code generation when the type is not explicitly imported.
- *
+ * This class generates a hierarchy with multiple classes that have the same name in different packages. It tests the
+ * ability of the generator to use fully qualified names in code generation when the type is not explicitly imported.
  */
 // @IgnoreDomTest("Ignore until changes for issue #63 are committed")
 public class Test1Generator implements CompilationUnitGenerator {

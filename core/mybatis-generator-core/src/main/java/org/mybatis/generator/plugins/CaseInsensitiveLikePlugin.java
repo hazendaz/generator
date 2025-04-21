@@ -29,15 +29,12 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
 /**
- * This plugin demonstrates adding methods to the example class to enable
- * case-insensitive LIKE searches. It shows how to construct new methods and
- * add them to an existing class.
- *
- * <p>This plugin only adds methods for String fields mapped to a JDBC character
- * type (CHAR, VARCHAR, etc.)
+ * This plugin demonstrates adding methods to the example class to enable case-insensitive LIKE searches. It shows how
+ * to construct new methods and add them to an existing class.
+ * <p>
+ * This plugin only adds methods for String fields mapped to a JDBC character type (CHAR, VARCHAR, etc.)
  *
  * @author Jeff Butler
- *
  */
 public class CaseInsensitiveLikePlugin extends PluginAdapter {
 
@@ -51,13 +48,10 @@ public class CaseInsensitiveLikePlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 
-        topLevelClass.getInnerClasses().stream()
-        .filter(this::isGeneratedCriteria)
-        .findFirst()
-        .ifPresent(c -> addMethods(introspectedTable, c));
+        topLevelClass.getInnerClasses().stream().filter(this::isGeneratedCriteria).findFirst()
+                .ifPresent(c -> addMethods(introspectedTable, c));
 
         return true;
     }
@@ -67,15 +61,12 @@ public class CaseInsensitiveLikePlugin extends PluginAdapter {
     }
 
     private void addMethods(IntrospectedTable introspectedTable, InnerClass criteria) {
-        introspectedTable.getNonBLOBColumns().stream()
-        .filter(this::isEligibleColumn)
-        .map(this::toMethod)
-        .forEach(criteria::addMethod);
+        introspectedTable.getNonBLOBColumns().stream().filter(this::isEligibleColumn).map(this::toMethod)
+                .forEach(criteria::addMethod);
     }
 
     private boolean isEligibleColumn(IntrospectedColumn introspectedColumn) {
-        return introspectedColumn.isJdbcCharacterColumn()
-                && introspectedColumn.isStringColumn();
+        return introspectedColumn.isJdbcCharacterColumn() && introspectedColumn.isStringColumn();
     }
 
     private Method toMethod(IntrospectedColumn introspectedColumn) {
@@ -86,15 +77,13 @@ public class CaseInsensitiveLikePlugin extends PluginAdapter {
         sb.append("LikeInsensitive"); //$NON-NLS-1$
         Method method = new Method(sb.toString());
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addParameter(new Parameter(introspectedColumn
-                .getFullyQualifiedJavaType(), "value")); //$NON-NLS-1$
+        method.addParameter(new Parameter(introspectedColumn.getFullyQualifiedJavaType(), "value")); //$NON-NLS-1$
 
         method.setReturnType(FullyQualifiedJavaType.getCriteriaInstance());
 
         sb.setLength(0);
         sb.append("addCriterion(\"upper("); //$NON-NLS-1$
-        sb.append(MyBatis3FormattingUtilities
-                .getAliasedActualColumnName(introspectedColumn));
+        sb.append(MyBatis3FormattingUtilities.getAliasedActualColumnName(introspectedColumn));
         sb.append(") like\", value.toUpperCase(), \""); //$NON-NLS-1$
         sb.append(introspectedColumn.getJavaProperty());
         sb.append("\");"); //$NON-NLS-1$

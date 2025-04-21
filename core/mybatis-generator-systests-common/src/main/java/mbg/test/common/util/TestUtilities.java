@@ -65,12 +65,8 @@ public class TestUtilities {
     }
 
     public static void createDatabase() throws Exception {
-        SqlScriptRunner runner = new SqlScriptRunner(
-                "classpath:mbg/test/common/scripts/CreateDB.sql",
-                "org.hsqldb.jdbcDriver",
-                "jdbc:hsqldb:mem:aname",
-                "sa",
-                "");
+        SqlScriptRunner runner = new SqlScriptRunner("classpath:mbg/test/common/scripts/CreateDB.sql",
+                "org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:aname", "sa", "");
 
         runner.executeScript();
     }

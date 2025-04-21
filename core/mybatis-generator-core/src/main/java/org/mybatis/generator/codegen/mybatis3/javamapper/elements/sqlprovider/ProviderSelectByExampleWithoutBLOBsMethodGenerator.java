@@ -87,7 +87,7 @@ public class ProviderSelectByExampleWithoutBLOBsMethodGenerator extends Abstract
     }
 
     public boolean callPlugins(Method method, TopLevelClass topLevelClass) {
-        return context.getPlugins()
-                .providerSelectByExampleWithoutBLOBsMethodGenerated(method, topLevelClass, introspectedTable);
+        return context.getPlugins().providerSelectByExampleWithoutBLOBsMethodGenerated(method, topLevelClass,
+                introspectedTable);
     }
 }

@@ -44,8 +44,8 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends AbstractJavaMapp
 
         addMapperAnnotations(method);
 
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientUpdateByPrimaryKeySelectiveMethodGenerated(method, interfaze,
+                introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

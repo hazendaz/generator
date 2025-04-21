@@ -58,8 +58,7 @@ public class FragmentGenerator {
         for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
             builder.withImport(column.getFullyQualifiedJavaType());
-            builder.withParameter(new Parameter(
-                    column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_")); //$NON-NLS-1$
+            builder.withParameter(new Parameter(column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_")); //$NON-NLS-1$
             if (first) {
                 builder.withBodyLine("    c.where(" + fieldName //$NON-NLS-1$
                         + ", isEqualTo(" + column.getJavaProperty() //$NON-NLS-1$
@@ -82,8 +81,8 @@ public class FragmentGenerator {
         boolean first = true;
         for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
-            String methodName = JavaBeansUtil.getGetterMethodName(
-                    column.getJavaProperty(), column.getFullyQualifiedJavaType());
+            String methodName = JavaBeansUtil.getGetterMethodName(column.getJavaProperty(),
+                    column.getFullyQualifiedJavaType());
             if (first) {
                 lines.add(prefix + ".where(" + fieldName //$NON-NLS-1$
                         + ", isEqualTo(row::" + methodName //$NON-NLS-1$
@@ -192,36 +191,29 @@ public class FragmentGenerator {
     }
 
     private String getArgAnnotation(Set<FullyQualifiedJavaType> imports, IntrospectedColumn introspectedColumn,
-                                    boolean idColumn) {
+            boolean idColumn) {
         imports.add(introspectedColumn.getFullyQualifiedJavaType());
 
         return "@Arg(column=\"" //$NON-NLS-1$
-                + introspectedColumn.getActualColumnName()
-                + "\", javaType=" //$NON-NLS-1$
-                + introspectedColumn.getFullyQualifiedJavaType().getShortName()
-                + ".class" //$NON-NLS-1$
-                + generateAdditionalItems(imports, introspectedColumn, idColumn)
-                + ')';//$NON-NLS-1$
+                + introspectedColumn.getActualColumnName() + "\", javaType=" //$NON-NLS-1$
+                + introspectedColumn.getFullyQualifiedJavaType().getShortName() + ".class" //$NON-NLS-1$
+                + generateAdditionalItems(imports, introspectedColumn, idColumn) + ')';// $NON-NLS-1$
     }
 
     private String getResultAnnotation(Set<FullyQualifiedJavaType> imports, IntrospectedColumn introspectedColumn,
             boolean idColumn) {
         return "@Result(column=\"" //$NON-NLS-1$
-                + introspectedColumn.getActualColumnName()
-                + "\", property=\"" //$NON-NLS-1$
-                + introspectedColumn.getJavaProperty()
-                + '\"'
-                + generateAdditionalItems(imports, introspectedColumn, idColumn)
-                + ')'; //$NON-NLS-1$
+                + introspectedColumn.getActualColumnName() + "\", property=\"" //$NON-NLS-1$
+                + introspectedColumn.getJavaProperty() + '\"'
+                + generateAdditionalItems(imports, introspectedColumn, idColumn) + ')'; // $NON-NLS-1$
     }
 
     private String generateAdditionalItems(Set<FullyQualifiedJavaType> imports, IntrospectedColumn introspectedColumn,
-                                           boolean idColumn) {
+            boolean idColumn) {
         StringBuilder sb = new StringBuilder();
 
         if (stringHasValue(introspectedColumn.getTypeHandler())) {
-            FullyQualifiedJavaType fqjt =
-                    new FullyQualifiedJavaType(introspectedColumn.getTypeHandler());
+            FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(introspectedColumn.getTypeHandler());
             imports.add(fqjt);
             sb.append(", typeHandler="); //$NON-NLS-1$
             sb.append(fqjt.getShortName());
@@ -268,18 +260,16 @@ public class FragmentGenerator {
 
     public List<String> getSetEqualLines(List<IntrospectedColumn> columnList, String firstLinePrefix,
             String subsequentLinePrefix, boolean terminate) {
-        return getSetLines(columnList, firstLinePrefix, subsequentLinePrefix, terminate,
-                "equalTo"); //$NON-NLS-1$
+        return getSetLines(columnList, firstLinePrefix, subsequentLinePrefix, terminate, "equalTo"); //$NON-NLS-1$
     }
 
     public List<String> getSetEqualWhenPresentLines(List<IntrospectedColumn> columnList, String firstLinePrefix,
             String subsequentLinePrefix, boolean terminate) {
-        return getSetLines(columnList, firstLinePrefix, subsequentLinePrefix, terminate,
-                "equalToWhenPresent"); //$NON-NLS-1$
+        return getSetLines(columnList, firstLinePrefix, subsequentLinePrefix, terminate, "equalToWhenPresent"); //$NON-NLS-1$
     }
 
     private List<String> getSetLines(List<IntrospectedColumn> columnList, String firstLinePrefix,
-                                 String subsequentLinePrefix, boolean terminate, String fragment) {
+            String subsequentLinePrefix, boolean terminate, String fragment) {
         List<String> lines = new ArrayList<>();
         List<IntrospectedColumn> columns = ListUtilities.removeIdentityAndGeneratedAlwaysColumns(columnList);
         Iterator<IntrospectedColumn> iter = columns.iterator();
@@ -298,14 +288,10 @@ public class FragmentGenerator {
                 start = subsequentLinePrefix;
             }
 
-            String line = start
-                    + ".set(" //$NON-NLS-1$
-                    + fieldName
-                    + ")." //$NON-NLS-1$
-                    + fragment
-                    + "(row::" //$NON-NLS-1$
-                    + methodName
-                    + ")"; //$NON-NLS-1$
+            String line = start + ".set(" //$NON-NLS-1$
+                    + fieldName + ")." //$NON-NLS-1$
+                    + fragment + "(row::" //$NON-NLS-1$
+                    + methodName + ")"; //$NON-NLS-1$
 
             if (terminate && !iter.hasNext()) {
                 line += ";"; //$NON-NLS-1$

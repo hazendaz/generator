@@ -60,14 +60,12 @@ public class KotlinFragmentGenerator {
                 argName = column.getJavaProperty() + "_"; //$NON-NLS-1$
                 FullyQualifiedKotlinType kt = JavaToKotlinTypeConverter.convert(column.getFullyQualifiedJavaType());
                 builder.withImports(kt.getImportList());
-                builder.withArgument(KotlinArg.newArg(argName)
-                        .withDataType(kt.getShortNameWithTypeArguments())
-                        .build());
+                builder.withArgument(
+                        KotlinArg.newArg(argName).withDataType(kt.getShortNameWithTypeArguments()).build());
             }
 
-            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport =
-                    AbstractKotlinFunctionGenerator.calculateFieldNameAndImport(tableFieldName,
-                    supportObjectImport, column);
+            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport = AbstractKotlinFunctionGenerator
+                    .calculateFieldNameAndImport(tableFieldName, supportObjectImport, column);
 
             builder.withImport(fieldNameAndImport.importString());
             if (columnCount == 1) {
@@ -89,7 +87,7 @@ public class KotlinFragmentGenerator {
     }
 
     private String singleColumnWhere(String columName, String property) {
-        return "    where { " + composeIsEqualTo(columName, property)  + " }"; //$NON-NLS-1$ //$NON-NLS-2$
+        return "    where { " + composeIsEqualTo(columName, property) + " }"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private String multiColumnWhere(String columName, String property) {
@@ -97,7 +95,7 @@ public class KotlinFragmentGenerator {
     }
 
     private String multiColumnAnd(String columName, String property) {
-        return "        and { " + composeIsEqualTo(columName, property)  + " }"; //$NON-NLS-1$ //$NON-NLS-2$
+        return "        and { " + composeIsEqualTo(columName, property) + " }"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private String composeIsEqualTo(String columName, String property) {
@@ -150,8 +148,7 @@ public class KotlinFragmentGenerator {
         return builder.build();
     }
 
-    private String getResultAnnotation(Set<String> imports, IntrospectedColumn introspectedColumn,
-            boolean idColumn) {
+    private String getResultAnnotation(Set<String> imports, IntrospectedColumn introspectedColumn, boolean idColumn) {
         StringBuilder sb = new StringBuilder();
         sb.append("Result(column=\""); //$NON-NLS-1$
         sb.append(escapeStringForKotlin(introspectedColumn.getActualColumnName()));
@@ -160,8 +157,7 @@ public class KotlinFragmentGenerator {
         sb.append('\"');
 
         if (stringHasValue(introspectedColumn.getTypeHandler())) {
-            FullyQualifiedKotlinType fqjt =
-                    new FullyQualifiedKotlinType(introspectedColumn.getTypeHandler());
+            FullyQualifiedKotlinType fqjt = new FullyQualifiedKotlinType(introspectedColumn.getTypeHandler());
             imports.add(introspectedColumn.getTypeHandler());
             sb.append(", typeHandler="); //$NON-NLS-1$
             sb.append(fqjt.getShortNameWithoutTypeArguments());
@@ -191,8 +187,8 @@ public class KotlinFragmentGenerator {
                 builder.withAnnotation(sb.toString());
             } else {
                 builder.withImport("org.apache.ibatis.annotations.SelectKey"); //$NON-NLS-1$
-                FullyQualifiedKotlinType kt =
-                        JavaToKotlinTypeConverter.convert(introspectedColumn.getFullyQualifiedJavaType());
+                FullyQualifiedKotlinType kt = JavaToKotlinTypeConverter
+                        .convert(introspectedColumn.getFullyQualifiedJavaType());
 
                 sb.append("@SelectKey(statement=[\""); //$NON-NLS-1$
                 sb.append(gk.getRuntimeSqlStatement());
@@ -216,9 +212,8 @@ public class KotlinFragmentGenerator {
 
         List<IntrospectedColumn> columns = ListUtilities.removeIdentityAndGeneratedAlwaysColumns(columnList);
         for (IntrospectedColumn column : columns) {
-            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport =
-                    AbstractKotlinFunctionGenerator.calculateFieldNameAndImport(tableFieldName,
-                            supportObjectImport, column);
+            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport = AbstractKotlinFunctionGenerator
+                    .calculateFieldNameAndImport(tableFieldName, supportObjectImport, column);
             builder.withImport(fieldNameAndImport.importString());
 
             builder.withCodeLine("    set(" + fieldNameAndImport.fieldName() //$NON-NLS-1$
@@ -234,9 +229,8 @@ public class KotlinFragmentGenerator {
 
         List<IntrospectedColumn> columns = ListUtilities.removeIdentityAndGeneratedAlwaysColumns(columnList);
         for (IntrospectedColumn column : columns) {
-            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport =
-                    AbstractKotlinFunctionGenerator.calculateFieldNameAndImport(tableFieldName,
-                            supportObjectImport, column);
+            AbstractKotlinFunctionGenerator.FieldNameAndImport fieldNameAndImport = AbstractKotlinFunctionGenerator
+                    .calculateFieldNameAndImport(tableFieldName, supportObjectImport, column);
             builder.withImport(fieldNameAndImport.importString());
 
             builder.withCodeLine("    set(" + fieldNameAndImport.fieldName() //$NON-NLS-1$

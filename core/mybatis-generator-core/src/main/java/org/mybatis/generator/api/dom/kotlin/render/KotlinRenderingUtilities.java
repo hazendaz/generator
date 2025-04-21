@@ -28,8 +28,7 @@ public class KotlinRenderingUtilities {
     public static final String KOTLIN_INDENT = "    "; //$NON-NLS-1$
 
     public static String renderModifiers(List<KotlinModifier> modifiers) {
-        return modifiers.stream().map(KotlinModifier::getValue)
-                .collect(CustomCollectors.joining(" ", "", " ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return modifiers.stream().map(KotlinModifier::getValue).collect(CustomCollectors.joining(" ", "", " ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     public static String kotlinIndent(String in) {

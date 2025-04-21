@@ -43,19 +43,16 @@ public class FullyQualifiedTable {
     private final DomainObjectRenamingRule domainObjectRenamingRule;
 
     /**
-     * This object is used to hold information related to the table itself, not the columns in the
-     * table.
+     * This object is used to hold information related to the table itself, not the columns in the table.
      *
      * @param introspectedCatalog
-     *            the actual catalog of the table as returned from DatabaseMetaData. This value
-     *            should only be set if the user configured a catalog. Otherwise, the
-     *            DatabaseMetaData is reporting some database default that we don't want in the
-     *            generated code.
+     *            the actual catalog of the table as returned from DatabaseMetaData. This value should only be set if
+     *            the user configured a catalog. Otherwise, the DatabaseMetaData is reporting some database default that
+     *            we don't want in the generated code.
      * @param introspectedSchema
-     *            the actual schema of the table as returned from DatabaseMetaData. This value
-     *            should only be set if the user configured a schema. Otherwise, the
-     *            DatabaseMetaData is reporting some database default that we don't want in the
-     *            generated code.
+     *            the actual schema of the table as returned from DatabaseMetaData. This value should only be set if the
+     *            user configured a schema. Otherwise, the DatabaseMetaData is reporting some database default that we
+     *            don't want in the generated code.
      * @param introspectedTableName
      *            the actual table name as returned from DatabaseMetaData
      * @param domainObjectName
@@ -81,19 +78,16 @@ public class FullyQualifiedTable {
      *            if true, then the table identifiers will be delimited at runtime. The delimiter characters are
      *            obtained from the Context.
      * @param domainObjectRenamingRule
-     *            If domainObjectName is not configured, we'll build the domain object named based on the tableName
-     *            or runtimeTableName.
-     *            And then we use the domain object renaming rule to generate the final domain object name.
+     *            If domainObjectName is not configured, we'll build the domain object named based on the tableName or
+     *            runtimeTableName. And then we use the domain object renaming rule to generate the final domain object
+     *            name.
      * @param context
      *            the context
      */
-    public FullyQualifiedTable(String introspectedCatalog,
-            String introspectedSchema, String introspectedTableName,
-            String domainObjectName, String alias,
-            boolean ignoreQualifiersAtRuntime, String runtimeCatalog,
-            String runtimeSchema, String runtimeTableName,
-            boolean delimitIdentifiers, DomainObjectRenamingRule domainObjectRenamingRule,
-            Context context) {
+    public FullyQualifiedTable(String introspectedCatalog, String introspectedSchema, String introspectedTableName,
+            String domainObjectName, String alias, boolean ignoreQualifiersAtRuntime, String runtimeCatalog,
+            String runtimeSchema, String runtimeTableName, boolean delimitIdentifiers,
+            DomainObjectRenamingRule domainObjectRenamingRule, Context context) {
         super();
         this.introspectedCatalog = introspectedCatalog;
         this.introspectedSchema = introspectedSchema;
@@ -120,10 +114,8 @@ public class FullyQualifiedTable {
             this.alias = alias.trim();
         }
 
-        beginningDelimiter = delimitIdentifiers ? context
-                .getBeginningDelimiter() : ""; //$NON-NLS-1$
-        endingDelimiter = delimitIdentifiers ? context.getEndingDelimiter()
-                : ""; //$NON-NLS-1$
+        beginningDelimiter = delimitIdentifiers ? context.getBeginningDelimiter() : ""; //$NON-NLS-1$
+        endingDelimiter = delimitIdentifiers ? context.getEndingDelimiter() : ""; //$NON-NLS-1$
     }
 
     public String getIntrospectedCatalog() {
@@ -171,9 +163,8 @@ public class FullyQualifiedTable {
         }
         addDelimiters(localTableName);
 
-        return composeFullyQualifiedTableName(localCatalog
-                .toString(), localSchema.toString(), localTableName.toString(),
-                '.');
+        return composeFullyQualifiedTableName(localCatalog.toString(), localSchema.toString(),
+                localTableName.toString(), '.');
     }
 
     public String getAliasedFullyQualifiedTableNameAtRuntime() {
@@ -233,9 +224,7 @@ public class FullyQualifiedTable {
 
     @Override
     public String toString() {
-        return composeFullyQualifiedTableName(
-                introspectedCatalog, introspectedSchema, introspectedTableName,
-                '.');
+        return composeFullyQualifiedTableName(introspectedCatalog, introspectedSchema, introspectedTableName, '.');
     }
 
     public String getAlias() {
@@ -243,15 +232,15 @@ public class FullyQualifiedTable {
     }
 
     /**
-     * Calculates a Java package fragment based on the table catalog and schema.
-     * If qualifiers are ignored, then this method will return an empty string.
-     *
-     * <p>This method is used for determining the sub package for Java client and
-     * SQL map (XML) objects.  It ignores any sub-package added to the
-     * domain object name in the table configuration.
+     * Calculates a Java package fragment based on the table catalog and schema. If qualifiers are ignored, then this
+     * method will return an empty string.
+     * <p>
+     * This method is used for determining the sub package for Java client and SQL map (XML) objects. It ignores any
+     * sub-package added to the domain object name in the table configuration.
      *
      * @param isSubPackagesEnabled
      *            the is sub packages enabled
+     *
      * @return the subpackage for this table
      */
     public String getSubPackageForClientOrSqlMap(boolean isSubPackagesEnabled) {
@@ -279,15 +268,15 @@ public class FullyQualifiedTable {
     }
 
     /**
-     * Calculates a Java package fragment based on the table catalog and schema.
-     * If qualifiers are ignored, then this method will return an empty string.
-     *
-     * <p>This method is used for determining the sub package for Java model objects only.
-     * It takes into account the possibility that a sub-package was added to the
-     * domain object name in the table configuration.
+     * Calculates a Java package fragment based on the table catalog and schema. If qualifiers are ignored, then this
+     * method will return an empty string.
+     * <p>
+     * This method is used for determining the sub package for Java model objects only. It takes into account the
+     * possibility that a sub-package was added to the domain object name in the table configuration.
      *
      * @param isSubPackagesEnabled
      *            the is sub packages enabled
+     *
      * @return the subpackage for this table
      */
     public String getSubPackageForModel(boolean isSubPackagesEnabled) {

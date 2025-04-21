@@ -61,7 +61,8 @@ class TypeParameterTest {
         assertEquals("T extends List & Comparator", renderer.render(typeParameter, compilationUnit));
 
         TopLevelClass compilationUnit2 = new TopLevelClass("java.lang.Test");
-        assertEquals("T extends java.util.List & java.util.Comparator", renderer.render(typeParameter, compilationUnit2));
+        assertEquals("T extends java.util.List & java.util.Comparator",
+                renderer.render(typeParameter, compilationUnit2));
     }
 
     @Test

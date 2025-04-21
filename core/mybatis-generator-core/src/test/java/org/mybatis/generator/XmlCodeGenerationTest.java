@@ -41,8 +41,7 @@ class XmlCodeGenerationTest {
     @ParameterizedTest
     @MethodSource("xmlFileGenerator")
     void testXmlParse(GeneratedXmlFile generatedXmlFile) {
-        ByteArrayInputStream is = new ByteArrayInputStream(
-                generatedXmlFile.getFormattedContent().getBytes());
+        ByteArrayInputStream is = new ByteArrayInputStream(generatedXmlFile.getFormattedContent().getBytes());
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(true);

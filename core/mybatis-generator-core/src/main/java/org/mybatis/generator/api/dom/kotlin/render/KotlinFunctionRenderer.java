@@ -28,8 +28,7 @@ public class KotlinFunctionRenderer {
 
         answer.add(renderFirstLine(function));
 
-        answer.addAll(function.getCodeLines().stream().map(KotlinRenderingUtilities::kotlinIndent)
-                        .toList());
+        answer.addAll(function.getCodeLines().stream().map(KotlinRenderingUtilities::kotlinIndent).toList());
 
         if (!function.getCodeLines().isEmpty() && !function.isOneLineFunction()) {
             answer.add("}"); //$NON-NLS-1$
@@ -39,10 +38,8 @@ public class KotlinFunctionRenderer {
     }
 
     private String renderFirstLine(KotlinFunction function) {
-        String firstLine = KotlinRenderingUtilities.renderModifiers(function.getModifiers())
-                + "fun " //$NON-NLS-1$
-                + function.getName()
-                + "("; //$NON-NLS-1$
+        String firstLine = KotlinRenderingUtilities.renderModifiers(function.getModifiers()) + "fun " //$NON-NLS-1$
+                + function.getName() + "("; //$NON-NLS-1$
 
         firstLine += renderArguments(function);
         firstLine += ")"; //$NON-NLS-1$
@@ -62,14 +59,11 @@ public class KotlinFunctionRenderer {
     private String renderArguments(KotlinFunction function) {
         KotlinArgRenderer argRenderer = new KotlinArgRenderer();
 
-        return function.getArguments().stream()
-                .map(argRenderer::render)
-                .collect(Collectors.joining(", ")); //$NON-NLS-1$
+        return function.getArguments().stream().map(argRenderer::render).collect(Collectors.joining(", ")); //$NON-NLS-1$
     }
 
     private String renderReturnType(KotlinFunction function) {
-        return function.getExplicitReturnType()
-                .map(s -> ": " + s) //$NON-NLS-1$
+        return function.getExplicitReturnType().map(s -> ": " + s) //$NON-NLS-1$
                 .orElse(""); //$NON-NLS-1$
     }
 }

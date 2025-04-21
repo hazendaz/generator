@@ -44,8 +44,8 @@ public class UpdateByPrimaryKeyWithBLOBsMethodGenerator extends AbstractJavaMapp
 
         addMapperAnnotations(method);
 
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(method, interfaze,
+                introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

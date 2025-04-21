@@ -44,16 +44,13 @@ public class ColumnListGenerator {
 
     public KotlinPropertyAndImports generatePropertyAndImports() {
         List<FieldNameAndImport> fieldsAndImports = introspectedTable.getAllColumns().stream()
-                .map(this::calculateFieldAndImport)
-                .collect(Collectors.toList());
+                .map(this::calculateFieldAndImport).collect(Collectors.toList());
 
-        KotlinPropertyAndImports propertyAndImports = KotlinPropertyAndImports.withProperty(
-                KotlinProperty.newVal("columnList") //$NON-NLS-1$
-                .withModifier(KotlinModifier.PRIVATE)
-                .withInitializationString(getInitializationString(fieldsAndImports))
-                .build())
-                .withImports(getImports(fieldsAndImports))
-                .build();
+        KotlinPropertyAndImports propertyAndImports = KotlinPropertyAndImports
+                .withProperty(KotlinProperty.newVal("columnList") //$NON-NLS-1$
+                        .withModifier(KotlinModifier.PRIVATE)
+                        .withInitializationString(getInitializationString(fieldsAndImports)).build())
+                .withImports(getImports(fieldsAndImports)).build();
 
         context.getCommentGenerator().addGeneralPropertyComment(propertyAndImports.getProperty(), introspectedTable,
                 propertyAndImports.getImports());
@@ -65,15 +62,12 @@ public class ColumnListGenerator {
     }
 
     private String getInitializationString(List<FieldNameAndImport> fieldsAndImports) {
-        return fieldsAndImports.stream()
-                .map(FieldNameAndImport::fieldName)
+        return fieldsAndImports.stream().map(FieldNameAndImport::fieldName)
                 .collect(Collectors.joining(", ", "listOf(", ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     private Set<String> getImports(List<FieldNameAndImport> fieldsAndImports) {
-        return fieldsAndImports.stream()
-                .map(FieldNameAndImport::importString)
-                .collect(Collectors.toSet());
+        return fieldsAndImports.stream().map(FieldNameAndImport::importString).collect(Collectors.toSet());
     }
 
     public boolean callPlugins(KotlinProperty kotlinProperty, KotlinFile kotlinFile) {

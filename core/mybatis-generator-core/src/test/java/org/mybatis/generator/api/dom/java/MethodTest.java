@@ -223,9 +223,8 @@ class MethodTest {
 
         method.addBodyLine("return func.apply(t);");
 
-        String excepted = "public static final synchronized <T extends List<String>, R extends List<String> & Comparator<String>> R foo(T t, Function<T, R> func) {" + LINE_SEPARATOR
-                        + "    return func.apply(t);" + LINE_SEPARATOR
-                        + "}";
+        String excepted = "public static final synchronized <T extends List<String>, R extends List<String> & Comparator<String>> R foo(T t, Function<T, R> func) {"
+                + LINE_SEPARATOR + "    return func.apply(t);" + LINE_SEPARATOR + "}";
 
         MethodRenderer renderer = new MethodRenderer();
         String rendered = String.join(LINE_SEPARATOR, renderer.render(method, false, null));

@@ -47,8 +47,8 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
                 escapeStringForJava(introspectedTable.getFullyQualifiedTableNameAtRuntime())));
         method.addBodyLine(""); //$NON-NLS-1$
 
-        for (IntrospectedColumn introspectedColumn :
-                ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
+        for (IntrospectedColumn introspectedColumn : ListUtilities
+                .removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
             if (!introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 method.addBodyLine(String.format("if (row.%s() != null) {", //$NON-NLS-1$
                         getGetterMethodName(introspectedColumn.getJavaProperty(),
@@ -76,8 +76,8 @@ public class ProviderUpdateByPrimaryKeySelectiveMethodGenerator extends Abstract
 
         method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
 
-        if (context.getPlugins()
-                .providerUpdateByPrimaryKeySelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
+        if (context.getPlugins().providerUpdateByPrimaryKeySelectiveMethodGenerated(method, topLevelClass,
+                introspectedTable)) {
             topLevelClass.addImportedTypes(initializeImportedTypes(fqjt));
             topLevelClass.addMethod(method);
         }

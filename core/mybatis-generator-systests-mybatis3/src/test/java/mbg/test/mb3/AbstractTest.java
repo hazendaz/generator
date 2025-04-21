@@ -35,8 +35,7 @@ public abstract class AbstractTest {
     public void setUp() throws Exception {
         createDatabase();
 
-        Reader reader = Resources
-                    .getResourceAsReader(getMyBatisConfigFile());
+        Reader reader = Resources.getResourceAsReader(getMyBatisConfigFile());
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         reader.close();
     }

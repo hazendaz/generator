@@ -39,8 +39,8 @@ public class UpdateSelectiveColumnsMethodGenerator extends AbstractMethodGenerat
 
         FullyQualifiedJavaType parameterAndReturnType = new FullyQualifiedJavaType(
                 "org.mybatis.dynamic.sql.update.UpdateDSL"); //$NON-NLS-1$
-        parameterAndReturnType.addTypeArgument(new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.update.UpdateModel")); //$NON-NLS-1$
+        parameterAndReturnType
+                .addTypeArgument(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.update.UpdateModel")); //$NON-NLS-1$
         imports.add(parameterAndReturnType);
 
         imports.add(recordType);
@@ -56,9 +56,7 @@ public class UpdateSelectiveColumnsMethodGenerator extends AbstractMethodGenerat
         method.addBodyLines(fragmentGenerator.getSetEqualWhenPresentLines(introspectedTable.getAllColumns(),
                 "return dsl", "        ", true)); //$NON-NLS-1$ //$NON-NLS-2$
 
-        return MethodAndImports.withMethod(method)
-                .withImports(imports)
-                .build();
+        return MethodAndImports.withMethod(method).withImports(imports).build();
     }
 
     @Override

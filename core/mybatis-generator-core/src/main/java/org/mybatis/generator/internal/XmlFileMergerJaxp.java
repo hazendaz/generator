@@ -25,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -56,9 +57,8 @@ public class XmlFileMergerJaxp {
 
     private static class NullEntityResolver implements EntityResolver {
         /**
-         * returns an empty reader. This is done so that the parser doesn't
-         * attempt to read a DTD. We don't need that support for the merge, and
-         * it can cause problems on systems that aren't Internet connected.
+         * returns an empty reader. This is done so that the parser doesn't attempt to read a DTD. We don't need that
+         * support for the merge, and it can cause problems on systems that aren't Internet connected.
          */
         @Override
         public InputSource resolveEntity(String publicId, String systemId) {
@@ -69,25 +69,23 @@ public class XmlFileMergerJaxp {
         }
     }
 
-    public static String getMergedSource(GeneratedXmlFile generatedXmlFile,
-            File existingFile) throws ShellException {
+    public static String getMergedSource(GeneratedXmlFile generatedXmlFile, File existingFile) throws ShellException {
 
         try {
             return getMergedSource(new InputSource(new StringReader(generatedXmlFile.getFormattedContent())),
-                new InputSource(new InputStreamReader(Files.newInputStream(existingFile.toPath()), StandardCharsets.UTF_8)),
-                existingFile.getName());
+                    new InputSource(
+                            new InputStreamReader(Files.newInputStream(existingFile.toPath()), StandardCharsets.UTF_8)),
+                    existingFile.getName());
         } catch (IOException | SAXException | ParserConfigurationException e) {
             throw new ShellException(getString("Warning.13", //$NON-NLS-1$
                     existingFile.getName()), e);
         }
     }
 
-    public static String getMergedSource(InputSource newFile,
-            InputSource existingFile, String existingFileName) throws IOException, SAXException,
-            ParserConfigurationException, ShellException {
+    public static String getMergedSource(InputSource newFile, InputSource existingFile, String existingFileName)
+            throws IOException, SAXException, ParserConfigurationException, ShellException {
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory
-                .newInstance();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
         factory.setExpandEntityReferences(false);
@@ -126,8 +124,7 @@ public class XmlFileMergerJaxp {
         attributeCount = attributes.getLength();
         for (int i = 0; i < attributeCount; i++) {
             Node node = attributes.item(i);
-            existingRootElement.setAttribute(node.getNodeName(), node
-                    .getNodeValue());
+            existingRootElement.setAttribute(node.getNodeName(), node.getNodeValue());
         }
 
         // remove the old generated elements and any
@@ -139,8 +136,7 @@ public class XmlFileMergerJaxp {
             Node node = children.item(i);
             if (isGeneratedNode(node)) {
                 nodesToDelete.add(node);
-            } else if (isWhiteSpace(node)
-                    && isGeneratedNode(children.item(i + 1))) {
+            } else if (isWhiteSpace(node) && isGeneratedNode(children.item(i + 1))) {
                 nodesToDelete.add(node);
             }
         }
@@ -178,8 +174,7 @@ public class XmlFileMergerJaxp {
     }
 
     private static boolean isGeneratedNode(Node node) {
-        return node != null
-                && node.getNodeType() == Node.ELEMENT_NODE
+        return node != null && node.getNodeType() == Node.ELEMENT_NODE
                 && (isOldFormatNode(node) || isNewFormatNode(node));
     }
 

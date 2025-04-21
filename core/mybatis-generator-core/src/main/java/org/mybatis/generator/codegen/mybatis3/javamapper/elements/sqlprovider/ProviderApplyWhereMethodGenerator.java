@@ -40,17 +40,15 @@ public class ProviderApplyWhereMethodGenerator extends AbstractJavaProviderMetho
 
         FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(introspectedTable.getExampleType());
         importedTypes.add(fqjt);
-        importedTypes.add(new FullyQualifiedJavaType(
-                String.format("%s.Criteria", fqjt.getFullyQualifiedName()))); //$NON-NLS-1$
-        importedTypes.add(new FullyQualifiedJavaType(
-                String.format("%s.Criterion", fqjt.getFullyQualifiedName()))); //$NON-NLS-1$
+        importedTypes.add(new FullyQualifiedJavaType(String.format("%s.Criteria", fqjt.getFullyQualifiedName()))); //$NON-NLS-1$
+        importedTypes.add(new FullyQualifiedJavaType(String.format("%s.Criterion", fqjt.getFullyQualifiedName()))); //$NON-NLS-1$
 
         Method method = new Method("applyWhere"); //$NON-NLS-1$
         method.setVisibility(JavaVisibility.PROTECTED);
         method.addParameter(new Parameter(BUILDER_IMPORT, "sql")); //$NON-NLS-1$
         method.addParameter(new Parameter(fqjt, "example")); //$NON-NLS-1$
-        method.addParameter(new Parameter(FullyQualifiedJavaType.getBooleanPrimitiveInstance(),
-                "includeExamplePhrase")); //$NON-NLS-1$
+        method.addParameter(
+                new Parameter(FullyQualifiedJavaType.getBooleanPrimitiveInstance(), "includeExamplePhrase")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
@@ -65,8 +63,7 @@ public class ProviderApplyWhereMethodGenerator extends AbstractJavaProviderMetho
     protected static List<String> getMethodLines() {
         List<String> answer = new ArrayList<>();
 
-        try (InputStream is =
-                ProviderApplyWhereMethodGenerator.class.getResourceAsStream("ApplyWhereMethod.txt")) { //$NON-NLS-1$
+        try (InputStream is = ProviderApplyWhereMethodGenerator.class.getResourceAsStream("ApplyWhereMethod.txt")) { //$NON-NLS-1$
             BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
             String line;
             boolean foundDelimiter = false;

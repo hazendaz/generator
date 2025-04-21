@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This interface describes methods common to all Java compilation units (Java
- * classes, interfaces, and enums).
+ * This interface describes methods common to all Java compilation units (Java classes, interfaces, and enums).
  *
  * @author Jeff Butler
  */
@@ -42,8 +41,8 @@ public interface CompilationUnit {
 
     /**
      * Comments will be written at the top of the file as is, we do not append any start or end comment characters.
-     *
-     * <p>Note that in the Eclipse plugin, file comments will not be merged.
+     * <p>
+     * Note that in the Eclipse plugin, file comments will not be merged.
      *
      * @param commentLine
      *            the comment line

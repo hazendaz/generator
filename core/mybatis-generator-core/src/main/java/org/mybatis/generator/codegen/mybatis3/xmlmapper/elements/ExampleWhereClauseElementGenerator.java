@@ -36,11 +36,9 @@ public class ExampleWhereClauseElementGenerator extends AbstractXmlElementGenera
         XmlElement answer = new XmlElement("sql"); //$NON-NLS-1$
 
         if (isForUpdateByExample) {
-            answer.addAttribute(new Attribute(
-                    "id", introspectedTable.getMyBatis3UpdateByExampleWhereClauseId())); //$NON-NLS-1$
+            answer.addAttribute(new Attribute("id", introspectedTable.getMyBatis3UpdateByExampleWhereClauseId())); //$NON-NLS-1$
         } else {
-            answer.addAttribute(new Attribute(
-                    "id", introspectedTable.getExampleWhereClauseId())); //$NON-NLS-1$
+            answer.addAttribute(new Attribute("id", introspectedTable.getExampleWhereClauseId())); //$NON-NLS-1$
         }
 
         context.getCommentGenerator().addComment(answer);
@@ -50,11 +48,9 @@ public class ExampleWhereClauseElementGenerator extends AbstractXmlElementGenera
 
         XmlElement outerForEachElement = new XmlElement("foreach"); //$NON-NLS-1$
         if (isForUpdateByExample) {
-            outerForEachElement.addAttribute(new Attribute(
-                    "collection", "example.oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
+            outerForEachElement.addAttribute(new Attribute("collection", "example.oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
         } else {
-            outerForEachElement.addAttribute(new Attribute(
-                    "collection", "oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
+            outerForEachElement.addAttribute(new Attribute("collection", "oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
         }
         outerForEachElement.addAttribute(new Attribute("item", "criteria")); //$NON-NLS-1$ //$NON-NLS-2$
         outerForEachElement.addAttribute(new Attribute("separator", "or")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -109,8 +105,7 @@ public class ExampleWhereClauseElementGenerator extends AbstractXmlElementGenera
         }
 
         XmlElement middleForEachElement = new XmlElement("foreach"); //$NON-NLS-1$
-        middleForEachElement.addAttribute(new Attribute(
-                "collection", criteriaAttribute)); //$NON-NLS-1$
+        middleForEachElement.addAttribute(new Attribute("collection", criteriaAttribute)); //$NON-NLS-1$
         middleForEachElement.addAttribute(new Attribute("item", "criterion")); //$NON-NLS-1$ //$NON-NLS-2$
 
         XmlElement chooseElement = new XmlElement("choose"); //$NON-NLS-1$

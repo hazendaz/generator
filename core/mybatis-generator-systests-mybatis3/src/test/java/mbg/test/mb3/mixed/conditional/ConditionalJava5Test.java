@@ -78,10 +78,8 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             assertEquals(1, answer.size());
 
             Fieldsonly returnedRecord = answer.get(0);
-            assertEquals(record.getIntegerfield(), returnedRecord
-                    .getIntegerfield());
-            assertEquals(record.getDoublefield(), returnedRecord
-                    .getDoublefield());
+            assertEquals(record.getIntegerfield(), returnedRecord.getIntegerfield());
+            assertEquals(record.getDoublefield(), returnedRecord.getDoublefield());
             assertEquals(record.getFloatfield(), returnedRecord.getFloatfield());
         }
     }
@@ -414,24 +412,17 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             Pkfields returnedRecord = mapper.selectByPrimaryKey(key);
             assertNotNull(returnedRecord);
 
-            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
-                    .getDatefield()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal30field(), returnedRecord
-                    .getDecimal30field());
-            assertEquals(record.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
+            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord.getDatefield()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal30field(), returnedRecord.getDecimal30field());
+            assertEquals(record.getDecimal60field(), returnedRecord.getDecimal60field());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord
-                    .getTimefield()));
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord.getTimefield()));
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -496,25 +487,17 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
 
             Pkfields returnedRecord = mapper.selectByPrimaryKey(key);
 
-            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord
-                    .getDatefield()));
-            assertEquals(record.getDecimal100field(), returnedRecord
-                    .getDecimal100field());
-            assertEquals(record.getDecimal155field(), returnedRecord
-                    .getDecimal155field());
-            assertEquals(record.getDecimal30field(), returnedRecord
-                    .getDecimal30field());
-            assertEquals(newRecord.getDecimal60field(), returnedRecord
-                    .getDecimal60field());
-            assertEquals(newRecord.getFirstname(), returnedRecord
-                    .getFirstname());
+            assertTrue(datesAreEqual(record.getDatefield(), returnedRecord.getDatefield()));
+            assertEquals(record.getDecimal100field(), returnedRecord.getDecimal100field());
+            assertEquals(record.getDecimal155field(), returnedRecord.getDecimal155field());
+            assertEquals(record.getDecimal30field(), returnedRecord.getDecimal30field());
+            assertEquals(newRecord.getDecimal60field(), returnedRecord.getDecimal60field());
+            assertEquals(newRecord.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord
-                    .getTimefield()));
-            assertEquals(record.getTimestampfield(), returnedRecord
-                    .getTimestampfield());
+            assertTrue(timesAreEqual(record.getTimefield(), returnedRecord.getTimefield()));
+            assertEquals(record.getTimestampfield(), returnedRecord.getTimestampfield());
         }
     }
 
@@ -1044,8 +1027,7 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             values.add(22);
 
             PkfieldsExample example = new PkfieldsExample();
-            example.createCriteria().andWierdFieldLessThan(40).andWierdFieldIn(
-                    values);
+            example.createCriteria().andWierdFieldLessThan(40).andWierdFieldIn(values);
 
             example.setOrderByClause("ID1, ID2");
             List<Pkfields> answer = mapper.selectByExample(example);
@@ -1192,10 +1174,8 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
 
             Pkblobs returnedRecord = answer.get(0);
             assertEquals(record.getId(), returnedRecord.getId());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -1245,10 +1225,8 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             Pkblobs returnedRecord = mapper.selectByPrimaryKey(3);
             assertNotNull(returnedRecord);
             assertEquals(record.getId(), returnedRecord.getId());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(newRecord.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(newRecord.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -1468,8 +1446,7 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
         }
     }
 
@@ -1504,8 +1481,7 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             assertEquals(updateRecord.getLastname(), newRecord.getLastname());
             assertEquals(record.getId1(), newRecord.getId1());
             assertEquals(record.getId2(), newRecord.getId2());
-            assertTrue(blobsAreEqual(updateRecord.getBlob1(), newRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(updateRecord.getBlob1(), newRecord.getBlob1()));
         }
     }
 
@@ -1569,12 +1545,10 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             key.setId2(4);
             Pkfieldsblobs returnedRecord = mapper.selectByPrimaryKey(key);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
-            assertEquals(updateRecord.getLastname(), returnedRecord
-                    .getLastname());
+            assertEquals(updateRecord.getLastname(), returnedRecord.getLastname());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
         }
     }
 
@@ -1746,7 +1720,7 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
 
             PkfieldsblobsExample example = new PkfieldsblobsExample();
             example.createCriteria().andId2EqualTo(6);
-            example.setOrderByClause("ID1");  // test for Issue 174
+            example.setOrderByClause("ID1"); // test for Issue 174
             List<Pkfieldsblobs> answer = mapper.selectByExampleWithBLOBs(example);
             assertEquals(1, answer.size());
 
@@ -1846,10 +1820,8 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             FieldsblobsWithBLOBs returnedRecord = answer.get(0);
             assertEquals(record.getFirstname(), returnedRecord.getFirstname());
             assertEquals(record.getLastname(), returnedRecord.getLastname());
-            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord
-                    .getBlob1()));
-            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord
-                    .getBlob2()));
+            assertTrue(blobsAreEqual(record.getBlob1(), returnedRecord.getBlob1()));
+            assertTrue(blobsAreEqual(record.getBlob2(), returnedRecord.getBlob2()));
         }
     }
 
@@ -2030,25 +2002,20 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             Integer generatedCustomerId = record.getCustomerId();
             assertEquals(57, generatedCustomerId.intValue());
 
-            AwfulTable returnedRecord = mapper
-                    .selectByPrimaryKey(generatedCustomerId);
+            AwfulTable returnedRecord = mapper.selectByPrimaryKey(generatedCustomerId);
 
             assertEquals(generatedCustomerId, returnedRecord.getCustomerId());
             assertEquals(record.geteMail(), returnedRecord.geteMail());
-            assertEquals(record.getEmailaddress(), returnedRecord
-                    .getEmailaddress());
-            assertEquals(record.getFirstFirstName(), returnedRecord
-                    .getFirstFirstName());
+            assertEquals(record.getEmailaddress(), returnedRecord.getEmailaddress());
+            assertEquals(record.getFirstFirstName(), returnedRecord.getFirstFirstName());
             assertEquals(record.getFrom(), returnedRecord.getFrom());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getId5(), returnedRecord.getId5());
             assertEquals(record.getId6(), returnedRecord.getId6());
             assertEquals(record.getId7(), returnedRecord.getId7());
-            assertEquals(record.getSecondFirstName(), returnedRecord
-                    .getSecondFirstName());
-            assertEquals(record.getThirdFirstName(), returnedRecord
-                    .getThirdFirstName());
+            assertEquals(record.getSecondFirstName(), returnedRecord.getSecondFirstName());
+            assertEquals(record.getThirdFirstName(), returnedRecord.getThirdFirstName());
         }
     }
 
@@ -2075,13 +2042,11 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             Integer generatedCustomerId = record.getCustomerId();
             assertEquals(57, generatedCustomerId.intValue());
 
-            AwfulTable returnedRecord = mapper
-                    .selectByPrimaryKey(generatedCustomerId);
+            AwfulTable returnedRecord = mapper.selectByPrimaryKey(generatedCustomerId);
 
             assertEquals(generatedCustomerId, returnedRecord.getCustomerId());
             assertEquals(record.geteMail(), returnedRecord.geteMail());
-            assertEquals(record.getEmailaddress(), returnedRecord
-                    .getEmailaddress());
+            assertEquals(record.getEmailaddress(), returnedRecord.getEmailaddress());
             assertEquals("Mabel", returnedRecord.getFirstFirstName());
             assertEquals(record.getFrom(), returnedRecord.getFrom());
             assertEquals(record.getId1(), returnedRecord.getId1());
@@ -2089,10 +2054,8 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             assertEquals(record.getId5(), returnedRecord.getId5());
             assertEquals(record.getId6(), returnedRecord.getId6());
             assertEquals(record.getId7(), returnedRecord.getId7());
-            assertEquals(record.getSecondFirstName(), returnedRecord
-                    .getSecondFirstName());
-            assertEquals(record.getThirdFirstName(), returnedRecord
-                    .getThirdFirstName());
+            assertEquals(record.getSecondFirstName(), returnedRecord.getSecondFirstName());
+            assertEquals(record.getThirdFirstName(), returnedRecord.getThirdFirstName());
         }
     }
 
@@ -2129,20 +2092,16 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
 
             assertEquals(generatedCustomerId, returnedRecord.getCustomerId());
             assertEquals(record.geteMail(), returnedRecord.geteMail());
-            assertEquals(record.getEmailaddress(), returnedRecord
-                    .getEmailaddress());
-            assertEquals(record.getFirstFirstName(), returnedRecord
-                    .getFirstFirstName());
+            assertEquals(record.getEmailaddress(), returnedRecord.getEmailaddress());
+            assertEquals(record.getFirstFirstName(), returnedRecord.getFirstFirstName());
             assertEquals(record.getFrom(), returnedRecord.getFrom());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getId5(), returnedRecord.getId5());
             assertEquals(record.getId6(), returnedRecord.getId6());
             assertEquals(record.getId7(), returnedRecord.getId7());
-            assertEquals(record.getSecondFirstName(), returnedRecord
-                    .getSecondFirstName());
-            assertEquals(record.getThirdFirstName(), returnedRecord
-                    .getThirdFirstName());
+            assertEquals(record.getSecondFirstName(), returnedRecord.getSecondFirstName());
+            assertEquals(record.getThirdFirstName(), returnedRecord.getThirdFirstName());
         }
     }
 
@@ -2181,20 +2140,16 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
 
             assertEquals(generatedCustomerId, returnedRecord.getCustomerId());
             assertEquals(record.geteMail(), returnedRecord.geteMail());
-            assertEquals(record.getEmailaddress(), returnedRecord
-                    .getEmailaddress());
-            assertEquals(record.getFirstFirstName(), returnedRecord
-                    .getFirstFirstName());
+            assertEquals(record.getEmailaddress(), returnedRecord.getEmailaddress());
+            assertEquals(record.getFirstFirstName(), returnedRecord.getFirstFirstName());
             assertEquals(record.getFrom(), returnedRecord.getFrom());
             assertEquals(newRecord.getId1(), returnedRecord.getId1());
             assertEquals(newRecord.getId2(), returnedRecord.getId2());
             assertEquals(record.getId5(), returnedRecord.getId5());
             assertEquals(record.getId6(), returnedRecord.getId6());
             assertEquals(record.getId7(), returnedRecord.getId7());
-            assertEquals(record.getSecondFirstName(), returnedRecord
-                    .getSecondFirstName());
-            assertEquals(record.getThirdFirstName(), returnedRecord
-                    .getThirdFirstName());
+            assertEquals(record.getSecondFirstName(), returnedRecord.getSecondFirstName());
+            assertEquals(record.getThirdFirstName(), returnedRecord.getThirdFirstName());
         }
     }
 
@@ -2323,20 +2278,16 @@ public class ConditionalJava5Test extends AbstractMixedConditionalTest {
             assertNotNull(returnedRecord);
             assertEquals(record.getCustomerId(), returnedRecord.getCustomerId());
             assertEquals(record.geteMail(), returnedRecord.geteMail());
-            assertEquals(record.getEmailaddress(), returnedRecord
-                    .getEmailaddress());
-            assertEquals(record.getFirstFirstName(), returnedRecord
-                    .getFirstFirstName());
+            assertEquals(record.getEmailaddress(), returnedRecord.getEmailaddress());
+            assertEquals(record.getFirstFirstName(), returnedRecord.getFirstFirstName());
             assertEquals(record.getFrom(), returnedRecord.getFrom());
             assertEquals(record.getId1(), returnedRecord.getId1());
             assertEquals(record.getId2(), returnedRecord.getId2());
             assertEquals(record.getId5(), returnedRecord.getId5());
             assertEquals(record.getId6(), returnedRecord.getId6());
             assertEquals(record.getId7(), returnedRecord.getId7());
-            assertEquals(record.getSecondFirstName(), returnedRecord
-                    .getSecondFirstName());
-            assertEquals(record.getThirdFirstName(), returnedRecord
-                    .getThirdFirstName());
+            assertEquals(record.getSecondFirstName(), returnedRecord.getSecondFirstName());
+            assertEquals(record.getThirdFirstName(), returnedRecord.getThirdFirstName());
         }
     }
 

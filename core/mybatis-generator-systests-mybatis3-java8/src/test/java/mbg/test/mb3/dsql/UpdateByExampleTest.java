@@ -77,22 +77,18 @@ public class UpdateByExampleTest extends AbstractTest {
             Fieldsonly updateRecord = new Fieldsonly();
             updateRecord.setDoublefield(99d);
 
-            int rows = mapper.update(dsl ->
-                FieldsonlyMapper.updateSelectiveColumns(updateRecord, dsl)
-                .where(fieldsonly.integerfield, isGreaterThan(5))
-            );
+            int rows = mapper.update(dsl -> FieldsonlyMapper.updateSelectiveColumns(updateRecord, dsl)
+                    .where(fieldsonly.integerfield, isGreaterThan(5)));
             assertEquals(2, rows);
 
-            List<Fieldsonly> answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(5)));
+            List<Fieldsonly> answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(5)));
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertEquals(11.22, record.getDoublefield(), 0.001);
             assertEquals(33.44, record.getFloatfield(), 0.001);
             assertEquals(5, record.getIntegerfield().intValue());
 
-            answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(8)));
+            answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(8)));
 
             assertEquals(1, answer.size());
             record = answer.get(0);
@@ -100,8 +96,7 @@ public class UpdateByExampleTest extends AbstractTest {
             assertEquals(66.77, record.getFloatfield(), 0.001);
             assertEquals(8, record.getIntegerfield().intValue());
 
-            answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(9)));
+            answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(9)));
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertEquals(99d, record.getDoublefield(), 0.001);
@@ -135,13 +130,11 @@ public class UpdateByExampleTest extends AbstractTest {
             Fieldsonly updateRecord = new Fieldsonly();
             updateRecord.setIntegerfield(22);
 
-            int rows = mapper.update(dsl ->
-                FieldsonlyMapper.updateAllColumns(updateRecord, dsl)
-                .where(fieldsonly.integerfield, isEqualTo(5)));
+            int rows = mapper.update(dsl -> FieldsonlyMapper.updateAllColumns(updateRecord, dsl)
+                    .where(fieldsonly.integerfield, isEqualTo(5)));
             assertEquals(1, rows);
 
-            List<Fieldsonly> answer = mapper.select(dsl ->
-                    dsl.where(fieldsonly.integerfield, isEqualTo(22)));
+            List<Fieldsonly> answer = mapper.select(dsl -> dsl.where(fieldsonly.integerfield, isEqualTo(22)));
             assertEquals(1, answer.size());
             record = answer.get(0);
             assertNull(record.getDoublefield());
@@ -165,19 +158,15 @@ public class UpdateByExampleTest extends AbstractTest {
 
             Pkonly updateKey = new Pkonly(null, 3);
 
-            int rows = mapper.update(dsl ->
-                PkonlyMapper.updateSelectiveColumns(updateKey, dsl)
-                .where(pkonly.id, isGreaterThan(4)));
+            int rows = mapper.update(
+                    dsl -> PkonlyMapper.updateSelectiveColumns(updateKey, dsl).where(pkonly.id, isGreaterThan(4)));
             assertEquals(2, rows);
 
-            long returnedRows = mapper.count(dsl ->
-                    dsl.where(pkonly.id, isEqualTo(5))
-                    .and(pkonly.seqNum, isEqualTo(3)));
+            long returnedRows = mapper
+                    .count(dsl -> dsl.where(pkonly.id, isEqualTo(5)).and(pkonly.seqNum, isEqualTo(3)));
             assertEquals(1, returnedRows);
 
-            returnedRows = mapper.count(dsl ->
-                    dsl.where(pkonly.id, isEqualTo(7))
-                    .and(pkonly.seqNum, isEqualTo(3)));
+            returnedRows = mapper.count(dsl -> dsl.where(pkonly.id, isEqualTo(7)).and(pkonly.seqNum, isEqualTo(3)));
             assertEquals(1, returnedRows);
         }
     }
@@ -197,12 +186,12 @@ public class UpdateByExampleTest extends AbstractTest {
 
             Pkonly updateKey = new Pkonly(22, 3);
 
-            int rows = mapper.update(dsl -> PkonlyMapper.updateAllColumns(updateKey, dsl).where(pkonly.id, isEqualTo(7)));
+            int rows = mapper
+                    .update(dsl -> PkonlyMapper.updateAllColumns(updateKey, dsl).where(pkonly.id, isEqualTo(7)));
             assertEquals(1, rows);
 
-            long returnedRows = mapper.count(dsl ->
-                    dsl.where(pkonly.id, isEqualTo(22))
-                    .and(pkonly.seqNum, isEqualTo(3)));
+            long returnedRows = mapper
+                    .count(dsl -> dsl.where(pkonly.id, isEqualTo(22)).and(pkonly.seqNum, isEqualTo(3)));
             assertEquals(1, returnedRows);
         }
     }
@@ -229,15 +218,12 @@ public class UpdateByExampleTest extends AbstractTest {
             Pkfields updateRecord = new Pkfields();
             updateRecord.setFirstname("Fred");
 
-            int rows = mapper.update(dsl ->
-                PkfieldsMapper.updateSelectiveColumns(updateRecord, dsl)
-                .where(pkfieldstable.lastname, isLike("J%")));
+            int rows = mapper.update(dsl -> PkfieldsMapper.updateSelectiveColumns(updateRecord, dsl)
+                    .where(pkfieldstable.lastname, isLike("J%")));
             assertEquals(1, rows);
 
-            long returnedRows = mapper.count(dsl ->
-                    dsl.where(pkfieldstable.firstname, isEqualTo("Fred"))
-                    .and(pkfieldstable.lastname, isEqualTo("Jones"))
-                    .and(pkfieldstable.id1, isEqualTo(3))
+            long returnedRows = mapper.count(dsl -> dsl.where(pkfieldstable.firstname, isEqualTo("Fred"))
+                    .and(pkfieldstable.lastname, isEqualTo("Jones")).and(pkfieldstable.id1, isEqualTo(3))
                     .and(pkfieldstable.id2, isEqualTo(4)));
             assertEquals(1, returnedRows);
         }
@@ -267,16 +253,12 @@ public class UpdateByExampleTest extends AbstractTest {
             updateRecord.setId1(3);
             updateRecord.setId2(4);
 
-            int rows = mapper.update(dsl ->
-                PkfieldsMapper.updateAllColumns(updateRecord, dsl)
-                .where(pkfieldstable.id1, isEqualTo(3))
-                .and(pkfieldstable.id2, isEqualTo(4)));
+            int rows = mapper.update(dsl -> PkfieldsMapper.updateAllColumns(updateRecord, dsl)
+                    .where(pkfieldstable.id1, isEqualTo(3)).and(pkfieldstable.id2, isEqualTo(4)));
             assertEquals(1, rows);
 
-            long returnedRows = mapper.count(dsl ->
-                    dsl.where(pkfieldstable.firstname, isEqualTo("Fred"))
-                    .and(pkfieldstable.id1, isEqualTo(3))
-                    .and(pkfieldstable.id2, isEqualTo(4)));
+            long returnedRows = mapper.count(dsl -> dsl.where(pkfieldstable.firstname, isEqualTo("Fred"))
+                    .and(pkfieldstable.id1, isEqualTo(3)).and(pkfieldstable.id2, isEqualTo(4)));
             assertEquals(1, returnedRows);
         }
     }
@@ -300,13 +282,11 @@ public class UpdateByExampleTest extends AbstractTest {
             Pkblobs newRecord = new Pkblobs();
             newRecord.setBlob1(generateRandomBlob());
 
-            int rows = mapper.update(dsl ->
-                PkblobsMapper.updateSelectiveColumns(newRecord, dsl)
-                .where(pkblobs.id, isGreaterThan(4)));
+            int rows = mapper.update(
+                    dsl -> PkblobsMapper.updateSelectiveColumns(newRecord, dsl).where(pkblobs.id, isGreaterThan(4)));
             assertEquals(1, rows);
 
-            List<Pkblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkblobs.id, isGreaterThan(4)));
+            List<Pkblobs> answer = mapper.select(dsl -> dsl.where(pkblobs.id, isGreaterThan(4)));
             assertEquals(1, answer.size());
 
             Pkblobs returnedRecord = answer.get(0);
@@ -336,13 +316,11 @@ public class UpdateByExampleTest extends AbstractTest {
             Pkblobs newRecord = new Pkblobs();
             newRecord.setId(8);
 
-            int rows = mapper.update(dsl ->
-                PkblobsMapper.updateAllColumns(newRecord, dsl)
-                .where(pkblobs.id, isGreaterThan(4)));
+            int rows = mapper
+                    .update(dsl -> PkblobsMapper.updateAllColumns(newRecord, dsl).where(pkblobs.id, isGreaterThan(4)));
             assertEquals(1, rows);
 
-            List<Pkblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkblobs.id, isGreaterThan(4)));
+            List<Pkblobs> answer = mapper.select(dsl -> dsl.where(pkblobs.id, isGreaterThan(4)));
             assertEquals(1, answer.size());
 
             Pkblobs returnedRecord = answer.get(0);
@@ -376,13 +354,11 @@ public class UpdateByExampleTest extends AbstractTest {
             Pkfieldsblobs newRecord = new Pkfieldsblobs();
             newRecord.setFirstname("Fred");
 
-            int rows = mapper.update(dsl ->
-                PkfieldsblobsMapper.updateSelectiveColumns(newRecord, dsl)
-                .where(pkfieldsblobs.id1, isNotEqualTo(3)));
+            int rows = mapper.update(dsl -> PkfieldsblobsMapper.updateSelectiveColumns(newRecord, dsl)
+                    .where(pkfieldsblobs.id1, isNotEqualTo(3)));
             assertEquals(1, rows);
 
-            List<Pkfieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
+            List<Pkfieldsblobs> answer = mapper.select(dsl -> dsl.where(pkfieldsblobs.id1, isNotEqualTo(3)));
             assertEquals(1, answer.size());
 
             Pkfieldsblobs returnedRecord = answer.get(0);
@@ -420,13 +396,11 @@ public class UpdateByExampleTest extends AbstractTest {
             newRecord.setId2(8);
             newRecord.setFirstname("Fred");
 
-            int rows = mapper.update(dsl ->
-                PkfieldsblobsMapper.updateAllColumns(newRecord, dsl)
-                .where(pkfieldsblobs.id1, isEqualTo(3)));
+            int rows = mapper.update(
+                    dsl -> PkfieldsblobsMapper.updateAllColumns(newRecord, dsl).where(pkfieldsblobs.id1, isEqualTo(3)));
             assertEquals(1, rows);
 
-            List<Pkfieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(pkfieldsblobs.id1, isEqualTo(3)));
+            List<Pkfieldsblobs> answer = mapper.select(dsl -> dsl.where(pkfieldsblobs.id1, isEqualTo(3)));
             assertEquals(1, answer.size());
 
             Pkfieldsblobs returnedRecord = answer.get(0);
@@ -460,13 +434,11 @@ public class UpdateByExampleTest extends AbstractTest {
             Fieldsblobs newRecord = new Fieldsblobs();
             newRecord.setLastname("Doe");
 
-            int rows = mapper.update(dsl ->
-                FieldsblobsMapper.updateSelectiveColumns(newRecord, dsl)
-                .where(fieldsblobs.firstname, isLike("S%")));
+            int rows = mapper.update(dsl -> FieldsblobsMapper.updateSelectiveColumns(newRecord, dsl)
+                    .where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, rows);
 
-            List<Fieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(fieldsblobs.firstname, isLike("S%")));
+            List<Fieldsblobs> answer = mapper.select(dsl -> dsl.where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, answer.size());
 
             Fieldsblobs returnedRecord = answer.get(0);
@@ -500,13 +472,11 @@ public class UpdateByExampleTest extends AbstractTest {
             newRecord.setFirstname("Scott");
             newRecord.setLastname("Doe");
 
-            int rows = mapper.update(dsl ->
-                FieldsblobsMapper.updateAllColumns(newRecord, dsl)
-                .where(fieldsblobs.firstname, isLike("S%")));
+            int rows = mapper.update(dsl -> FieldsblobsMapper.updateAllColumns(newRecord, dsl)
+                    .where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, rows);
 
-            List<Fieldsblobs> answer = mapper.select(dsl ->
-                    dsl.where(fieldsblobs.firstname, isLike("S%")));
+            List<Fieldsblobs> answer = mapper.select(dsl -> dsl.where(fieldsblobs.firstname, isLike("S%")));
             assertEquals(1, answer.size());
 
             Fieldsblobs returnedRecord = answer.get(0);
@@ -555,13 +525,11 @@ public class UpdateByExampleTest extends AbstractTest {
             AwfulTable newRecord = new AwfulTable();
             newRecord.setFirstFirstName("Alonzo");
 
-            int rows = mapper.update(dsl ->
-                AwfulTableMapper.updateSelectiveColumns(newRecord, dsl)
-                .where(awfulTable.eMail, isLike("fred2@%")));
+            int rows = mapper.update(dsl -> AwfulTableMapper.updateSelectiveColumns(newRecord, dsl)
+                    .where(awfulTable.eMail, isLike("fred2@%")));
             assertEquals(1, rows);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.eMail, isLike("fred2@%")));
+            List<AwfulTable> answer = mapper.select(dsl -> dsl.where(awfulTable.eMail, isLike("fred2@%")));
             assertEquals(1, answer.size());
 
             AwfulTable returnedRecord = answer.get(0);
@@ -624,13 +592,11 @@ public class UpdateByExampleTest extends AbstractTest {
             newRecord.setId6(666);
             newRecord.setId7(777);
 
-            int rows = mapper.update(dsl ->
-                AwfulTableMapper.updateAllColumns(newRecord, dsl)
-                .where(awfulTable.eMail, isLike("fred2@%")));
+            int rows = mapper.update(dsl -> AwfulTableMapper.updateAllColumns(newRecord, dsl).where(awfulTable.eMail,
+                    isLike("fred2@%")));
             assertEquals(1, rows);
 
-            List<AwfulTable> answer = mapper.select(dsl ->
-                    dsl.where(awfulTable.customerId, isEqualTo(58)));
+            List<AwfulTable> answer = mapper.select(dsl -> dsl.where(awfulTable.customerId, isEqualTo(58)));
             assertEquals(1, answer.size());
 
             AwfulTable returnedRecord = answer.get(0);
